@@ -9,6 +9,7 @@ import id.co.jxf.security.vo.VoPstUserCred;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.hibernate.query.Query;
@@ -37,11 +38,25 @@ public class Wpm001AhmgawpmHdrikpsDaoImpl extends DefaultHibernateDao<AhmgawpmHd
         Query q = filterTableIkp(sql, input);
         q = setOffset(q, input);
         List resultList = q.list();
+        Object result = q.uniqueResult();
 
-        List<Map<String, Object>> list = q.list();
+        List<Map<String, Object>> list = new ArrayList<>();
+
+        if (result instanceof Object[]) {
+            Object[] row = (Object[]) result;
+            Map<String, Object> map = new HashMap<>();
+            for (int i = 0; i < row.length; i++) {
+                map.put(columnNames[i], row[i]);
+            }
+
+            list.add(map);
+        } else if (result instanceof Map) {
+            list.add((Map<String, Object>) result);
+        }
         List<Wpm001VoShowTableIkp> voList = new ArrayList<>();
         for (Map<String, Object> map : list) {
             Wpm001VoShowTableIkp vo = new Wpm001VoShowTableIkp();
+            vo.setVikpid((String) map.get("VIKPID"));
             vo.setKategoriPekerjaan((String) map.get("VWOCTGR"));
             vo.setKategoriIzinKerja((String) map.get("VWOPERMIT"));
             vo.setDeskripsiItem((String) map.get("VITEMDESC"));
@@ -107,12 +122,17 @@ public class Wpm001AhmgawpmHdrikpsDaoImpl extends DefaultHibernateDao<AhmgawpmHd
         return q;
     }
 
+    String[] columnNames = {
+        "VWOCTGR", "VWOPERMIT", "VORDERTYPE", "VODRTYPNUM", "VNOSPK",
+        "VITEMDESC", "VPLANTID", "VPROJSUB", "VPROJDTL", "VIKPID",
+        "VPURCHORG", "VLGINPATROL", "VPICNRPID", "VSUPPLYID", "VSUPPLDESC", "VSTATUS"
+    };
+
     private String queryTableIkp() {
         String sql = " SELECT DISTINCT A.VWOCTGR, A.VWOPERMIT, A.VORDERTYPE, A.VODRTYPNUM, A.VNOSPK, A.VITEMDESC, A.VPLANTID,A.VPROJSUB, "
-                + " A.VPROJDTL, A.VNOIKP, A.VPURCHORG, B.VLGINPATROL, A.VPICNRPID, A.VSUPPLYID, A.VSUPPLDESC, A.VSTATUS "
+                + " A.VPROJDTL, A.VIKPID, A.VPURCHORG, B.VLGINPATROL, A.VPICNRPID, A.VSUPPLYID, A.VSUPPLDESC, A.VSTATUS "
                 + " FROM AHMGAWPM_HDRIKPS A LEFT JOIN AHMGAWPM_DTLIKPAREAS B ON A.VIKPID = B.VIKPID "
                 + " WHERE ((:idSupplier IS NULL) OR A.VSUPPLYID = :idSupplier ) "
-                + " AND ((:nomorIkp IS NULL) OR A.VNOIKP = :nomorIkp ) "
                 + " AND ((:vikpid IS NULL) OR (LOWER(A.VIKPID) LIKE LOWER(CONCAT(CONCAT('%',:vikpid),'%')))) "
                 + " AND ((:nrpPic IS NULL) OR A.VPICNRPID = :nrpPic) "
                 + " AND A.VSTATUS IN (:status) "
@@ -126,7 +146,6 @@ public class Wpm001AhmgawpmHdrikpsDaoImpl extends DefaultHibernateDao<AhmgawpmHd
 
     private Query filterTableIkp(String sql, DtoParamPaging input) {
         Query q = getCurrentSession().createSQLQuery(sql);
-        q.setParameter("nomorIkp", input.getSearch().get("nomorIkp"));
         q.setParameter("idSupplier", input.getSearch().get("idSupplier"));
         q.setParameter("nrpPic", input.getSearch().get("nrpPic"));
         q.setParameterList("status", (Collection) input.getSearch().get("status"));
@@ -159,9 +178,6 @@ public class Wpm001AhmgawpmHdrikpsDaoImpl extends DefaultHibernateDao<AhmgawpmHd
             switch (input.getSort().toString().toLowerCase()) {
                 case "idsupplier":
                     order.append(" A.VSUPPLYID ");
-                    break;
-                case "nomorikp":
-                    order.append(" A.VNOIKP ");
                     break;
                 case "namasupplier":
                     order.append(" A.VSUPPLDESC ");

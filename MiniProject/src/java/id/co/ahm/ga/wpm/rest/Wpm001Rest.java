@@ -50,10 +50,9 @@ public class Wpm001Rest {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    DtoResponse getAllIkp(@RequestHeader(value = CommonConstant.JXID, defaultValue = "") String token,
-            @RequestBody DtoParamPaging dtoParamPaging) {
-        VoPstUserCred voPstUserCred = tokenPstUtil.getUserCred(token);
-        return this.wpm001Service.getTableIkp(dtoParamPaging, voPstUserCred);
+    DtoResponse getAllIkp(@RequestBody DtoParamPaging dtoParamPaging) {
+//        VoPstUserCred voPstUserCred = tokenPstUtil.getUserCred(token);
+        return this.wpm001Service.getTableIkp(dtoParamPaging, null);
     }
     
 }
