@@ -1,0 +1,1590 @@
+<!--Maintain IKP-->
+<html>
+    <head>
+        <link rel="stylesheet" href="../resources/css/AHMGAWPM001.css" />
+        <script  src="../resources/js/jQuery-2.1.3.min.js"></script>
+        <!-- <script  src="../resources/js/common.js"></script> -->
+        <script  src="../resources/js/bootstraps/moment-with-locales.min.js"></script>
+        <script  src="../resources/js/bootstraps/bootstrap-table-2.js"></script>
+        <script  src="../resources/js/bootstraps/bootstrap-datetimepicker.min.js"></script>
+        <link rel="stylesheet" href="../resources/js/bootstraps/bootstrap.min.css">
+        <link rel="stylesheet" href="../resources/js/bootstraps/bootstrap-table.min.css">
+           <link rel="stylesheet" href="../resources/js/bootstraps/bootstrap-editable.css">
+        <link rel="stylesheet" href="../resources/js/bootstraps/bootstrap-datetimepicker.min.css">
+        <link rel="stylesheet" href="../resources/js/bootstraps/daterangepicker-bs3.css">
+        <script  src="../resources/js/bootstraps/daterangepicker.js"></script>
+    </head>
+    <body>
+        <div id="ahmgawpm001" class="div-app" data-version="1.0">
+            <!--Maintain IKP-->
+            <div id="ahmgawpm001_halaman_maintain" class="subpage subpage-default" data-path="Maintain Izin Kerja Proyek">
+                <div class="row form-filter-panel" id="ahmgawpm001_filter_panel">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <div class="form-group large-font">
+                                        <label for="ahmgawpm001_id_supplier_filter" class="col-sm-12 control-label">ID Supplier
+                                        </label>
+                                        <div class="input-group lookup"
+                                             data-url="/jx04/ahmgawpm000-pst/rest/ga/wpm001/get-lov-supplier"
+                                             data-query-params-type="limit" data-lookup-pre-func="ahmgawpm001_lov_supplier"
+                                             data-columns='[{"id":"idSupplier","name":"ID Supplier","visible":"true","sortable":"true"},
+                                             {"id":"namaSupplier","name":"Deskripsi Supplier","visible":"true","sortable":"true"}]'
+                                             data-callback='{"ahmgawpm001_id_supplier_filter":"idSupplier","ahmgawpm001_nama_supplier_filter":"namaSupplier"}'>
+                                            <input id="ahmgawpm001_id_supplier_filter"
+                                                   class="form-control input-lookup gawpm001-uppercase"
+                                                   placeholder=" LoV ID Supplier" maxlength="100" />
+                                            <span class="input-group-btn">
+                                                <button id="ahmgawpm001_lookup_id_supplier_filter"
+                                                        class="btn btn-default large-button btn-lookup" type="button"
+                                                        style="display: block"></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group large-font">
+                                        <label for="ahmgawpm001_nama_supplier_filter" class="col-sm-12 control-label">Deskripsi
+                                            Supplier</label>
+                                        <input id="ahmgawpm001_nama_supplier_filter" type="text" class="form-control"
+                                               placeholder="Input Nama Supplier" maxlength="50" autocomplete="off" readonly />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <div class="form-group large-font">
+                                        <label for="ahmgawpm001_id_pic_filter" class="col-sm-12 control-label">NRP PIC
+                                            Project</label>
+                                        <div class="input-group lookup"
+                                             data-url="/jx04/ahmgawpm000-pst/rest/ga/wpm001/get-lov-pic"
+                                             data-lookup-pre-func="ahmgawpm001_lov_pic" data-query-params-type="limit"
+                                             data-columns='[{"id":"nrpPic","name":"NRP PIC","visible":"true","sortable":"true"},
+                                             {"id":"namaPic","name":"Nama PIC","visible":"true","sortable":"true"}]'
+                                             data-callback='{"ahmgawpm001_id_pic_filter":"nrpPic","ahmgawpm001_nama_pic_filter":"namaPic"}'>
+                                            <input id="ahmgawpm001_id_pic_filter"
+                                                   class="form-control input-lookup gawpm001-uppercase" placeholder=" LoV NRP PIC"
+                                                   maxlength="100" />
+                                            <span class="input-group-btn">
+                                                <button id="ahmgawpm001_lookup_id_pic_filter"
+                                                        class="btn btn-default large-button btn-lookup" type="button"></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group large-font">
+                                        <label for="ahmgawpm001_nama_pic_filter" class="col-sm-12 control-label">Nama PIC
+                                            Project</label>
+                                        <input id="ahmgawpm001_nama_pic_filter" type="text" class="form-control"
+                                               placeholder="Input Nama PIC Project" maxlength="50" autocomplete="off" readonly />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <div class="form-group large-font">
+                                        <label for="ahmgawpm001_ordering_type_filter" class="col-sm-12 control-label">Ordering
+                                            Type</label>
+                                        <select id="ahmgawpm001_ordering_type_filter" class="form-control" required
+                                                onChange="ahmgawpm001_check_po_filter(this)">
+                                            <option value="">-</option>
+                                            <option value="PO">Purchase Order</option>
+                                            <option value="SPK">SPK</option>
+                                            <option value="SPK Sementara">SPK Sementara</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group large-font">
+                                        <label for="ahmgawpm001_nomor_po_spk" class="col-sm-12 control-label">Nomor PO/SPK/SPK
+                                            Sementara</label>
+                                        <div class="input-group lookup"
+                                             data-url="/jx04/ahmgawpm000-pst/rest/ga/wpm001/get-lov-po"
+                                             data-lookup-pre-func="ahmgawpm001_lov_po" data-query-params-type="limit"
+                                             data-columns='[{"id":"nomorPo","name":"Nomor PO / SPK / SPK Sementara","visible":"true","sortable":"true"},
+                                             {"id":"deskripsiItem","name":"Deskripsi Item","visible":"true","sortable":"true"}]'
+                                             data-callback='{"ahmgawpm001_nomor_po_filter":"nomorPo"}'>
+                                            <input id="ahmgawpm001_nomor_po_filter"
+                                                   class="form-control input-lookup gawpm001-uppercase"
+                                                   placeholder=" LoV Nomor PO / SPK / SPK Sementara" maxlength="100" />
+                                            <span class="input-group-btn">
+                                                <button id="ahmgawpm001_lookup_nomor_po_filter"
+                                                        class="btn btn-default large-button btn-lookup" type="button"></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-2">
+                                    <div class="form-group large-font">
+                                        <label class="col-lg-12 control-label">Periode (Start)</label>
+                                        <div class="input-group date">
+                                            <input id="ahmgawpm001_start_periode_filter" type="text" class="warningInput" />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group large-font">
+                                        <label class="col-lg-12 control-label">Periode (End)</label>
+                                        <div class="input-group date">
+                                            <input id="ahmgawpm001_end_periode_filter" type="text" class="warningInput" />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group large-font">
+                                        <label for="ahmgawpm001_nomor_ikp" class="col-sm-12 control-label">Nomor IKP</label>
+                                        <div class="input-group lookup"
+                                             data-url="/jx04/ahmgawpm000-pst/rest/ga/wpm001/get-lov-ikp"
+                                             data-lookup-pre-func="ahmgawpm001_lov_ikp_maintain" data-query-params-type="limit"
+                                             data-columns='[{"id":"nomorIkp","name":"Nomor IKP","visible":"true","sortable":"true"}]'
+                                             data-callback='{"ahmgawpm001_nomor_ikp_filter":"nomorIkp"}'>
+                                            <input id="ahmgawpm001_nomor_ikp_filter"
+                                                   class="form-control input-lookup gawpm001-uppercase"
+                                                   placeholder=" LoV Nomor IKP" maxlength="100" />
+                                            <span class="input-group-btn">
+                                                <button id="ahmgawpm001_lookup_nomor_ikp_filter"
+                                                        class="btn btn-default large-button btn-lookup" type="button"></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-button" style="margin-top: 12px">
+                        <a id="ahmgawpm001_maintain_ikp_button" onclick="_fw_filterpanel_toggle(this); return false;"
+                           class="filter-link-collapse glyphicon glyphicon-chevron-up"
+                           href="https://portaldev.ahm.co.id/jx02/ahmipdsh000-pst/dashboard.htm#"></a>
+
+                        <button class="btn btn-primary large-button" id="ahmgawpm001_search_maintain_ikp_button">
+                            <i class="glyphicon glyphicon-search fg-white"></i> Search
+                        </button>
+                        <button class="btn bg-grey large-button" id="ahmgawpm001_refresh_maintain_ikp_button">
+                            <i class="glyphicon glyphicon-refresh fg-white"></i> Refresh
+                        </button>
+                        <button class="btn bg-blue large-button" id="ahmgawpm001_export_maintain_ikp_button">
+                            <i class="glyphicon glyphicon-open-file fg-white"></i> Export to Excel
+                        </button>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 10px">
+                    <div id="ahmgawpm001_button_add_submit" class="form-group-button">
+
+                    </div>
+                </div>
+                <div id="table-container" class="ahmgawpm001_table" id="ahmgawpm001_table">
+                    <div class="bootstrap-table">
+                        <div class="fixed-table-toolbar"></div>
+                        <div class="fixed-table-container" style="padding-bottom: 0px">
+                            <div class="fixed-table-header" style="display: none">
+                                <table></table>
+                            </div>
+                            <div class="fixed-table-body">
+                                <div class="fixed-table-loading" style="top: 39px; display: none">
+                                    Loading, please wait...
+                                </div>
+                                <table id="ahmgawpm001_search_maintain_ikp_table" data-method="post"
+                                       data-url="http://localhost:8081/MiniProject/rest/ga/wpm001/get-ikp-table"
+                                       data-content-type="application/json" data-data-type="json" data-query-params-type="limit"
+                                       data-query-params="ahmgawpm001_maintain_ikp_filter" data-response-handler="loadData"
+                                       data-side-pagination="server" data-pagination="true" data-unique-id="nomorIkp"
+                                       data-multiple-select-row="true" data-click-to-select="true" class="table table-hover">
+                                    <thead>
+
+                                        <tr>
+                                            <th data-field="state" data-checkbox="true" data-formatter="stateCheckBoxFormatter">
+                                            </th>
+                                            <th data-sortable="false" data-visible="true" data-align="center"
+                                                data-formatter="ahmgawpm001_index_formatter">
+                                                No.
+                                            </th>
+                                            <th data-field="vikpid" data-sortable="true">
+                                                <div class="th-inner">No IKP</div>
+                                                <div class="fht-cell"></div>
+                                            </th>
+                                            <th data-field="idSupplier" data-sortable="true">
+                                                <div class="th-inner">Supplier ID</div>
+                                                <div class="fht-cell"></div>
+                                            </th>
+                                            <th data-field="namaSupplier" data-sortable="true">
+                                                <div class="th-inner">Nama Supplier</div>
+                                                <div class="fht-cell"></div>
+                                            </th>
+                                            <th data-field="orderingType" data-sortable="true">
+                                                <div class="th-inner">Ordering Type</div>
+                                                <div class="fht-cell"></div>
+                                            </th>
+                                            <th data-field="nomorPo" data-sortable="true">
+                                                <div class="th-inner">Nomor PO/SPK/SPK Sementara</div>
+                                                <div class="fht-cell"></div>
+                                            </th>
+                                            <th data-field="plantId" data-sortable="true">
+                                                <div class="th-inner">Plant Pekerjaan</div>
+                                                <div class="fht-cell"></div>
+                                            </th>
+                                            <th data-field="nomorPengajuanLk3" data-sortable="true">
+                                                <div class="th-inner">Nomor LK3</div>
+                                                <div class="fht-cell"></div>
+                                            </th>
+                                            <th data-field="loginPatrol" data-sortable="true">
+                                                <div class="th-inner">Login Patrol</div>
+                                                <div class="fht-cell"></div>
+                                            </th>
+                                            <th data-field="nrpPic" data-sortable="true">
+                                                <div class="th-inner">
+                                                    NRP PIC <br />
+                                                    Project
+                                                </div>
+                                                <div class="fht-cell"></div>
+                                            </th>
+                                            <th data-field="namaPic" data-sortable="false">
+                                                <div class="th-inner">
+                                                    Nama PIC <br />
+                                                    Project
+                                                </div>
+                                                <div class="fht-cell"></div>
+                                            </th>
+                                            <th data-field="seksiPic" data-sortable="false">
+                                                <div class="th-inner">
+                                                    Seksi PIC <br />
+                                                    Project
+                                                </div>
+                                                <div class="fht-cell"></div>
+                                            </th>
+                                            <th data-field="departemenPic" data-sortable="false">
+                                                <div class="th-inner">
+                                                    Departemen PIC <br />
+                                                    Project
+                                                </div>
+                                                <div class="fht-cell"></div>
+                                            </th>
+                                            <th data-field="divisiPic" data-sortable="false">
+                                                <div class="th-inner">
+                                                    Divisi PIC <br />
+                                                    Project
+                                                </div>
+                                                <div class="fht-cell"></div>
+                                            </th>
+                                            <th data-field="status" data-sortable="true">
+                                                <div class="th-inner">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                                                <div class="fht-cell"></div>
+                                            </th>
+                                            <th data-sortable="false" data-visible="true" data-align="center"
+                                                data-formatter="ahmgawpm001_maintain_ikp_action_button">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <div class="fht-cell"></div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+
+                                    <!--					    Kalau untuk role di bawah ini, mereka cuma ada button :
+                                                                                                      Project Owner -> Submit, Edit, Download
+                                                                                                      Kontraktor -> Submit, Edit, Delete, Renew, Download
+                                                                                                      Dept Head & EHS Officer -> Edit, Download-->
+                                </table>
+                            </div>
+                            <div class="fixed-table-footer" style="display: none">
+                                <table>
+                                    <tbody>
+                                        <tr></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="fixed-table-pagination" style="display: none">
+                                <div class="pull-left pagination-detail">
+                                    <span class="pagination-info">Showing 1 to 0 of 0 rows</span>
+                                    <span class="page-list" style="display: none">
+                                        <span class="btn-group dropup">
+                                            <button type="button" class="btn btn-default dropdown-toggle"
+                                                    data-toggle="dropdown">
+                                                <span class="page-size">10</span>
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li role="menuitem" class="active">
+                                                    <a
+                                                        href="https://portaldev.ahm.co.id/jx02/ahmipdsh000-pst/dashboard.htm#">10</a>
+                                                </li>
+                                            </ul>
+                                        </span>
+                                        rows per page
+                                    </span>
+                                </div>
+                                <div class="pull-right pagination" style="display: none">
+                                    <ul class="pagination">
+                                        <li class="page-pre">
+                                            <a href="https://portaldev.ahm.co.id/jx02/ahmipdsh000-pst/dashboard.htm#"></a>
+                                        </li>
+                                        <li class="page-next">
+                                            <a href="https://portaldev.ahm.co.id/jx02/ahmipdsh000-pst/dashboard.htm#"></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="ahmgawpm001_delete_ikp" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" style="margin: 0 19px 0 0">
+                                    &times;
+                                </button>
+                                <h4 class="modal-title center">
+                                    Confirm Delete Selected IKP Data?
+                                </h4>
+                            </div>
+                            <div class="modal-body center">
+                                <button class="btn btn-danger" id="ahmgawpm001_delete_ikp_confirm_button" data-dismiss="modal">
+                                    <i class="glyphicon glyphicon-ok fg-white"></i> Confirm
+                                </button>
+                                <button class="btn btn-primary" data-dismiss="modal"
+                                        id="ahmgawpm001_cancel_delete_ikp_confirm_button">
+                                    <i class="glyphicon glyphicon-remove fg-white"></i> Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="ahmgawpm001_submit_ikp" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" style="margin: 0 19px 0 0">
+                                    &times;
+                                </button>
+                                <h4 class="modal-title center">
+                                    Confirm Submit IKP Data?
+                                </h4>
+                            </div>
+                            <div class="modal-body center">
+                                <div class="center" id="ahmgawpm001_submit_ikp_message"></div>
+                                <br>
+                                <button class="btn bg-green" id="ahmgawpm001_submit_ikp_confirm_button" data-dismiss="modal">
+                                    <i class="glyphicon glyphicon-ok fg-white"></i> Confirm
+                                </button>
+                                <button class="btn btn-danger" data-dismiss="modal">
+                                    <i class="glyphicon glyphicon-remove fg-white"></i> Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            
+
+
+        </div>
+
+        <!-- Notifikasi Modal -->
+        <div id="ahmgawpm001_notification_modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header center">
+                        <button type="button" class="close" data-dismiss="modal">
+                            &times;
+                        </button>
+                        <h4 class="modal-title center" id="ahmgawpm001_notification_modal_message"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="center" id="ahmgawpm001_notification_modal_submessage"></div>
+                        <br>
+                        <div class="modal-footer center">
+                            <button class="btn btn-primary" o data-dismiss="modal">
+                                <i class="glyphicon glyphicon-ok fg-white"></i> OK
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--  Add Area Modal-->
+        <div id="ahmgawpm001_add_area_modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            &times;
+                        </button>
+                        <h4 class="modal-title center">Add New Area</h4>
+                    </div>
+                    <div class="modal-body" id="ahmgawpm001_add_area_modal_body">
+                        <div class="row">
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">Nomor Asset</label>
+                                <div class="lookup-wrapper col-lg-8">
+                                    <div class="input-group lookup"
+                                         data-url="/jx04/ahmgawpm000-pst/rest/ga/wpm001/get-lov-nomorasset"
+                                         data-lookup-pre-func="ahmgawpm001_lov_nomor_asset_add_area"
+                                         data-lookup-change-func="ahmgawpm001_lov_nomor_asset_add_area_change" data-columns='[{"id":"nomorAsset","name":"Nomor Asset","visible":"true","sortable":"true"},
+                                         {"id":"building","name":"Building","visible":"true","sortable":"true"}, 
+                                         {"id":"floor","name":"Floor","visible":"true","sortable":"true"}, 
+                                         {"id":"sectionLocation","name":"Section Location","visible":"true","sortable":"true"}, 
+                                         {"id":"areaDetail","name":"Area Detail","visible":"true","sortable":"true"}, 
+                                         {"id":"criticality","name":"Criticality","visible":"true","sortable":"true"}]'
+                                         data-callback='{"ahmgawpm001_nomor_asset_add_area":"nomorAsset",
+                                         "ahmgawpm001_building_add_area":"building",
+                                         "ahmgawpm001_floor_add_area":"floor",
+                                         "ahmgawpm001_section_location_add_area":"sectionLocation",
+                                         "ahmgawpm001_area_detail_add_area":"areaDetail",
+                                         "ahmgawpm001_criticality_add_area":"criticality"}'>
+                                        <input id="ahmgawpm001_nomor_asset_add_area"
+                                               class="form-control input-lookup gawpm001-uppercase" placeholder=" LoV Nomor Asset"
+                                               maxlength="100" oninput="ahmgawpm001_lov_nomor_asset_add_area_empty()" />
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default large-button btn-lookup" type="button"></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group modal-label">
+                                <label class="control-label col-lg-4">Building</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_building_add_area" class="form-control" maxlength="50"
+                                           autocomplete="off" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group modal-label">
+                                <label class="control-label col-lg-4">Floor</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_floor_add_area" class="form-control" maxlength="50"
+                                           autocomplete="off" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group modal-label">
+                                <label class="control-label col-lg-4">Section Location</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_section_location_add_area" class="form-control" maxlength="6"
+                                           autocomplete="off" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group modal-label">
+                                <label class="control-label col-lg-4">Area Detail</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_area_detail_add_area" class="form-control" maxlength="6"
+                                           autocomplete="off" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">Indoor / Outdoor</label>
+                                <div class="col-lg-8">
+                                    <select id="ahmgawpm001_indoor_outdoor_add_area" class="form-control">
+                                        <option value="Indoor">Indoor</option>
+                                        <option value="Outdoor">Outdoor</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group modal-label">
+                                <label class="control-label col-lg-4">Criticality</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_criticality_add_area" class="form-control" placeholder=""
+                                           maxlength="6" autocomplete="off" readonly />
+                                </div>
+                            </div>
+
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">Task List</label>
+                                <div class="lookup-wrapper col-lg-8">
+                                    <div class="input-group lookup"
+                                         data-url="/jx04/ahmgawpm000-pst/rest/ga/wpm001/get-lov-tasklist"
+                                         data-lookup-pre-func="ahmgawpm001_lov_tasklist_add_area"
+                                         data-lookup-change-func="ahmgawpm001_lov_tasklist_add_area_change" data-columns='[{"id":"taskListCode","name":"Code","visible":"true","sortable":"true"},
+                                         {"id":"taskListTitle","name":"Task List","visible":"true","sortable":"true"}]'
+                                         data-callback='{"ahmgawpm001_task_list_code_add_area":"taskListCode",
+                                         "ahmgawpm001_task_list_title_add_area":"taskListTitle"}'>
+                                        <input id="ahmgawpm001_task_list_title_add_area"
+                                               class="form-control input-lookup gawpm001-uppercase" placeholder=" LoV Task List"
+                                               maxlength="100" oninput="ahmgawpm001_lov_tasklist_add_area_empty()" readonly />
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default large-button btn-lookup" type="button"
+                                                    id="ahmgawpm001_button_task_list_title_add_area" disabled></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer center">
+                            <button class="btn bg-green" onclick="ahmgawpm001_add_area()" id="ahmgawpm001_submit_modal_add_area"
+                                    data-dismiss="modal">
+                                <i class="glyphicon glyphicon-floppy-disk fg-white"></i> Submit
+                            </button>
+                            <button class="btn btn-danger" data-dismiss="modal">
+                                <i class="glyphicon glyphicon-remove fg-white"></i> Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Add Personnel Modal -->
+        <div id="ahmgawpm001_add_personnel_modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            &times;
+                        </button>
+                        <h4 class="modal-title center">Add New Personnel</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">Tipe Tugas</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_tipe_tugas_add" class="form-control" placeholder="Input Tipe Tugas"
+                                           oninput="ahmgawpm001_check_add_personnel_modal()" maxlength="50" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">NIK / No Paspor</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_nik_paspor_kontraktor_add" class="form-control"
+                                           placeholder="Input NIK / Nomor Paspor" maxlength="50" autocomplete="off"
+                                           oninput="ahmgawpm001_check_add_personnel_modal()" />
+                                </div>
+                            </div>
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">Nama Kontraktor</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_nama_kontraktor_add" class="form-control"
+                                           placeholder="Input Nama Kontraktor" maxlength="50" autocomplete="off"
+                                           oninput="ahmgawpm001_check_add_personnel_modal()" />
+                                </div>
+                            </div>
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">Nomor Sertifikasi (Permit Number)</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_nomor_sertifikasi_add" class="form-control"
+                                           oninput="ahmgawpm001_check_add_personnel_modal()"
+                                           placeholder="Input Nomor Sertifikasi (Permit Number)" maxlength="50"
+                                           autocomplete="off" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer center">
+                            <button class="btn bg-green" onclick="ahmgawpm001_add_personnel()" data-dismiss="modal"
+                                    id="ahmgawpm001_submit_modal_add_personnel">
+                                <i class="glyphicon glyphicon-floppy-disk fg-white"></i> Submit
+                            </button>
+                            <button class="btn btn-danger" data-dismiss="modal">
+                                <i class="glyphicon glyphicon-remove fg-white"></i> Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Add Tool Modal -->
+        <div id="ahmgawpm001_add_tool_modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            &times;
+                        </button>
+                        <h4 class="modal-title center">Add New Tool</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">Deskripsi Alat</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_deskripsi_alat_add" class="form-control"
+                                           oninput="ahmgawpm001_check_add_tool_modal()" placeholder="Input Deskripsi Alat"
+                                           maxlength="50" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">Permit Flag</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_permit_flag_add" class="form-control" placeholder="Input Permit Flag"
+                                           oninput="ahmgawpm001_check_add_tool_modal()" maxlength="50" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">Permit Type</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_permit_type_add" class="form-control" placeholder="Input Permit Type"
+                                           oninput="ahmgawpm001_check_add_tool_modal()" maxlength="50" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">Serial Number</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_serial_number_add" class="form-control"
+                                           oninput="ahmgawpm001_check_add_tool_modal()" placeholder="Input Serial Number"
+                                           maxlength="50" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">Nomor Izin</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_nomor_izin_add" class="form-control" placeholder="Input Nomor Izin"
+                                           oninput="ahmgawpm001_check_add_tool_modal()" maxlength="50" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">Effective Date From</label>
+                                <div class="col-lg-8">
+                                    <div class="input-group date" id="ahmgawpm001_effective_date_from_add_datetimepicker">
+                                        <input id="ahmgawpm001_effective_date_from_add" type="text" class="warningInput"
+                                               oninput="ahmgawpm001_check_add_tool_modal()" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">Effective Date To</label>
+                                <div class="col-lg-8">
+                                    <div class="input-group date" id="ahmgawpm001_effective_date_to_add_datetimepicker">
+                                        <input id="ahmgawpm001_effective_date_to_add" type="text" class="warningInput"
+                                               oninput="ahmgawpm001_check_add_tool_modal()" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer center">
+                            <button class="btn bg-green" onclick="ahmgawpm001_add_tool()" id="ahmgawpm001_submit_modal_add_tool"
+                                    data-dismiss="modal">
+                                <i class="glyphicon glyphicon-floppy-disk fg-white"></i> Submit
+                            </button>
+                            <button class="btn btn-danger" data-dismiss="modal">
+                                <i class="glyphicon glyphicon-remove fg-white"></i> Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Edit Area Modal-->
+        <div id="ahmgawpm001_edit_area_modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            &times;
+                        </button>
+                        <h4 class="modal-title center">Edit Area Data</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">Nomor Asset</label>
+                                <div class="lookup-wrapper col-lg-8">
+                                    <div class="input-group lookup"
+                                         data-url="/jx04/ahmgawpm000-pst/rest/ga/wpm001/get-lov-nomorasset"
+                                         data-lookup-pre-func="ahmgawpm001_lov_nomor_asset_edit_area"
+                                         data-lookup-change-func="ahmgawpm001_lov_nomor_asset_edit_area_change" data-columns='[{"id":"nomorAsset","name":"Nomor Asset","visible":"true","sortable":"true"},
+                                         {"id":"building","name":"Building","visible":"true","sortable":"true"}, 
+                                         {"id":"floor","name":"Floor","visible":"true","sortable":"true"}, 
+                                         {"id":"sectionLocation","name":"Section Location","visible":"true","sortable":"true"}, 
+                                         {"id":"areaDetail","name":"Area Detail","visible":"true","sortable":"true"}, 
+                                         {"id":"criticality","name":"Criticality","visible":"true","sortable":"true"}]'
+                                         data-callback='{"ahmgawpm001_nomor_asset_edit_area":"nomorAsset",
+                                         "ahmgawpm001_building_edit_area":"building",
+                                         "ahmgawpm001_floor_edit_area":"floor",
+                                         "ahmgawpm001_section_location_edit_area":"sectionLocation",
+                                         "ahmgawpm001_area_detail_edit_area":"areaDetail",
+                                         "ahmgawpm001_criticality_edit_area":"criticality"}'>
+                                        <input id="ahmgawpm001_nomor_asset_edit_area"
+                                               class="form-control input-lookup gawpm001-uppercase" placeholder=" LoV Nomor Asset"
+                                               maxlength="100" oninput="ahmgawpm001_lov_nomor_asset_edit_area_empty()" />
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default large-button btn-lookup" type="button"
+                                                    id="ahmgawpm001_lov_nomor_asset_button"></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group modal-label">
+                                <label class="control-label col-lg-4">Building</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_building_edit_area" class="form-control" placeholder=""
+                                           maxlength="50" autocomplete="off" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group modal-label">
+                                <label class="control-label col-lg-4">Floor</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_floor_edit_area" class="form-control" placeholder="" maxlength="50"
+                                           autocomplete="off" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group modal-label">
+                                <label class="control-label col-lg-4">Section Location</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_section_location_edit_area" class="form-control" placeholder=""
+                                           maxlength="6" autocomplete="off" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group modal-label">
+                                <label class="control-label col-lg-4">Area Detail</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_area_detail_edit_area" class="form-control" placeholder=""
+                                           maxlength="" autocomplete="off" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">Indoor / Outdoor</label>
+                                <div class="col-lg-8">
+                                    <select id="ahmgawpm001_indoor_outdoor_edit_area" class="form-control"
+                                            onChange="ahmgawpm001_indoor_outdoor_edit_area_change(this)">
+                                        <option value="Indoor">Indoor</option>
+                                        <option value="Outdoor">Outdoor</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group modal-label">
+                                <label class="control-label col-lg-4">Criticality</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_criticality_edit_area" class="form-control" placeholder=""
+                                           maxlength="6" autocomplete="off" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">Task List</label>
+                                <div class="lookup-wrapper col-lg-8">
+                                    <div class="input-group lookup"
+                                         data-url="/jx04/ahmgawpm000-pst/rest/ga/wpm001/get-lov-tasklist"
+                                         data-lookup-pre-func="ahmgawpm001_lov_tasklist_edit_area"
+                                         data-lookup-change-func="ahmgawpm001_lov_tasklist_edit_area_change" data-columns='[{"id":"taskListCode","name":"Code","visible":"true","sortable":"false"},
+                                         {"id":"taskListTitle","name":"Task List","visible":"true","sortable":"true"}]'
+                                         data-callback='{"ahmgawpm001_task_list_code_add_area":"taskListCode",
+                                         "ahmgawpm001_task_list_title_edit_area":"taskListTitle"}'>
+                                        <input id="ahmgawpm001_task_list_title_edit_area"
+                                               class="form-control input-lookup gawpm001-uppercase" placeholder=" LoV Task List"
+                                               maxlength="100" oninput="ahmgawpm001_lov_tasklist_edit_area_empty()" />
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default large-button btn-lookup" type="button"
+                                                    id="ahmgawpm001_button_task_list_title_edit_area"></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer center">
+                            <button class="btn bg-green" id="ahmgawpm001_submit_modal_edit_area"
+                                    onclick="ahmgawpm001_edit_area_modal()" data-dismiss="modal">
+                                <i class="glyphicon glyphicon-floppy-disk fg-white"></i> Submit
+                            </button>
+                            <button class="btn btn-danger" data-dismiss="modal">
+                                <i class="glyphicon glyphicon-remove fg-white"></i> Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Edit Personnel -->
+        <div id="ahmgawpm001_edit_personnel_modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            &times;
+                        </button>
+                        <h4 class="modal-title center">Edit Personnel Data</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">Tipe Tugas</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_tipe_tugas_edit" class="form-control"
+                                           placeholder="Petugas Ketinggian" maxlength="50" autocomplete="off"
+                                           oninput="ahmgawpm001_check_edit_personnel_modal()" />
+                                </div>
+                            </div>
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">NIK / No Paspor</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_nik_paspor_kontraktor_edit" class="form-control"
+                                           placeholder="33111245690003" maxlength="50" autocomplete="off"
+                                           oninput="ahmgawpm001_check_edit_personnel_modal()" />
+                                </div>
+                            </div>
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">Nama Kontraktor / Karyawan</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_nama_kontraktor_edit" class="form-control" placeholder="Sugiono"
+                                           oninput="ahmgawpm001_check_edit_personnel_modal()" maxlength="50" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">Nomor Sertifikasi (Permit Number)</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_nomor_sertifikasi_edit" class="form-control"
+                                           oninput="ahmgawpm001_check_edit_personnel_modal()" placeholder="MP-TKBT1-001"
+                                           maxlength="50" autocomplete="off" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer center">
+                            <button class="btn bg-green" onclick="ahmgawpm001_edit_personnel_modal()" data-dismiss="modal"
+                                    id="ahmgawpm001_submit_modal_edit_personnel">
+                                <i class="glyphicon glyphicon-floppy-disk fg-white"></i> Submit
+                            </button>
+                            <button class="btn btn-danger" data-dismiss="modal">
+                                <i class="glyphicon glyphicon-remove fg-white"></i> Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Delete Area Modal-->
+        <div id="ahmgawpm001_delete_area_modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            &times;
+                        </button>
+                        <h4 class="modal-title center">
+                            Confirm to Delete Selected Area Data?
+                        </h4>
+                    </div>
+                    <div class="modal-body center">
+                        <button class="btn btn-danger" onclick="ahmgawpm001_delete_area_modal()" data-dismiss="modal">
+                            <i class="glyphicon glyphicon-ok fg-white"></i> Confirm
+                        </button>
+                        <button class="btn btn-primary" data-dismiss="modal">
+                            <i class="glyphicon glyphicon-remove fg-white"></i> Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Delete Personnel Modal -->
+        <div id="ahmgawpm001_delete_personnel_modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            &times;
+                        </button>
+                        <h4 class="modal-title center">
+                            Confirm to Delete Selected personnel Data?
+                        </h4>
+                    </div>
+                    <div class="modal-body center">
+                        <button class="btn btn-danger" onclick="ahmgawpm001_delete_personnel_modal()" data-dismiss="modal">
+                            <i class="glyphicon glyphicon-ok fg-white"></i> Confirm
+                        </button>
+                        <button class="btn btn-primary" data-dismiss="modal">
+                            <i class="glyphicon glyphicon-remove fg-white"></i> Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Delete Tool Modal -->
+        <div id="ahmgawpm001_delete_tool_modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            &times;
+                        </button>
+                        <h4 class="modal-title center">
+                            Confirm to Delete Selected tool Data?
+                        </h4>
+                    </div>
+                    <div class="modal-body center">
+                        <button class="btn btn-danger" onclick="ahmgawpm001_delete_tool_modal()" data-dismiss="modal">
+                            <i class="glyphicon glyphicon-ok fg-white"></i> Confirm
+                        </button>
+                        <button class="btn btn-primary" data-dismiss="modal">
+                            <i class="glyphicon glyphicon-remove fg-white"></i> Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Delete All Area Modal -->
+        <div id="ahmgawpm001_delete_all_area_modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            &times;
+                        </button>
+                        <h4 class="modal-title center">
+                            Confirm to Delete All Area Data?
+                        </h4>
+                    </div>
+                    <div class="modal-body center">
+                        <button class="btn btn-danger" onclick="ahmgawpm001_delete_all_area_modal()" data-dismiss="modal">
+                            <i class="glyphicon glyphicon-ok fg-white"></i> Confirm
+                        </button>
+                        <button class="btn btn-primary" data-dismiss="modal">
+                            <i class="glyphicon glyphicon-remove fg-white"></i> Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Delete All Personnel Modal  -->
+        <div id="ahmgawpm001_delete_all_personnel_modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            &times;
+                        </button>
+                        <h4 class="modal-title center">
+                            Confirm to Delete All Personnel Data?
+                        </h4>
+                    </div>
+                    <div class="modal-body center">
+                        <button class="btn btn-danger" onclick="ahmgawpm001_delete_all_personnel_modal()" data-dismiss="modal">
+                            <i class="glyphicon glyphicon-ok fg-white"></i> Confirm
+                        </button>
+                        <button class="btn btn-primary" data-dismiss="modal">
+                            <i class="glyphicon glyphicon-remove fg-white"></i> Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Delete All Tool Modal  -->
+        <div id="ahmgawpm001_delete_all_tool_modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            &times;
+                        </button>
+                        <h4 class="modal-title center">Confirm to Delete All tool Data?</h4>
+                    </div>
+                    <div class="modal-body center">
+                        <button class="btn btn-danger" onclick="ahmgawpm001_delete_all_tool_modal()" data-dismiss="modal">
+                            <i class="glyphicon glyphicon-ok fg-white"></i> Confirm
+                        </button>
+                        <button class="btn btn-primary" data-dismiss="modal">
+                            <i class="glyphicon glyphicon-remove fg-white"></i> Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Edit Tool-->
+        <div id="ahmgawpm001_edit_tool_modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            &times;
+                        </button>
+                        <h4 class="modal-title center">Edit Tool Data</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">ID Alat</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_id_alat_edit" class="form-control" placeholder="Mobile Crane"
+                                           oninput="ahmgawpm001_check_edit_tool_modal()" maxlength="50" autocomplete="off"
+                                           readonly />
+                                </div>
+                            </div>
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">Deskripsi Alat</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_deskripsi_alat_edit" class="form-control" placeholder="Mobile Crane"
+                                           oninput="ahmgawpm001_check_edit_tool_modal()" maxlength="50" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">Permit Flag</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_permit_flag_edit" class="form-control" placeholder="Need Permit"
+                                           oninput="ahmgawpm001_check_edit_tool_modal()" maxlength="50" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">Permit Type</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_permit_type_edit" class="form-control" placeholder="SIA Mobile Crane"
+                                           oninput="ahmgawpm001_check_edit_tool_modal()" maxlength="50" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">Serial Number</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_serial_number_edit" class="form-control" placeholder="2390001"
+                                           oninput="ahmgawpm001_check_edit_tool_modal()" maxlength="50" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">Nomor Izin</label>
+                                <div class="col-lg-8">
+                                    <input id="ahmgawpm001_nomor_izin_edit" class="form-control" placeholder="Izin 2"
+                                           oninput="ahmgawpm001_check_edit_tool_modal()" maxlength="50" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">Effective Date From</label>
+                                <div class="col-lg-8">
+                                    <div class="input-group date" id="ahmgawpm001_effective_date_from_edit_datetimepicker">
+                                        <input id="ahmgawpm001_effective_date_from_edit" type="text" class="warningInput"
+                                               oninput="ahmgawpm001_check_edit_tool_modal()" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group required modal-label">
+                                <label class="control-label col-lg-4">Effective Date To</label>
+                                <div class="col-lg-8">
+                                    <div class="input-group date" id="ahmgawpm001_effective_date_to_edit_datetimepicker">
+                                        <input id="ahmgawpm001_effective_date_to_edit" type="text" class="warningInput"
+                                               oninput="ahmgawpm001_check_edit_tool_modal()" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer center">
+                            <button class="btn bg-green" onclick="ahmgawpm001_edit_tool_modal()" data-dismiss="modal"
+                                    id="ahmgawpm001_submit_modal_edit_tool">
+                                <i class="glyphicon glyphicon-floppy-disk fg-white"></i> Submit
+                            </button>
+                            <button class="btn btn-danger" data-dismiss="modal">
+                                <i class="glyphicon glyphicon-remove fg-white"></i> Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--LoV NRP PIC-->
+        <!-- <div id="lovNrpPicModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            &times;
+                        </button>
+                        <h4 class="modal-title center">NRP PIC Project</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group modal-label">
+                            <label class="control-label col-lg-2" style="margin-top: 5px">Search :
+                            </label>
+                            <div class="col-lg-11 input-group">
+                                <input class="search-query form-control" maxlength="50" autocomplete="off" />
+                                <span class="input-group-btn">
+                                    <button class="btn search-btn" type="button">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+        
+                        <div class="bootstrap-table">
+                            <div class="fixed-table-toolbar"></div>
+                            <div class="fixed-table-container" style="padding-bottom: 0px">
+                                <div class="fixed-table-header" style="display: none">
+                                    <table></table>
+                                </div>
+                                <div class="fixed-table-body">
+                                    <div class="fixed-table-loading" style="top: 39px; display: none">
+                                        Loading, please wait...
+                                    </div>
+                                    <table id="ahmitism056p01_search_table" data-method="post" data-url=""
+                                        data-content-type="application/json" data-data-type="json" accesskey=""
+                                        data-query-params-type="limit" data-query-params="ahmitism056p01_presearch"
+                                        data-response-handler="ahmitism056p01_load_data" data-side-pagination="server"
+                                        data-pagination="true" data-unique-id="id" class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th style="background-color: #dad0c6" data-field="" field-id="">
+                                                    <div class="th-inner">NRP PIC</div>
+                                                    <div class="fht-cell"></div>
+                                                </th>
+                                                <th style="background-color: #dad0c6" data-field="">
+                                                    <div class="th-inner ">Nama PIC</div>
+                                                    <div class="fht-cell"></div>
+                                                </th>
+                                                <th style="background-color: #dad0c6" data-field="">
+                                                    <div class="th-inner ">Seksi PIC</div>
+                                                    <div class="fht-cell"></div>
+                                                </th>
+                                                <th style="background-color: #dad0c6" data-field="">
+                                                    <div class="th-inner ">Departemen PIC</div>
+                                                    <div class="fht-cell"></div>
+                                                </th>
+                                                <th style="background-color: #dad0c6" data-field="">
+                                                    <div class="th-inner ">Divisi PIC</div>
+                                                    <div class="fht-cell"></div>
+                                                </th>
+                                                <th style="background-color: #dad0c6" data-field="">
+                                                    <div class="th-inner">Activities</div>
+                                                    <div class="fht-cell"></div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="no-records-found">
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><a onclick="">Choose</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="fixed-table-footer" style="display: none">
+                                    <table>
+                                        <tbody>
+                                            <tr></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="fixed-table-pagination" style="display: none">
+                                    <div class="pull-left pagination-detail">
+                                        <span class="pagination-info">Showing 1 to 0 of 0 rows</span>
+                                        <span class="page-list" style="display: none">
+                                            <span class="btn-group dropup">
+                                                <button type="button" class="btn btn-default dropdown-toggle"
+                                                    data-toggle="dropdown">
+                                                    <span class="page-size">10</span>
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li role="menuitem" class="active">
+                                                        <a
+                                                            href="https://portaldev.ahm.co.id/jx02/ahmipdsh000-pst/dashboard.htm#">10</a>
+                                                    </li>
+                                                </ul>
+                                            </span>
+                                            rows per page
+                                        </span>
+                                    </div>
+                                    <div class="pull-right pagination" style="display: none">
+                                        <ul class="pagination">
+                                            <li class="page-pre">
+                                                <a href="https://portaldev.ahm.co.id/jx02/ahmipdsh000-pst/dashboard.htm#"></a>
+                                            </li>
+                                            <li class="page-next">
+                                                <a href="https://portaldev.ahm.co.id/jx02/ahmipdsh000-pst/dashboard.htm#"></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!--LoV Nomor PO-->
+        <!-- <div id="lovNoPoModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            &times;
+                        </button>
+                        <h4 class="modal-title center">Nomor PO</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group modal-label">
+                            <label class="control-label col-lg-2" style="margin-top: 5px">Search :
+                            </label>
+                            <div class="col-lg-11 input-group">
+                                <input class="search-query form-control" maxlength="50" autocomplete="off" />
+                                <span class="input-group-btn">
+                                    <button class="btn search-btn" type="button">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+        
+                        <div class="bootstrap-table">
+                            <div class="fixed-table-toolbar"></div>
+                            <div class="fixed-table-container" style="padding-bottom: 0px">
+                                <div class="fixed-table-header" style="display: none">
+                                    <table></table>
+                                </div>
+                                <div class="fixed-table-body">
+                                    <div class="fixed-table-loading" style="top: 39px; display: none">
+                                        Loading, please wait...
+                                    </div>
+                                    <table id="ahmitism056p01_search_table" data-method="post" data-url=""
+                                        data-content-type="application/json" data-data-type="json" accesskey=""
+                                        data-query-params-type="limit" data-query-params="ahmitism056p01_presearch"
+                                        data-response-handler="ahmitism056p01_load_data" data-side-pagination="server"
+                                        data-pagination="true" data-unique-id="id" class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th style="background-color: #dad0c6" data-field="">
+                                                    <div class="th-inner">Nomor PO</div>
+                                                    <div class="fht-cell"></div>
+                                                </th>
+                                                <th style="background-color: #dad0c6" data-field="">
+                                                    <div class="th-inner ">
+                                                        Deskripsi Item PO
+                                                    </div>
+                                                    <div class="fht-cell"></div>
+                                                </th>
+                                                <th style="background-color: #dad0c6" data-field="">
+                                                    <div class="th-inner ">Plant ID</div>
+                                                    <div class="fht-cell"></div>
+                                                </th>
+                                                <th style="background-color: #dad0c6" data-field="">
+                                                    <div class="th-inner">Activities</div>
+                                                    <div class="fht-cell"></div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="no-records-found">
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><a onclick="">Choose</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="fixed-table-footer" style="display: none">
+                                    <table>
+                                        <tbody>
+                                            <tr></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="fixed-table-pagination" style="display: none">
+                                    <div class="pull-left pagination-detail">
+                                        <span class="pagination-info">Showing 1 to 0 of 0 rows</span>
+                                        <span class="page-list" style="display: none">
+                                            <span class="btn-group dropup">
+                                                <button type="button" class="btn btn-default dropdown-toggle"
+                                                    data-toggle="dropdown">
+                                                    <span class="page-size">10</span>
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li role="menuitem" class="active">
+                                                        <a
+                                                            href="https://portaldev.ahm.co.id/jx02/ahmipdsh000-pst/dashboard.htm#">10</a>
+                                                    </li>
+                                                </ul>
+                                            </span>
+                                            rows per page
+                                        </span>
+                                    </div>
+                                    <div class="pull-right pagination" style="display: none">
+                                        <ul class="pagination">
+                                            <li class="page-pre">
+                                                <a href="https://portaldev.ahm.co.id/jx02/ahmipdsh000-pst/dashboard.htm#"></a>
+                                            </li>
+                                            <li class="page-next">
+                                                <a href="https://portaldev.ahm.co.id/jx02/ahmipdsh000-pst/dashboard.htm#"></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!--LoV Nomor Asset-->
+        <!-- <div id="lovNoAssetModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            &times;
+                        </button>
+                        <h4 class="modal-title center">Nomor Asset</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group modal-label">
+                            <label class="control-label col-lg-2" style="margin-top: 5px">Search :
+                            </label>
+                            <div class="col-lg-11 input-group">
+                                <input class="search-query form-control" maxlength="50" autocomplete="off" />
+                                <span class="input-group-btn">
+                                    <button class="btn search-btn" type="button">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+        
+                        <div class="bootstrap-table">
+                            <div class="fixed-table-toolbar"></div>
+                            <div class="fixed-table-container" style="padding-bottom: 0px">
+                                <div class="fixed-table-header" style="display: none">
+                                    <table></table>
+                                </div>
+                                <div class="fixed-table-body">
+                                    <div class="fixed-table-loading" style="top: 39px; display: none">
+                                        Loading, please wait...
+                                    </div>
+                                    <table id="ahmitism056p01_search_table" data-method="post"
+                                        data-url="/jx04/ahmgawpm000-pst/rest/ga/wpm001/" data-content-type="application/json"
+                                        data-data-type="json" accesskey="" data-query-params-type="limit"
+                                        data-query-params="ahmitism056p01_presearch"
+                                        data-response-handler="ahmitism056p01_load_data" data-side-pagination="server"
+                                        data-pagination="true" data-unique-id="id" class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th style="background-color: #dad0c6" data-field="">
+                                                    <div class="th-inner">Nomor Asset</div>
+                                                    <div class="fht-cell"></div>
+                                                </th>
+                                                <th style="background-color: #dad0c6" data-field="">
+                                                    <div class="th-inner ">Building</div>
+                                                    <div class="fht-cell"></div>
+                                                </th>
+                                                <th style="background-color: #dad0c6" data-field="">
+                                                    <div class="th-inner ">Floor</div>
+                                                    <div class="fht-cell"></div>
+                                                </th>
+                                                <th style="background-color: #dad0c6" data-field="">
+                                                    <div class="th-inner ">Section Location</div>
+                                                    <div class="fht-cell"></div>
+                                                </th>
+                                                <th style="background-color: #dad0c6" data-field="">
+                                                    <div class="th-inner ">Area Detail</div>
+                                                    <div class="fht-cell"></div>
+                                                </th>
+                                                <th style="background-color: #dad0c6" data-field="">
+                                                    <div class="th-inner ">Criticality</div>
+                                                    <div class="fht-cell"></div>
+                                                </th>
+                                                <th style="background-color: #dad0c6" data-field="">
+                                                    <div class="th-inner">Activities</div>
+                                                    <div class="fht-cell"></div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="no-records-found">
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><a onclick="">Choose</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="fixed-table-footer" style="display: none">
+                                    <table>
+                                        <tbody>
+                                            <tr></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="fixed-table-pagination" style="display: none">
+                                    <div class="pull-left pagination-detail">
+                                        <span class="pagination-info">Showing 1 to 0 of 0 rows</span>
+                                        <span class="page-list" style="display: none">
+                                            <span class="btn-group dropup">
+                                                <button type="button" class="btn btn-default dropdown-toggle"
+                                                    data-toggle="dropdown">
+                                                    <span class="page-size">10</span>
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li role="menuitem" class="active">
+                                                        <a
+                                                            href="https://portaldev.ahm.co.id/jx02/ahmipdsh000-pst/dashboard.htm#">10</a>
+                                                    </li>
+                                                </ul>
+                                            </span>
+                                            rows per page
+                                        </span>
+                                    </div>
+                                    <div class="pull-right pagination" style="display: none">
+                                        <ul class="pagination">
+                                            <li class="page-pre">
+                                                <a href="https://portaldev.ahm.co.id/jx02/ahmipdsh000-pst/dashboard.htm#"></a>
+                                            </li>
+                                            <li class="page-next">
+                                                <a href="https://portaldev.ahm.co.id/jx02/ahmipdsh000-pst/dashboard.htm#"></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!--LoV Task List-->
+        <!-- <div id="lovTaskListModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            &times;
+                        </button>
+                        <h4 class="modal-title center">Task List</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group modal-label">
+                            <label class="control-label col-lg-2" style="margin-top: 5px">Search :
+                            </label>
+                            <div class="col-lg-11 input-group">
+                                <input class="search-query form-control" maxlength="50" autocomplete="off" />
+                                <span class="input-group-btn">
+                                    <button class="btn search-btn" type="button">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+        
+                        <div class="bootstrap-table">
+                            <div class="fixed-table-toolbar"></div>
+                            <div class="fixed-table-container" style="padding-bottom: 0px">
+                                <div class="fixed-table-header" style="display: none">
+                                    <table></table>
+                                </div>
+                                <div class="fixed-table-body">
+                                    <div class="fixed-table-loading" style="top: 39px; display: none">
+                                        Loading, please wait...
+                                    </div>
+                                    <table id="ahmitism056p01_search_table" data-method="post" data-url=""
+                                        data-content-type="application/json" data-data-type="json" accesskey=""
+                                        data-query-params-type="limit" data-query-params="ahmitism056p01_presearch"
+                                        data-response-handler="ahmitism056p01_load_data" data-side-pagination="server"
+                                        data-pagination="true" data-unique-id="id" class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th style="background-color: #dad0c6" data-field="" field-id="">
+                                                    <div class="th-inner">Task List Code</div>
+                                                    <div class="fht-cell"></div>
+                                                </th>
+                                                <th style="background-color: #dad0c6" data-field="">
+                                                    <div class="th-inner ">Task List Title</div>
+                                                    <div class="fht-cell"></div>
+                                                </th>
+                                                <th style="background-color: #dad0c6" data-field="">
+                                                    <div class="th-inner">Activities</div>
+                                                    <div class="fht-cell"></div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="no-records-found">
+                                                <td></td>
+                                                <td></td>
+                                                <td><a onclick="">Choose</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="fixed-table-footer" style="display: none">
+                                    <table>
+                                        <tbody>
+                                            <tr></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="fixed-table-pagination" style="display: none">
+                                    <div class="pull-left pagination-detail">
+                                        <span class="pagination-info">Showing 1 to 0 of 0 rows</span>
+                                        <span class="page-list" style="display: none">
+                                            <span class="btn-group dropup">
+                                                <button type="button" class="btn btn-default dropdown-toggle"
+                                                    data-toggle="dropdown">
+                                                    <span class="page-size">10</span>
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li role="menuitem" class="active">
+                                                        <a
+                                                            href="https://portaldev.ahm.co.id/jx02/ahmipdsh000-pst/dashboard.htm#">10</a>
+                                                    </li>
+                                                </ul>
+                                            </span>
+                                            rows per page
+                                        </span>
+                                    </div>
+                                    <div class="pull-right pagination" style="display: none">
+                                        <ul class="pagination">
+                                            <li class="page-pre">
+                                                <a href="https://portaldev.ahm.co.id/jx02/ahmipdsh000-pst/dashboard.htm#"></a>
+                                            </li>
+                                            <li class="page-next">
+                                                <a href="https://portaldev.ahm.co.id/jx02/ahmipdsh000-pst/dashboard.htm#"></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+    
+        <script type="text/javascript" src="../resources/js/AHMGAWPM001.js"></script>
+        <script  src="../resources/js/bootstraps/bootstrap.min.js"></script>
+        <script  src="../resources/js/bootstraps/bootstrap-table.min.js"></script>
+        <script  src="../resources/js/bootstraps/bootstrap-table-2.min.js"></script>
+    </body>
+</html>

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 
 @Controller
+@CrossOrigin
 @RequestMapping("ga/wpm001")
 public class Wpm001Rest {
     
@@ -50,9 +52,20 @@ public class Wpm001Rest {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    DtoResponse getAllIkp(@RequestBody DtoParamPaging dtoParamPaging) {
-//        VoPstUserCred voPstUserCred = tokenPstUtil.getUserCred(token);
-        return this.wpm001Service.getTableIkp(dtoParamPaging, null);
+    DtoResponse getIkpTable(@RequestHeader(value = CommonConstant.JXID, defaultValue = "") String token,
+            @RequestBody DtoParamPaging dtoParamPaging) {
+        VoPstUserCred voPstUserCred = tokenPstUtil.getUserCred(token);
+        return this.wpm001Service.getTableIkp(dtoParamPaging, voPstUserCred);
+    }
+    
+     @RequestMapping(value = "get-areaproject-table", method = RequestMethod.POST,
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    DtoResponse getAreaTable(@RequestHeader(value = CommonConstant.JXID, defaultValue = "") String token,
+            @RequestBody DtoParamPaging dtoParamPaging) {
+        VoPstUserCred voPstUserCred = tokenPstUtil.getUserCred(token);
+        return this.wpm001Service.getAreaProjectTableIkp(dtoParamPaging, voPstUserCred);
     }
     
 }

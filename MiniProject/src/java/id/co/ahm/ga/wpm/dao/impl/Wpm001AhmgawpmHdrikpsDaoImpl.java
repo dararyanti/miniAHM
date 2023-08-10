@@ -55,10 +55,10 @@ public class Wpm001AhmgawpmHdrikpsDaoImpl extends DefaultHibernateDao<AhmgawpmHd
             vo.setKategoriIzinKerja((String) map.get("VWOPERMIT"));
             vo.setDeskripsiItem((String) map.get("VITEMDESC"));
             vo.setOrderingType((String) map.get("VORDERTYPE"));
-            if ((String) map.get("VORDERTYPE") == "PO") {
+            if (((String) map.get("VORDERTYPE")).equals("PO")) {
                 vo.setNomorPo((String) map.get("VODRTYPNUM"));
             } else {
-                vo.setNomorSpk((String) map.get("VNOSPK"));
+                vo.setNomorPo((String) map.get("VNOSPK"));
             }
             vo.setPlantId((String) map.get("VPLANTID"));
             vo.setNomorPengajuanLk3((String) map.get("VPROJSUB"));
@@ -68,6 +68,7 @@ public class Wpm001AhmgawpmHdrikpsDaoImpl extends DefaultHibernateDao<AhmgawpmHd
             vo.setNamaSupplier((String) map.get("VSUPPLDESC"));
             vo.setLoginPatrol((String) map.get("VLGINPATROL"));
             vo.setNomorPengajuanLk3((String) map.get("VPROJSUB"));
+            vo.setNamaPic((String) map.get("VNAMA"));
             vo.setDepartemenPic((String) map.get("VNAMADEPARTEMEN"));
             vo.setSeksiPic((String) map.get("VNAMASEKSI"));
             vo.setDivisiPic((String) map.get("VNAMADIVISI"));
@@ -123,13 +124,13 @@ public class Wpm001AhmgawpmHdrikpsDaoImpl extends DefaultHibernateDao<AhmgawpmHd
         "VWOCTGR", "VWOPERMIT", "VORDERTYPE", "VODRTYPNUM", "VNOSPK",
         "VITEMDESC", "VPLANTID", "VPROJSUB", "VPROJDTL", "VIKPID",
         "VPURCHORG", "VLGINPATROL", "VPICNRPID", "VSUPPLYID", "VSUPPLDESC", "VSTATUS",
-        "VNAMADEPARTEMEN", "VNAMASEKSI", "VNAMADIVISI"
+        "VNAMADEPARTEMEN", "VNAMASEKSI", "VNAMADIVISI",  "VNAMA"
     };
 
     private String queryTableIkp() {
         String sql = " SELECT DISTINCT A.VWOCTGR, A.VWOPERMIT, A.VORDERTYPE, A.VODRTYPNUM, A.VNOSPK, A.VITEMDESC, A.VPLANTID,A.VPROJSUB, "
                 + " A.VPROJDTL, A.VIKPID, A.VPURCHORG, B.VLGINPATROL, A.VPICNRPID, A.VSUPPLYID, A.VSUPPLDESC, A.VSTATUS, "
-                + " C.VNAMADEPARTEMEN, C.VNAMASEKSI, C.VNAMADIVISI "
+                + " C.VNAMADEPARTEMEN, C.VNAMASEKSI, C.VNAMADIVISI, C.VNAMA"
                 + " FROM AHMGAWPM_HDRIKPS A LEFT JOIN AHMGAWPM_DTLIKPAREAS B ON A.VIKPID = B.VIKPID "
                 + " LEFT JOIN AHMGAWPM_TBLPIC C ON A.VPICNRPID = C.VNRP "
                 + " WHERE ((:idSupplier IS NULL) OR A.VSUPPLYID = :idSupplier ) "
