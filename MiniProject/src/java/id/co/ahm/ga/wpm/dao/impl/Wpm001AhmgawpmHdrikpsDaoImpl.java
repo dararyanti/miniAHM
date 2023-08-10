@@ -68,6 +68,9 @@ public class Wpm001AhmgawpmHdrikpsDaoImpl extends DefaultHibernateDao<AhmgawpmHd
             vo.setNamaSupplier((String) map.get("VSUPPLDESC"));
             vo.setLoginPatrol((String) map.get("VLGINPATROL"));
             vo.setNomorPengajuanLk3((String) map.get("VPROJSUB"));
+            vo.setDepartemenPic((String) map.get("VNAMADEPARTEMEN"));
+            vo.setSeksiPic((String) map.get("VNAMASEKSI"));
+            vo.setDivisiPic((String) map.get("VNAMADIVISI"));
             switch ((String) map.get("VSTATUS")) {
                 case "00-IKP":
                     vo.setStatus("IKP Created");
@@ -119,13 +122,16 @@ public class Wpm001AhmgawpmHdrikpsDaoImpl extends DefaultHibernateDao<AhmgawpmHd
     String[] columnNames = {
         "VWOCTGR", "VWOPERMIT", "VORDERTYPE", "VODRTYPNUM", "VNOSPK",
         "VITEMDESC", "VPLANTID", "VPROJSUB", "VPROJDTL", "VIKPID",
-        "VPURCHORG", "VLGINPATROL", "VPICNRPID", "VSUPPLYID", "VSUPPLDESC", "VSTATUS"
+        "VPURCHORG", "VLGINPATROL", "VPICNRPID", "VSUPPLYID", "VSUPPLDESC", "VSTATUS",
+        "VNAMADEPARTEMEN", "VNAMASEKSI", "VNAMADIVISI"
     };
 
     private String queryTableIkp() {
         String sql = " SELECT DISTINCT A.VWOCTGR, A.VWOPERMIT, A.VORDERTYPE, A.VODRTYPNUM, A.VNOSPK, A.VITEMDESC, A.VPLANTID,A.VPROJSUB, "
-                + " A.VPROJDTL, A.VIKPID, A.VPURCHORG, B.VLGINPATROL, A.VPICNRPID, A.VSUPPLYID, A.VSUPPLDESC, A.VSTATUS "
+                + " A.VPROJDTL, A.VIKPID, A.VPURCHORG, B.VLGINPATROL, A.VPICNRPID, A.VSUPPLYID, A.VSUPPLDESC, A.VSTATUS, "
+                + " C.VNAMADEPARTEMEN, C.VNAMASEKSI, C.VNAMADIVISI "
                 + " FROM AHMGAWPM_HDRIKPS A LEFT JOIN AHMGAWPM_DTLIKPAREAS B ON A.VIKPID = B.VIKPID "
+                + " LEFT JOIN AHMGAWPM_TBLPIC C ON A.VPICNRPID = C.VNRP "
                 + " WHERE ((:idSupplier IS NULL) OR A.VSUPPLYID = :idSupplier ) "
                 + " AND ((:vikpid IS NULL) OR (LOWER(A.VIKPID) LIKE LOWER(CONCAT(CONCAT('%',:vikpid),'%')))) "
                 + " AND ((:nrpPic IS NULL) OR A.VPICNRPID = :nrpPic) "
@@ -182,9 +188,6 @@ public class Wpm001AhmgawpmHdrikpsDaoImpl extends DefaultHibernateDao<AhmgawpmHd
                 case "nomorpospk":
                     order.append(" A.VODRTYPNUM, A.VNOSPK ");
                     break;
-                case "nomorpo":
-                    order.append(" A.VODRTYPNUM, A.VNOSPK ");
-                    break;
                 case "deskripsiitem":
                     order.append(" A.VITEMDESC ");
                     break;
@@ -202,6 +205,15 @@ public class Wpm001AhmgawpmHdrikpsDaoImpl extends DefaultHibernateDao<AhmgawpmHd
                     break;
                 case "nrppicid":
                     order.append(" A.VPICNRPID ");
+                    break;
+                case "namadivisi":
+                    order.append(" C.VNAMADIVISI ");
+                    break;
+                case "namadepartemen":
+                    order.append(" C.VNAMADEPARTEMEN ");
+                    break;
+                case "namaseksi":
+                    order.append(" C.VNAMASEKSI ");
                     break;
                 default:
                     return sqlString.toString();
