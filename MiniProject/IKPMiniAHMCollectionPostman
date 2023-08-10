@@ -1,0 +1,49 @@
+{
+	"info": {
+		"_postman_id": "4019f474-b334-4c96-b12c-4c001762af41",
+		"name": "IKP Mini Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17616505"
+	},
+	"item": [
+		{
+			"name": "get-ikp-table",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "JXID",
+						"type": "text",
+						"value": "CAw+fm0md7/DsLiNvbNtcyVdWmRmwqZNaBqJKHqVUcPc8AlKwRkoXBOKUOF8tBCoOM+tEiT5fjxiqqwHcJOUC/qHLj9uEXxbdrx9Vjz/AXtZ9tIW3WK9uDVlUKeI2SZAjxk/vFlo7FT+0aeZn7M0kiRVpAmF/NKtl0ibBfI7NPziim4ARLr9xIquuHyiWKIVy3ke9ERXiVxSq0gM6aaOgHGq1SHOMZ4aWMuan+/6gG7oDJjgzLjugv/aAkqMpuKPDqShSHr24RCbSfFfDcLvMmIn4CtoXTIHQWkWNHx7iKomQMXABsjjCP703wCI4NWDKxB7EYOgzYz1OLqTY+QE0bBcgEL3ELzHWmvz+IseGmLvHifCqwj33vgN1p71Kpr9MmZ8x+PCxgWGXbQO3sYA+ysgVVQ5h9vpFkW/0T7vFp9Rn39pnEWSHI4Yzj/R8POfhYVbPsupOwKQEw0cF59KtK+VQ14gQqfJ8Va1DOpTWrtqnYorxy4qtpugNPcz2O/OcR2vPfokEMFUWU+tlvETyQnqC6FU2g12qg+cdS6sxnci6UR7EJbFMp8w2XVffiZjE/edBJTh5eBveig7/ED5N/ujAtnCCj0MaBVVsBAs/93FCvWryYKZp3XvPLN7rtPIDkhvmyl1EO/OCQja83PdntVxmPaP/oF65oN0IHfswuD0phjUTjj6dl6z2MyQ4YnI3X2ycYwWsfX9wy/ePSThS42/WV+4Tu4K5crK0nfcP/RA5ekukWhVGmwXZ2LTWfXgMeh3J1d0b2uZXPTHU1b45oimuQ3yRBu63kLbbL+53UuCv+skmWhrkodoAvuEEhEJsZMXIJCy0kYmc9KVPtgAR+uCZwZUhDA3LM08R3vlqNLCsQGYWcBgx6BrwctRHLGd+Z6gXg5nJS3rrOtTqolzbn/nF5koyw3OD7GsG0oTR9lrr6qmU6jSWHpHfElu1ZUHPXgtY+MEnWjDgM6mRxb/Gxx4Z9+8o0eS7VQA9THa+7YsI0b7lcPTPJVWQALnjaUrCGsP2wllNZPIC2sxrz0gIw6eo06WP0xEDddlEAbvao9+H7bCePFEeyuApj9z0DuvGz6gG/JM//P8jU7bl1toTewCwXpSsle/lV42hF2I+9lpLMULySZfw+NXpGPKj5lfa/QPZtcqU86FRerLYvZkibEJTrXWdvRx5XhZaB/G4BwOITenSkESkoHd7KbQf0W1"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"limit\": 10,\r\n    \"offset\": 0,\r\n    \"search\": {\r\n        \"idSupplier\" : \"10\",\r\n        \"nrpPic\" : null,\r\n        \"orderingType\" : null,\r\n        \"nomorPoSpk\" : null,\r\n        \"startPeriode\" : null,\r\n        \"endPeriode\" : null\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/jx04/ahmgawpm000-pst/rest/ga/wpm001/get-ikp-table",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"jx04",
+						"ahmgawpm000-pst",
+						"rest",
+						"ga",
+						"wpm001",
+						"get-ikp-table"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
