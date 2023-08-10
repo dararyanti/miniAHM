@@ -37,21 +37,15 @@ public class Wpm001AhmgawpmHdrikpsDaoImpl extends DefaultHibernateDao<AhmgawpmHd
         sql = orderTableIkp(sql, input);
         Query q = filterTableIkp(sql, input);
         q = setOffset(q, input);
-        List resultList = q.list();
-        Object result = q.uniqueResult();
-
+        List<Object[]> results = q.list();
         List<Map<String, Object>> list = new ArrayList<>();
 
-        if (result instanceof Object[]) {
-            Object[] row = (Object[]) result;
+        for (Object[] row : results) {
             Map<String, Object> map = new HashMap<>();
             for (int i = 0; i < row.length; i++) {
                 map.put(columnNames[i], row[i]);
             }
-
             list.add(map);
-        } else if (result instanceof Map) {
-            list.add((Map<String, Object>) result);
         }
         List<Wpm001VoShowTableIkp> voList = new ArrayList<>();
         for (Map<String, Object> map : list) {
