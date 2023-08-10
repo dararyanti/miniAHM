@@ -3,10 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/MiniAHM/miniAHM/MiniProject/src/java/id/co/ahm/ga/wpm/service/Wpm001Service.java</file>
-            <file>file:/C:/MiniAHM/miniAHM/MiniProject/src/java/id/co/ahm/ga/wpm/dao/AhmgawpmDtlikpareasDao.java</file>
-            <file>file:/C:/MiniAHM/miniAHM/MiniProject/src/java/id/co/ahm/ga/wpm/rest/Wpm001Rest.java</file>
-            <file>file:/C:/MiniAHM/miniAHM/MiniProject/src/java/id/co/ahm/ga/wpm/service/impl/Wpm001ServiceImpl.java</file>
+            <file>file:/C:/MiniAHM/miniAHM/MiniProject/web/WEB-INF/web.xml</file>
+            <file>file:/C:/MiniAHM/miniAHM/MiniProject/web/WEB-INF/dispatcher-servlet.xml</file>
         </group>
     </open-files>
 </project-private>

@@ -15,7 +15,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
  * @author Irzan Maulana
  */
 @Configuration
-@PropertySource({"classpath:database.properties", "file:${jxconfig}"})
+@PropertySource("classpath:database.properties")
 public class AppConfig {
 
     @Value("${jdbc.url}")

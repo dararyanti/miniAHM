@@ -1,4 +1,7 @@
-package id.co.ahm.ga.wpm.util;
+package id.co.ahm.ga.wpm.util.dao;
+import id.co.ahm.ga.wpm.util.DtoParamPaging;
+import id.co.ahm.ga.wpm.util.dao.BaseColumnFilterDao;
+import id.co.ahm.ga.wpm.util.dao.DefaultDao;
 import id.co.ahm.ga.wpm.util.impl.DefaultEntityImpl;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;

@@ -2,7 +2,7 @@ package id.co.ahm.ga.wpm.dao.impl;
 
 import id.co.ahm.ga.wpm.dao.Wpm001AhmgawpmHdrikpsDao;
 import id.co.ahm.ga.wpm.model.AhmgawpmHdrikps;
-import id.co.ahm.ga.wpm.util.DefaultHibernateDao;
+import id.co.ahm.ga.wpm.util.dao.DefaultHibernateDao;
 import id.co.ahm.ga.wpm.util.DtoParamPaging;
 import id.co.ahm.ga.wpm.vo.Wpm001VoShowTableIkp;
 import id.co.jxf.security.vo.VoPstUserCred;

@@ -1,4 +1,4 @@
-package id.co.ahm.ga.wpm.util;
+package id.co.ahm.ga.wpm.util.dao;
 
 import java.util.ArrayList;
 import java.util.Arrays;

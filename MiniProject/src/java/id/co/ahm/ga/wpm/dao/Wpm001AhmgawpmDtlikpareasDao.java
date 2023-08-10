@@ -2,7 +2,7 @@ package id.co.ahm.ga.wpm.dao;
 
 import id.co.ahm.ga.wpm.model.AhmgawpmDtlikpareas;
 import id.co.ahm.ga.wpm.model.AhmgawpmDtlikpareasPk;
-import id.co.ahm.ga.wpm.util.DefaultDao;
+import id.co.ahm.ga.wpm.util.dao.DefaultDao;
 
 /**
  *

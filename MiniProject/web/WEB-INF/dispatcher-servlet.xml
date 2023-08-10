@@ -53,13 +53,13 @@
         </property>
     </bean>
     
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <!--Maksimal Upload 10 MB--> 
+<!--    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        Maksimal Upload 10 MB 
         <property name="maxUploadSize" value="10000000" />
-    </bean>
+    </bean>-->
 
 
-<!--    <bean id="viewResolver"
+    <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/jsp/"
           p:suffix=".jsp" />
@@ -67,7 +67,7 @@
 
     <bean name="indexController"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
-          p:viewName="index" />-->
+          p:viewName="index" />
     
     <mvc:annotation-driven />
 
