@@ -1,8 +1,6 @@
 package id.co.ahm.ga.wpm.util.impl;
 
 import id.co.ahm.ga.wpm.util.UserUtilsService;
-import id.co.ahm.ga.wpm.util.dao.AhmipuamMstroleaasDao;
-import id.co.ahm.ga.wpm.util.dao.AhmmoerpMstkaryawansDao;
 import id.co.ahm.ga.wpm.util.vo.VoOrganization;
 import id.co.ahm.ga.wpm.util.vo.VoRole;
 import id.co.jxf.security.CryptoSecurity;
@@ -17,6 +15,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import id.co.ahm.ga.wpm.util.dao.MasterRoleDao;
+import id.co.ahm.ga.wpm.util.dao.MasterKaryawanDao;
 
 /**
  *
@@ -32,11 +32,11 @@ public class UserUtilsServiceImpl implements UserUtilsService {
 
     @Autowired
     @Qualifier(value = "ahmipuamMstroleaasDao")
-    private AhmipuamMstroleaasDao ahmipuamMstroleaasDao;
+    private MasterRoleDao ahmipuamMstroleaasDao;
     
     @Autowired
     @Qualifier(value = "ahmmoerpMstkaryawansDao")
-    private AhmmoerpMstkaryawansDao ahmmoerpMstkaryawansDao;
+    private MasterKaryawanDao ahmmoerpMstkaryawansDao;
 
     @Override
     public VoPstUserCred getUserCred(String token) {
