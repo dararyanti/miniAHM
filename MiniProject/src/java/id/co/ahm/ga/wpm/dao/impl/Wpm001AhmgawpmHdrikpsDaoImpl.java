@@ -1,7 +1,7 @@
 package id.co.ahm.ga.wpm.dao.impl;
 
 import id.co.ahm.ga.wpm.dao.Wpm001AhmgawpmHdrikpsDao;
-import id.co.ahm.ga.wpm.model.AhmgawpmHdrikps;
+import id.co.ahm.ga.wpm.model.HeaderIkp;
 import id.co.ahm.ga.wpm.util.dao.DefaultHibernateDao;
 import id.co.ahm.ga.wpm.util.DtoParamPaging;
 import id.co.ahm.ga.wpm.vo.Wpm001VoShowTableIkp;
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Repository;
  * @author Irzan Maulana
  */
 @Repository("wpm001AhmgawpmHdrikpsDao")
-public class Wpm001AhmgawpmHdrikpsDaoImpl extends DefaultHibernateDao<AhmgawpmHdrikps, String> implements Wpm001AhmgawpmHdrikpsDao {
+public class Wpm001AhmgawpmHdrikpsDaoImpl extends DefaultHibernateDao<HeaderIkp, String> implements Wpm001AhmgawpmHdrikpsDao {
 
     @Override
     public int getCountTableIkp(DtoParamPaging input, VoPstUserCred voPstUserCred) {

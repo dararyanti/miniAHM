@@ -1,6 +1,6 @@
 package id.co.ahm.ga.wpm.dao;
 
-import id.co.ahm.ga.wpm.model.AhmgawpmHdrikps;
+import id.co.ahm.ga.wpm.model.HeaderIkp;
 import id.co.ahm.ga.wpm.util.dao.DefaultDao;
 import id.co.ahm.ga.wpm.util.DtoParamPaging;
 import id.co.ahm.ga.wpm.vo.Wpm001VoShowTableIkp;
@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Irzan Maulana
  */
-public interface Wpm001AhmgawpmHdrikpsDao extends DefaultDao<AhmgawpmHdrikps, String> {
+public interface Wpm001AhmgawpmHdrikpsDao extends DefaultDao<HeaderIkp, String> {
 
     int getCountTableIkp(DtoParamPaging input, VoPstUserCred voPstUserCred);
 
