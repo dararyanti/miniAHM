@@ -1,5 +1,6 @@
 package id.co.ahm.ga.wpm.service.impl;
 
+import id.co.ahm.ga.wpm.dao.Wpm001AhmgawpmDtlikpareasDao;
 import id.co.ahm.ga.wpm.dao.Wpm001AhmgawpmHdrikpsDao;
 import id.co.ahm.ga.wpm.service.Wpm001Service;
 import id.co.ahm.ga.wpm.util.DtoHelper;
@@ -26,8 +27,19 @@ public class Wpm001ServiceImpl implements Wpm001Service {
     @Qualifier(value = "wpm001AhmgawpmHdrikpsDao")
     private Wpm001AhmgawpmHdrikpsDao wpm001AhmgawpmHdrikpsDao;
 
+    @Autowired
+    @Qualifier(value = "wpm001AhmgawpmDtlikpareasDao")
+    private Wpm001AhmgawpmDtlikpareasDao wpm001AhmgawpmDtlikpareasDao;
+
     @Override
     public DtoResponse getTableIkp(DtoParamPaging input, VoPstUserCred voPstUserCred) {
+        int total = wpm001AhmgawpmHdrikpsDao.getCountTableIkp(input, voPstUserCred);
+        List<Wpm001VoShowTableIkp> result = wpm001AhmgawpmHdrikpsDao.getTableIkp(input, voPstUserCred);
+        return DtoHelper.constructResponsePaging(StatusMsgEnum.SUKSES, null, result, total);
+    }
+
+    @Override
+    public DtoResponse getAreaProjectTableIkp(DtoParamPaging input, VoPstUserCred voPstUserCred) {
         int total = wpm001AhmgawpmHdrikpsDao.getCountTableIkp(input, voPstUserCred);
         List<Wpm001VoShowTableIkp> result = wpm001AhmgawpmHdrikpsDao.getTableIkp(input, voPstUserCred);
         return DtoHelper.constructResponsePaging(StatusMsgEnum.SUKSES, null, result, total);

@@ -9,7 +9,9 @@ import id.co.jxf.security.vo.VoPstUserCred;
  * @author Irzan Maulana
  */
 public interface Wpm001Service {
-    
+
     DtoResponse getTableIkp(DtoParamPaging input, VoPstUserCred voPstUserCred);
-    
+
+    DtoResponse getAreaProjectTableIkp(DtoParamPaging input, VoPstUserCred voPstUserCred);
+
 }
