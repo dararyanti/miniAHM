@@ -14,26 +14,29 @@ import javax.persistence.Embeddable;
  */
 
 @Embeddable
-public class AhmgawpmDtlikpareasPk implements Serializable {
-     @Column(name = "VASSETNO")
-    private String vassetno;
+public class AreaPekerjaanPk implements Serializable {
+     @Column(name = "ASSET_NO")
+    private String assetNo;
 
-    @Column(name = "VIKPID")
-    private String vikpid;
+    @Column(name = "IKP_ID")
+    private String ikpId;
 
-    public String getVassetno() {
-        return vassetno;
+    public String getAssetNo() {
+        return assetNo;
     }
 
-    public void setVassetno(String vassetno) {
-        this.vassetno = vassetno;
+    public void setAssetNo(String assetNo) {
+        this.assetNo = assetNo;
     }
 
-    public String getVikpid() {
-        return vikpid;
+    public String getIkpId() {
+        return ikpId;
     }
 
-    public void setVikpid(String vikpid) {
-        this.vikpid = vikpid;
+    public void setIkpId(String ikpId) {
+        this.ikpId = ikpId;
     }
+    
+    
+
 }

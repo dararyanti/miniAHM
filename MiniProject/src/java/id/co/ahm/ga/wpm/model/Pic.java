@@ -15,64 +15,64 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "AHMGAWPM_TBLPIC")
-public class AhmgawpmTblpic {
+@Table(name = "PIC")
+public class Pic {
     
     @Id
-    @Column(name = "VNRP")
-    private String vnrp;
+    @Column(name = "NRP_ID")
+    private String nrpId;
     
-    @Column(name = "VNAMA")
-    private String vnama;
+    @Column(name = "NAMA")
+    private String nama;
     
-    @Column(name = "VNAMADEPTHEAD")
-    private String vnamadepthead;
+    @Column(name = "DEPARTEMEN")
+    private String departemen;
     
-    @Column(name = "VNAMASEKSI")
-    private String vnamaseksi;
+    @Column(name = "SEKSI")
+    private String seksi;
     
-    @Column(name = "VNAMADIVISI")
-    private String vnamadivisi;
+    @Column(name = "DIVISI")
+    private String divisi;
 
-    public String getVnrp() {
-        return vnrp;
+    public String getNrpId() {
+        return nrpId;
     }
 
-    public void setVnrp(String vnrp) {
-        this.vnrp = vnrp;
+    public void setNrpId(String nrpId) {
+        this.nrpId = nrpId;
     }
 
-    public String getVnama() {
-        return vnama;
+    public String getNama() {
+        return nama;
     }
 
-    public void setVnama(String vnama) {
-        this.vnama = vnama;
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
-    public String getVnamadepthead() {
-        return vnamadepthead;
+    public String getDepartemen() {
+        return departemen;
     }
 
-    public void setVnamadepthead(String vnamadepthead) {
-        this.vnamadepthead = vnamadepthead;
+    public void setDepartemen(String departemen) {
+        this.departemen = departemen;
     }
 
-    public String getVnamaseksi() {
-        return vnamaseksi;
+    public String getSeksi() {
+        return seksi;
     }
 
-    public void setVnamaseksi(String vnamaseksi) {
-        this.vnamaseksi = vnamaseksi;
+    public void setSeksi(String seksi) {
+        this.seksi = seksi;
     }
 
-    public String getVnamadivisi() {
-        return vnamadivisi;
+    public String getDivisi() {
+        return divisi;
     }
 
-    public void setVnamadivisi(String vnamadivisi) {
-        this.vnamadivisi = vnamadivisi;
+    public void setDivisi(String divisi) {
+        this.divisi = divisi;
     }
-    
-    
+
+   
 }

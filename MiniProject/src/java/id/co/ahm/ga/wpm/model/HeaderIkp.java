@@ -19,253 +19,251 @@ import javax.persistence.TemporalType;
  */
 
 @Entity
-@Table(name = "AHMGAWPM_HDRIKPS")
-public class AhmgawpmHdrikps {
+@Table(name = "HEADER_IKP")
+public class HeaderIkp {
     @Id
-    @Column(name = "VIKPID")
-    private String vikpid;
+    @Column(name = "IKP_ID")
+    private String ikpId;
     
-    @Column(name = "VWOCTGR")
-    private String vwoctgr;
+    @Column(name = "KAT_PEKERJAAN")
+    private String katPekerjaan;
     
-    @Column(name = "VWOPERMIT")
-    private String vwopermit;
+    @Column(name = "KAT_IZIN_KERJA")
+    private String katIzinKerja;
     
-    @Column(name = "VORDERTYPE")
-    private String vordertype;
+    @Column(name = "TIPE_ORDER")
+    private String tipeOrder;
     
-    @Column(name = "VODRTYPNUM")
-    private String vodrtypnum;
+    @Column(name = "NO_PO")
+    private String noPo;
     
-    @Column(name = "VNOSPK")
-    private String vnospk;
+    @Column(name = "NO_SPK")
+    private String noSpk;
     
-    @Column(name = "VITEMDESC")
-    private String vitemdesc;
+    @Column(name = "DESKRIPSI_ITEM")
+    private String deskripsiItem;
     
-    @Column(name = "VPLANTID")
-    private String vplantid;
+    @Column(name = "PLANT_ID")
+    private String plantId;
     
-    @Column(name = "VPROJSUB")
-    private String vprojsub;
+    @Column(name = "NO_PENGAJUAN_PROYEK")
+    private String noPengajuanProyek;
     
-    @Column(name = "VPROJDTL")
-    private String vprojdtl;
+    @Column(name = "PROJECT_DETAIL")
+    private String projectDetail;
     
-    @Column(name = "DSTARTJOB")
+    @Column(name = "START_JOB")
     @Temporal(TemporalType.DATE)
-    private Date dstartjob;
+    private Date startJob;
     
-    @Column(name = "DENDJOB")
+    @Column(name = "END_JOB")
     @Temporal(TemporalType.DATE)
-    private Date dendjob;
+    private Date endJob;
     
-    @Column(name = "VPURCHORG")
-    private String vpurchorg;
+    @Column(name = "PURCHASING_ORG")
+    private String purchasingOrg;
     
-    @Column(name = "VPICNRPID")
-    private BigDecimal vpicnrpid;
+    @Column(name = "NRP_ID")
+    private BigDecimal nrpId;
     
-    @Column(name = "VSUPPLYID")
-    private String vsupplyid;
+    @Column(name = "SUPPLY_ID")
+    private String supplyId;
     
-    @Column(name = "VSUPPLDESC")
-    private String vsuppldesc;
+    @Column(name = "SUPPLY_DESC")
+    private String supplyDesc;
     
-    @Column(name = "VNAME")
-    private String vname;
+    @Column(name = "NAMA_PENGAWAS")
+    private String namaPengawas;
     
-    @Column(name = "VHP")
-    private String vhp;
+    @Column(name = "HP_PENGAWAS")
+    private String hpPengawas;
     
-    @Column(name = "VNAMELK3")
-    private String vnamelk3;
+    @Column(name = "NAMA_LK3")
+    private String namaLk3;
     
-    @Column(name = "VHPLK3")
-    private String vhplk3;
+    @Column(name = "HP_LK3")
+    private String hpLk3;
     
-    @Column(name = "VSTATUS")
-    private String vstatus;
+    @Column(name = "STATUS")
+    private String status;
     
-    @Column(name = "VREMARK")
-    private String vremark;
+    @Column(name = "REMARK")
+    private String remark;
 
-    public String getVikpid() {
-        return vikpid;
+    public String getIkpId() {
+        return ikpId;
     }
 
-    public void setVikpid(String vikpid) {
-        this.vikpid = vikpid;
+    public void setIkpId(String ikpId) {
+        this.ikpId = ikpId;
     }
 
-    public String getVwoctgr() {
-        return vwoctgr;
+    public String getKatPekerjaan() {
+        return katPekerjaan;
     }
 
-    public void setVwoctgr(String vwoctgr) {
-        this.vwoctgr = vwoctgr;
+    public void setKatPekerjaan(String katPekerjaan) {
+        this.katPekerjaan = katPekerjaan;
     }
 
-    public String getVwopermit() {
-        return vwopermit;
+    public String getKatIzinKerja() {
+        return katIzinKerja;
     }
 
-    public void setVwopermit(String vwopermit) {
-        this.vwopermit = vwopermit;
+    public void setKatIzinKerja(String katIzinKerja) {
+        this.katIzinKerja = katIzinKerja;
     }
 
-    public String getVordertype() {
-        return vordertype;
+    public String getTipeOrder() {
+        return tipeOrder;
     }
 
-    public void setVordertype(String vordertype) {
-        this.vordertype = vordertype;
+    public void setTipeOrder(String tipeOrder) {
+        this.tipeOrder = tipeOrder;
     }
 
-    public String getVodrtypnum() {
-        return vodrtypnum;
+    public String getNoPo() {
+        return noPo;
     }
 
-    public void setVodrtypnum(String vodrtypnum) {
-        this.vodrtypnum = vodrtypnum;
+    public void setNoPo(String noPo) {
+        this.noPo = noPo;
     }
 
-    public String getVnospk() {
-        return vnospk;
+    public String getNoSpk() {
+        return noSpk;
     }
 
-    public void setVnospk(String vnospk) {
-        this.vnospk = vnospk;
+    public void setNoSpk(String noSpk) {
+        this.noSpk = noSpk;
     }
 
-    public String getVitemdesc() {
-        return vitemdesc;
+    public String getDeskripsiItem() {
+        return deskripsiItem;
     }
 
-    public void setVitemdesc(String vitemdesc) {
-        this.vitemdesc = vitemdesc;
+    public void setDeskripsiItem(String deskripsiItem) {
+        this.deskripsiItem = deskripsiItem;
     }
 
-    public String getVplantid() {
-        return vplantid;
+    public String getPlantId() {
+        return plantId;
     }
 
-    public void setVplantid(String vplantid) {
-        this.vplantid = vplantid;
+    public void setPlantId(String plantId) {
+        this.plantId = plantId;
     }
 
-    public String getVprojsub() {
-        return vprojsub;
+    public String getNoPengajuanProyek() {
+        return noPengajuanProyek;
     }
 
-    public void setVprojsub(String vprojsub) {
-        this.vprojsub = vprojsub;
+    public void setNoPengajuanProyek(String noPengajuanProyek) {
+        this.noPengajuanProyek = noPengajuanProyek;
     }
 
-    public String getVprojdtl() {
-        return vprojdtl;
+    public String getProjectDetail() {
+        return projectDetail;
     }
 
-    public void setVprojdtl(String vprojdtl) {
-        this.vprojdtl = vprojdtl;
+    public void setProjectDetail(String projectDetail) {
+        this.projectDetail = projectDetail;
     }
 
-    public Date getDstartjob() {
-        return dstartjob;
+    public Date getStartJob() {
+        return startJob;
     }
 
-    public void setDstartjob(Date dstartjob) {
-        this.dstartjob = dstartjob;
+    public void setStartJob(Date startJob) {
+        this.startJob = startJob;
     }
 
-    public Date getDendjob() {
-        return dendjob;
+    public Date getEndJob() {
+        return endJob;
     }
 
-    public void setDendjob(Date dendjob) {
-        this.dendjob = dendjob;
+    public void setEndJob(Date endJob) {
+        this.endJob = endJob;
     }
 
-    public String getVpurchorg() {
-        return vpurchorg;
+    public String getPurchasingOrg() {
+        return purchasingOrg;
     }
 
-    public void setVpurchorg(String vpurchorg) {
-        this.vpurchorg = vpurchorg;
+    public void setPurchasingOrg(String purchasingOrg) {
+        this.purchasingOrg = purchasingOrg;
     }
 
-    public BigDecimal getVpicnrpid() {
-        return vpicnrpid;
+    public BigDecimal getNrpId() {
+        return nrpId;
     }
 
-    public void setVpicnrpid(BigDecimal vpicnrpid) {
-        this.vpicnrpid = vpicnrpid;
+    public void setNrpId(BigDecimal nrpId) {
+        this.nrpId = nrpId;
     }
 
-    public String getVsupplyid() {
-        return vsupplyid;
+    public String getSupplyId() {
+        return supplyId;
     }
 
-    public void setVsupplyid(String vsupplyid) {
-        this.vsupplyid = vsupplyid;
+    public void setSupplyId(String supplyId) {
+        this.supplyId = supplyId;
     }
 
-    public String getVsuppldesc() {
-        return vsuppldesc;
+    public String getSupplyDesc() {
+        return supplyDesc;
     }
 
-    public void setVsuppldesc(String vsuppldesc) {
-        this.vsuppldesc = vsuppldesc;
+    public void setSupplyDesc(String supplyDesc) {
+        this.supplyDesc = supplyDesc;
     }
 
-    public String getVname() {
-        return vname;
+    public String getNamaPengawas() {
+        return namaPengawas;
     }
 
-    public void setVname(String vname) {
-        this.vname = vname;
+    public void setNamaPengawas(String namaPengawas) {
+        this.namaPengawas = namaPengawas;
     }
 
-    public String getVhp() {
-        return vhp;
+    public String getHpPengawas() {
+        return hpPengawas;
     }
 
-    public void setVhp(String vhp) {
-        this.vhp = vhp;
+    public void setHpPengawas(String hpPengawas) {
+        this.hpPengawas = hpPengawas;
     }
 
-    public String getVnamelk3() {
-        return vnamelk3;
+    public String getNamaLk3() {
+        return namaLk3;
     }
 
-    public void setVnamelk3(String vnamelk3) {
-        this.vnamelk3 = vnamelk3;
+    public void setNamaLk3(String namaLk3) {
+        this.namaLk3 = namaLk3;
     }
 
-    public String getVhplk3() {
-        return vhplk3;
+    public String getHpLk3() {
+        return hpLk3;
     }
 
-    public void setVhplk3(String vhplk3) {
-        this.vhplk3 = vhplk3;
+    public void setHpLk3(String hpLk3) {
+        this.hpLk3 = hpLk3;
     }
 
-    public String getVstatus() {
-        return vstatus;
+    public String getStatus() {
+        return status;
     }
 
-    public void setVstatus(String vstatus) {
-        this.vstatus = vstatus;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public String getVremark() {
-        return vremark;
+    public String getRemark() {
+        return remark;
     }
 
-    public void setVremark(String vremark) {
-        this.vremark = vremark;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
-    
-    
-    
+ 
 }

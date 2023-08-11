@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "AHMGAWPM_TBLUSER")
-public class AhmgawpmTbluser {
+public class User {
     
     @Id
     @Column(name = "USERNAME")

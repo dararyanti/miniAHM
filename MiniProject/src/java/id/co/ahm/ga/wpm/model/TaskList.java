@@ -17,42 +17,42 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "AHMGAWPM_TBLTASKLIST")
-public class AhmgawpmTbltasklist {
+@Table(name = "TASK_LIST")
+public class TaskList {
     
     @Id
-    @Column(name = "VKODETASKLIST")
-    private String vkodetasklist;
+    @Column(name = "KODE_TASK_LIST")
+    private String kodeTaskList;
     
-    @Column(name = "VTITLETASKLIST")
-    private String vtitletasklist;
+    @Column(name = "TITLE_TASK_LIST")
+    private String titleTaskList;
     
     @ManyToOne
-    @JoinColumn(name = "VASSETNO")
-    private AhmgawpmTblasset vassetno;
+    @JoinColumn(name = "NO_ASSET")
+    private Asset noAsset;
 
-    public String getVkodetasklist() {
-        return vkodetasklist;
+    public String getKodeTaskList() {
+        return kodeTaskList;
     }
 
-    public void setVkodetasklist(String vkodetasklist) {
-        this.vkodetasklist = vkodetasklist;
+    public void setKodeTaskList(String kodeTaskList) {
+        this.kodeTaskList = kodeTaskList;
     }
 
-    public String getVtitletasklist() {
-        return vtitletasklist;
+    public String getTitleTaskList() {
+        return titleTaskList;
     }
 
-    public void setVtitletasklist(String vtitletasklist) {
-        this.vtitletasklist = vtitletasklist;
+    public void setTitleTaskList(String titleTaskList) {
+        this.titleTaskList = titleTaskList;
     }
 
-    public AhmgawpmTblasset getVassetno() {
-        return vassetno;
+    public Asset getNoAsset() {
+        return noAsset;
     }
 
-    public void setVassetno(AhmgawpmTblasset vassetno) {
-        this.vassetno = vassetno;
+    public void setNoAsset(Asset noAsset) {
+        this.noAsset = noAsset;
     }
-    
+
 }

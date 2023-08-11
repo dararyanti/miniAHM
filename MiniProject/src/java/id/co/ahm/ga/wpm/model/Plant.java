@@ -15,32 +15,30 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "AHMGAWPM_TBLPLANT")
-public class AhmgawpmTblplant {
+@Table(name = "PLANT")
+public class Plant {
     
     @Id
-    @Column(name = "VPLANTVAR")
-    private String vplantvar;
+    @Column(name = "PLANT_VAR")
+    private String plantVar;
     
-    @Column(name = "VPLANTDESC")
-    private String vplantdesc;
+    @Column(name = "PLANT_DESC")
+    private String plantDesc;
 
-    public String getVplantvar() {
-        return vplantvar;
+    public String getPlantVar() {
+        return plantVar;
     }
 
-    public void setVplantvar(String vplantvar) {
-        this.vplantvar = vplantvar;
+    public void setPlantVar(String plantVar) {
+        this.plantVar = plantVar;
     }
 
-    public String getVplantdesc() {
-        return vplantdesc;
+    public String getPlantDesc() {
+        return plantDesc;
     }
 
-    public void setVplantdesc(String vplantdesc) {
-        this.vplantdesc = vplantdesc;
+    public void setPlantDesc(String plantDesc) {
+        this.plantDesc = plantDesc;
     }
-    
-    
-    
+
 }

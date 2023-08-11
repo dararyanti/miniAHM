@@ -16,44 +16,42 @@ import javax.persistence.Table;
  * @author USER
  */
 @Entity
-@Table(name = "AHMGAWPM_TBLPO")
-public class AhmgawpmTblpo {
+@Table(name = "PURCHASING_ORDER")
+public class PurchasingOrder {
     
     @Id
-    @Column(name = "VNOPO")
-    private String vnopo;
+    @Column(name = "NO_PO")
+    private String noPo;
     
-    @Column(name = "VPODESC")
-    private String vpodesc;
+    @Column(name = "PO_DESC")
+    private String poDesc;
     
     @ManyToOne
-    @JoinColumn(name = "VSUPPLYID")
-    private AhmgawpmTblsupplier vsupplyid;
+    @JoinColumn(name = "SUPPLY_ID")
+    private Supplier supplyId;
 
-    public String getVnopo() {
-        return vnopo;
+    public String getNoPo() {
+        return noPo;
     }
 
-    public void setVnopo(String vnopo) {
-        this.vnopo = vnopo;
+    public void setNoPo(String noPo) {
+        this.noPo = noPo;
     }
 
-    public String getVpodesc() {
-        return vpodesc;
+    public String getPoDesc() {
+        return poDesc;
     }
 
-    public void setVpodesc(String vpodesc) {
-        this.vpodesc = vpodesc;
+    public void setPoDesc(String poDesc) {
+        this.poDesc = poDesc;
     }
 
-    public AhmgawpmTblsupplier getVsupplyid() {
-        return vsupplyid;
+    public Supplier getSupplyId() {
+        return supplyId;
     }
 
-    public void setVsupplyid(AhmgawpmTblsupplier vsupplyid) {
-        this.vsupplyid = vsupplyid;
+    public void setSupplyId(Supplier supplyId) {
+        this.supplyId = supplyId;
     }
-    
-    
-    
+ 
 }

@@ -16,44 +16,42 @@ import javax.persistence.ManyToOne;
  * @author USER
  */
 @Entity
-@Table(name = "AHMGAWPM_TBLASSET")
-public class AhmgawpmTblasset {
+@Table(name = "ASSET")
+public class Asset {
     @Id
-    @Column(name = "VNOASSET")
-    private String vnoasset;
+    @Column(name = "NO_ASSET")
+    private String noAsset;
     
-    @Column(name = "VDESCASSET")
-    private String vdescasset;
+    @Column(name = "DESC_ASSET")
+    private String descAsset;
     
     @ManyToOne
-    @JoinColumn(name = "VPLANTVAR")
-    private AhmgawpmTblplant vplatvar;
+    @JoinColumn(name = "PLANT_VAR")
+    private Plant platVar;
 
-    public String getVnoasset() {
-        return vnoasset;
+    public String getNoAsset() {
+        return noAsset;
     }
 
-    public void setVnoasset(String vnoasset) {
-        this.vnoasset = vnoasset;
+    public void setNoAsset(String noAsset) {
+        this.noAsset = noAsset;
     }
 
-    public String getVdescasset() {
-        return vdescasset;
+    public String getDescAsset() {
+        return descAsset;
     }
 
-    public void setVdescasset(String vdescasset) {
-        this.vdescasset = vdescasset;
+    public void setDescAsset(String descAsset) {
+        this.descAsset = descAsset;
     }
 
-    public AhmgawpmTblplant getVplatvar() {
-        return vplatvar;
+    public Plant getPlatVar() {
+        return platVar;
     }
 
-    public void setVplatvar(AhmgawpmTblplant vplatvar) {
-        this.vplatvar = vplatvar;
+    public void setPlatVar(Plant platVar) {
+        this.platVar = platVar;
     }
-    
-    
-    
+
     
 }

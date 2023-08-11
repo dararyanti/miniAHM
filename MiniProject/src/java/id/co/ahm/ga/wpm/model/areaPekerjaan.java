@@ -15,72 +15,26 @@ import javax.persistence.Table;
  * @author USER
  */
 @Entity
-@Table(name = "AHMGAWPM_DTLIKPAREAS")
-public class AhmgawpmDtlikpareas implements Serializable {
+@Table(name = "AREA_PEKERJAAN")
+public class AreaPekerjaan implements Serializable {
 
     @EmbeddedId
-    private AhmgawpmDtlikpareasPk ahmgawpmDtlikpareasPk;
+    private AreaPekerjaanPk ahmgawpmDtlikpareasPk;
 
-    @Column(name = "VAREADTL")
-    private String vareadtl;
+    @Column(name = "AREA_DETAIL")
+    private String areaDetail;
 
-    @Column(name = "VINOUT")
-    private String vinout;
+    @Column(name = "IN_OUT")
+    private String inOut;
 
-    @Column(name = "VCRIT")
-    private String vcrit;
+    @Column(name = "CRITICALITY")
+    private String criticality;
 
-    @Column(name = "VTASKLIST")
-    private String vtasklist;
+    @Column(name = "TASK_LIST")
+    private String taskList;
 
-    @Column(name = "VLGINPATROL")
-    private String vlginpatrol;
+    @Column(name = "LOGIN_PATROL")
+    private String loginPatrol;
 
-    public AhmgawpmDtlikpareasPk getAhmgawpmDtlikpareasPk() {
-        return ahmgawpmDtlikpareasPk;
-    }
-
-    public void setAhmgawpmDtlikpareasPk(AhmgawpmDtlikpareasPk ahmgawpmDtlikpareasPk) {
-        this.ahmgawpmDtlikpareasPk = ahmgawpmDtlikpareasPk;
-    }
-
-    public String getVareadtl() {
-        return vareadtl;
-    }
-
-    public void setVareadtl(String vareadtl) {
-        this.vareadtl = vareadtl;
-    }
-
-    public String getVinout() {
-        return vinout;
-    }
-
-    public void setVinout(String vinout) {
-        this.vinout = vinout;
-    }
-
-    public String getVcrit() {
-        return vcrit;
-    }
-
-    public void setVcrit(String vcrit) {
-        this.vcrit = vcrit;
-    }
-
-    public String getVtasklist() {
-        return vtasklist;
-    }
-
-    public void setVtasklist(String vtasklist) {
-        this.vtasklist = vtasklist;
-    }
-
-    public String getVlginpatrol() {
-        return vlginpatrol;
-    }
-
-    public void setVlginpatrol(String vlginpatrol) {
-        this.vlginpatrol = vlginpatrol;
-    }
+    
 }

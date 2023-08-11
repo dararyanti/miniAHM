@@ -15,32 +15,30 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "AHMGAWPM_TBLSUPPLIER")
-public class AhmgawpmTblsupplier {
+@Table(name = "SUPPLIER")
+public class Supplier {
     
     @Id
-    @Column(name = "VSUPPLYID")
-    private String vsupplyid;
+    @Column(name = "SUPPLY_ID")
+    private String supplyId;
     
-    @Column(name = "VSUPPLYDESC")
-    private String vsupplydesc;
+    @Column(name = "SUPPLY_DESC")
+    private String supplyDesc;
 
-    public String getVsupplyid() {
-        return vsupplyid;
+    public String getSupplyId() {
+        return supplyId;
     }
 
-    public void setVsupplyid(String vsupplyid) {
-        this.vsupplyid = vsupplyid;
+    public void setSupplyId(String supplyId) {
+        this.supplyId = supplyId;
     }
 
-    public String getVsupplydesc() {
-        return vsupplydesc;
+    public String getSupplyDesc() {
+        return supplyDesc;
     }
 
-    public void setVsupplydesc(String vsupplydesc) {
-        this.vsupplydesc = vsupplydesc;
+    public void setSupplyDesc(String supplyDesc) {
+        this.supplyDesc = supplyDesc;
     }
-    
-    
-    
+
 }
