@@ -12,9 +12,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import id.co.ahm.ga.wpm.dao.AreaPekerjaanDao;
 import id.co.ahm.ga.wpm.dao.HeaderIkpDao;
+import id.co.ahm.ga.wpm.model.AreaPekerjaan;
+import id.co.ahm.ga.wpm.model.AreaPekerjaanPk;
+import id.co.ahm.ga.wpm.model.HeaderIkp;
 import org.springframework.stereotype.Service;
 import id.co.ahm.ga.wpm.service.ServiceIkp;
+import id.co.ahm.ga.wpm.vo.VoShowAreaPekerjaan;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  *
@@ -40,10 +49,86 @@ public class ServiceIkpImpl implements ServiceIkp {
     }
 
     @Override
+    public DtoResponse deleteIkp(String ikpId, VoPstUserCred voPstUserCred) {
+        try {
+            List<Object[]> listResultFindNomorAsset = areaPekerjaanDao.findNomorAssetAreaPekerjaanByIkpId(ikpId, voPstUserCred);
+            List<AreaPekerjaan> listResultAreaPekerjaan = new ArrayList<>();
+            for (Object[] resultFindNomorAsset : listResultFindNomorAsset) {
+                AreaPekerjaanPk primaryKeyAreaPekerjaan = new AreaPekerjaanPk();
+                primaryKeyAreaPekerjaan.setIkpId(ikpId);
+                primaryKeyAreaPekerjaan.setAssetNo(resultFindNomorAsset[1].toString());
+                listResultAreaPekerjaan.add(areaPekerjaanDao.findOne(primaryKeyAreaPekerjaan));
+                areaPekerjaanDao.deleteById(primaryKeyAreaPekerjaan);
+                areaPekerjaanDao.flush();
+            }
+            HeaderIkp deletedIkp = headerIkpDao.findOne(ikpId);
+            headerIkpDao.deleteById(ikpId);
+            headerIkpDao.flush();
+            Map<String, Object> message = new HashMap();
+            message.put("AreaPekerjaan", listResultAreaPekerjaan);
+            return DtoHelper.constructResponsePaging(StatusMsgEnum.SUKSES, message, Arrays.asList(deletedIkp), 1);
+        } catch (Exception e) {
+            return DtoHelper.constructResponsePaging(StatusMsgEnum.GAGAL, null, null, 0);
+        }
+    }
+
+    @Override
     public DtoResponse getAreaProjectTableIkp(DtoParamPaging input, VoPstUserCred voPstUserCred) {
         int total = headerIkpDao.getCountTableIkp(input, voPstUserCred);
         List<VoShowTableIkp> result = headerIkpDao.getTableIkp(input, voPstUserCred);
         return DtoHelper.constructResponsePaging(StatusMsgEnum.SUKSES, null, result, total);
+    }
+
+    @Override
+    public List<VoShowTableIkp> exportToExcelIkp(Map<String, Object> mappedInput, VoPstUserCred voPstUserCred) {
+        DtoParamPaging input = new DtoParamPaging();
+        if (!(mappedInput.containsKey("nrpId"))){
+            mappedInput.put("nrpId", "");
+        }
+        Map<String, Object> search = mappedInput;
+        String status = (String) mappedInput.get("status");
+        search.put("status", Stream.of(status.split(",", -1)).collect(Collectors.toList()));
+        input.setSearch(search);
+        input.setOrder((String) mappedInput.get("order"));
+        input.setSort((String) mappedInput.get("sort"));
+        List<VoShowTableIkp> result = headerIkpDao.getTableIkp(input, voPstUserCred);
+        return result;
+    }
+
+    @Override
+    public VoShowTableIkp downloadIkp(Map<String, Object> mappedInput, VoPstUserCred voPstUserCred) throws Exception {
+        DtoParamPaging input = new DtoParamPaging();
+         if (!(mappedInput.containsKey("nrpId"))){
+            mappedInput.put("nrpId", "");
+        }
+        Map<String, Object> search = mappedInput;
+        String status = (String) mappedInput.get("status");
+        search.put("status", Stream.of(status.split(",", -1)).collect(Collectors.toList()));
+        input.setSearch(search);
+        input.setOrder((String) mappedInput.get("order"));
+        input.setSort((String) mappedInput.get("sort"));
+        List<VoShowTableIkp> listResult = headerIkpDao.getTableIkp(input, voPstUserCred);
+        VoShowTableIkp result = listResult.get(0);
+
+        List<Object[]> listResultFindNomorAsset = areaPekerjaanDao.findNomorAssetAreaPekerjaanByIkpId(result.getIkpId(), voPstUserCred);
+        List<VoShowAreaPekerjaan> listResultAreaPekerjaan = new ArrayList<>();
+        for (Object[] resultFindNomorAsset : listResultFindNomorAsset) {
+            VoShowAreaPekerjaan resultAreaPekerjaan = new VoShowAreaPekerjaan();
+            AreaPekerjaanPk primaryKeyAreaPekerjaan = new AreaPekerjaanPk();
+            primaryKeyAreaPekerjaan.setIkpId(result.getIkpId());
+            primaryKeyAreaPekerjaan.setAssetNo(resultFindNomorAsset[1].toString());
+            AreaPekerjaan areaPekerjaan = areaPekerjaanDao.findOne(primaryKeyAreaPekerjaan);
+            resultAreaPekerjaan.setAreaDetail(areaPekerjaan.getAreaDetail());
+            resultAreaPekerjaan.setAssetNo(areaPekerjaan.getAhmgawpmDtlikpareasPk().getAssetNo());
+            resultAreaPekerjaan.setCriticality(areaPekerjaan.getCriticality());
+            resultAreaPekerjaan.setInOut(areaPekerjaan.getInOut());
+            resultAreaPekerjaan.setLoginPatrol(areaPekerjaan.getLoginPatrol());
+            resultAreaPekerjaan.setTaskList(areaPekerjaan.getTaskList());
+            listResultAreaPekerjaan.add(resultAreaPekerjaan);
+        }
+        result.setAreaPekerjaan(listResultAreaPekerjaan);
+
+        return result;
     }
 
 }

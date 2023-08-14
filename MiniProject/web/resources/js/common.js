@@ -41,40 +41,40 @@ $(document).mouseup(
 }
         );
  
-$(function () {
-    $.ajax({
-        type: "POST",
-        url: "/jx02/ahmsvipdsh000-pst/rest/ip/dsh001/validate-token",
-        contentType: "application/json",
-        dataType: 'json',
-        headers: {
-            "JXID": getJxid()
-        },
-        async: false//,
-    }).done(function (data) {
-        if (data.status == "1") {
-            setMenuSidebar();
-            setProfileInfo();
-            search_prepare();
-            addBookmarkMenu();
-            getFormFromHash();
-            _fw_activeTabAction();
-            _fw_getAnnouncement();
-            _fw_getAppsProblem();
-            _fw_startTime();
+// $(function () {
+//     $.ajax({
+//         type: "POST",
+//         url: "/jx02/ahmsvipdsh000-pst/rest/ip/dsh001/validate-token",
+//         contentType: "application/json",
+//         dataType: 'json',
+//         //headers: {
+//            // "JXID": getJxid()
+// //        },
+//         async: false//,
+//     }).done(function (data) {
+//         if (data.status == "1") {
+//             setMenuSidebar();
+//             setProfileInfo();
+//             search_prepare();
+//             addBookmarkMenu();
+//             getFormFromHash();
+//             _fw_activeTabAction();
+//             _fw_getAnnouncement();
+//             _fw_getAppsProblem();
+//             _fw_startTime();
             
-            //setFaqList();
-            //sendVote();
-            //getCategoryTicket();
-            //setFaqTree();
+//             //setFaqList();
+//             //sendVote();
+//             //getCategoryTicket();
+//             //setFaqTree();
             
-        } else {
-            var hash = document.location.hash;
-            var winloc = hash ? 'login.htm?ReturnUrl=' + hash : 'login.htm';
-            window.location = winloc;
-        }
-    });
-});
+//         } else {
+//             var hash = document.location.hash;
+//             var winloc = hash ? 'login.htm?ReturnUrl=' + hash : 'login.htm';
+//             window.location = winloc;
+//         }
+//     });
+// });
  
 function _fw_getLicenseKeyDynamsoft(){
     return 'f0068NQAAAEzqMov+4MOtd+hMgNSqOhBof1pufUHeQPYoNo9Tz+9p78kAGAhk13vo2bRpBbSp2UE/MNFkG/KtoTpoCgTWkpc=';
@@ -166,9 +166,9 @@ function setMenuSidebar() {
         url: "/jx02/ahmsvipdsh000-pst/rest/ip/dsh001/menu",
         contentType: "application/json",
         dataType: 'json',
-        headers: {
-            "JXID": getJxid()
-        },
+        //headers: {
+           // "JXID": getJxid()
+//        },
         async: false
     }).done(function (data) {
         if (data.status == "1") {
@@ -266,9 +266,9 @@ function setProfileInfo() {
         url: "/jx02/ahmsvipdsh000-pst/rest/ip/dsh001/profile",
         contentType: "application/json",
         dataType: 'json',
-        headers: {
-            "JXID": getJxid()
-        },
+        //headers: {
+           // "JXID": getJxid()
+//        },
         async: false
     }).done(function (data) {
         if (data.status == "1") {
@@ -1506,9 +1506,9 @@ function _fw_post(postUrl, postData, callback) {
         contentType: "application/json",
         dataType: 'json',
         async: false,
-        headers: {
-            "JXID": getJxid()
-        },
+        //headers: {
+           // "JXID": getJxid()
+//        },
         data: JSON.stringify(postData),
         success: function (data) {
             if (data.status == '0' && (data.message.authentication == "Invalid Request")) {
@@ -2832,9 +2832,9 @@ function _fw_exportToExcel(url) {
         url: "/jx02/ahmsvipdsh000-pst/rest/ip/dsh001/validate-token",
         contentType: "application/json",
         dataType: 'json',
-        headers: {
-            "JXID": getJxid()
-        },
+        //headers: {
+           // "JXID": getJxid()
+//        },
         async: false//,
     })
             .done(function (data) {

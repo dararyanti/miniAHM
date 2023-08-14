@@ -1,19 +1,15 @@
 <!--Maintain IKP-->
 <html>
     <head>
-        <link rel="stylesheet" href="../resources/css/AHMGAWPM001.css" />
-        <script  src="../resources/js/jQuery-2.1.3.min.js"></script>
-        <!-- <script  src="../resources/js/common.js"></script> -->
-        <script  src="../resources/js/bootstraps/moment-with-locales.min.js"></script>
-        <script  src="../resources/js/bootstraps/bootstrap-table-2.js"></script>
-        <script  src="../resources/js/bootstraps/bootstrap-datetimepicker.min.js"></script>
-        <link rel="stylesheet" href="../resources/js/bootstraps/bootstrap.min.css">
-        <link rel="stylesheet" href="../resources/js/bootstraps/bootstrap-table.min.css">
-           <link rel="stylesheet" href="../resources/js/bootstraps/bootstrap-editable.css">
-        <link rel="stylesheet" href="../resources/js/bootstraps/bootstrap-datetimepicker.min.css">
-        <link rel="stylesheet" href="../resources/js/bootstraps/daterangepicker-bs3.css">
-        <script  src="../resources/js/bootstraps/daterangepicker.js"></script>
-    </head>
+        <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript" src="../resources/js/bootstraps/bootstrap-table.min.js"></script>
+        <script type="text/javascript" src="../resources/js/common.js"></script>
+        <link rel="stylesheet" href="../resources/css/maintainIkp.css" />
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    </head>    
     <body>
         <div id="maintainIkp" class="div-app" data-version="1.0">
             <!--Maintain IKP-->
@@ -26,6 +22,7 @@
                                     <div class="form-group large-font">
                                         <label for="id_supplier_filter" class="col-sm-12 control-label">ID Supplier
                                         </label>
+                                        <div class="lookup-wrapper col-lg-12">
                                         <div class="input-group lookup"
                                              data-url="/jx04/ahmgawpm000-pst/rest/ga/wpm001/get-lov-supplier"
                                              data-query-params-type="limit" data-lookup-pre-func="lov_supplier"
@@ -38,8 +35,11 @@
                                             <span class="input-group-btn">
                                                 <button id="lookup_id_supplier_filter"
                                                         class="btn btn-default large-button btn-lookup" type="button"
-                                                        style="display: block"></button>
+                                                        style="display: block">
+                                                <i class="glyphicon glyphicon-search fg-white"></i>
+                                                </button>
                                             </span>
+                                        </div>
                                         </div>
                                     </div>
                                 </div>
@@ -59,6 +59,7 @@
                                     <div class="form-group large-font">
                                         <label for="id_pic_filter" class="col-sm-12 control-label">NRP PIC
                                             Project</label>
+                                        <div class="lookup-wrapper col-lg-12">
                                         <div class="input-group lookup"
                                              data-url="/jx04/ahmgawpm000-pst/rest/ga/wpm001/get-lov-pic"
                                              data-lookup-pre-func="lov_pic" data-query-params-type="limit"
@@ -70,8 +71,11 @@
                                                    maxlength="100" />
                                             <span class="input-group-btn">
                                                 <button id="lookup_id_pic_filter"
-                                                        class="btn btn-default large-button btn-lookup" type="button"></button>
+                                                class="btn btn-default large-button btn-lookup" type="button">
+                                                <i class="glyphicon glyphicon-search fg-white"></i>
+                                                </button>
                                             </span>
+                                        </div>
                                         </div>
                                     </div>
                                 </div>
@@ -104,6 +108,7 @@
                                     <div class="form-group large-font">
                                         <label for="nomor_po_spk" class="col-sm-12 control-label">Nomor PO/SPK/SPK
                                             Sementara</label>
+                                        <div class="lookup-wrapper col-lg-12">
                                         <div class="input-group lookup"
                                              data-url="/jx04/ahmgawpm000-pst/rest/ga/wpm001/get-lov-po"
                                              data-lookup-pre-func="lov_po" data-query-params-type="limit"
@@ -112,11 +117,16 @@
                                              data-callback='{"nomor_po_filter":"nomorPo"}'>
                                             <input id="nomor_po_filter"
                                                    class="form-control input-lookup gawpm001-uppercase"
-                                                   placeholder=" LoV Nomor PO / SPK / SPK Sementara" maxlength="100" />
+                                                   placeholder=" LoV Nomor PO / SPK / SPK Sementara" maxlength="100" 
+                                                   readonly="true"/>
                                             <span class="input-group-btn">
                                                 <button id="lookup_nomor_po_filter"
-                                                        class="btn btn-default large-button btn-lookup" type="button"></button>
+                                                class="btn btn-default large-button btn-lookup" type="button"
+                                                disabled="disabled">
+                                                <i class="glyphicon glyphicon-search fg-white"></i>
+                                                </button>
                                             </span>
+                                        </div>
                                         </div>
                                     </div>
                                 </div>
@@ -149,6 +159,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group large-font">
                                         <label for="nomor_ikp" class="col-sm-12 control-label">Nomor IKP</label>
+                                        <div class="lookup-wrapper col-lg-12">
                                         <div class="input-group lookup"
                                              data-url="/jx04/ahmgawpm000-pst/rest/ga/wpm001/get-lov-ikp"
                                              data-lookup-pre-func="lov_ikp_maintain" data-query-params-type="limit"
@@ -159,8 +170,11 @@
                                                    placeholder=" LoV Nomor IKP" maxlength="100" />
                                             <span class="input-group-btn">
                                                 <button id="lookup_nomor_ikp_filter"
-                                                        class="btn btn-default large-button btn-lookup" type="button"></button>
+                                                class="btn btn-default large-button btn-lookup" type="button">
+                                                <i class="glyphicon glyphicon-search fg-white"></i>
+                                                </button>
                                             </span>
+                                        </div>
                                         </div>
                                     </div>
                                 </div>
@@ -202,7 +216,7 @@
                                 <table id="search_maintain_ikp_table" data-method="post"
                                        data-url="/MiniProject/rest/ga/wpm001/get-ikp-table"
                                        data-content-type="application/json" data-data-type="json" data-query-params-type="limit"
-                                       data-query-params="maintain_ikp_filter" data-response-handler="loadData"
+                                       data-query-params="maintain_ikp_filter" data-response-handler="load_data"
                                        data-side-pagination="server" data-pagination="true" data-unique-id="ikpId"
                                        data-multiple-select-row="true" data-click-to-select="true" class="table table-hover">
                                     <thead>
@@ -227,7 +241,7 @@
                                                 <div class="fht-cell"></div>
                                             </th>
                                             <th data-field="tipeOrder" data-sortable="true">
-                                                <div class="th-inner">Ordering Type</div>
+                                                <div class="th-inner">Tipe Order</div>
                                                 <div class="fht-cell"></div>
                                             </th>
                                             <th data-field="nomorPoSpk" data-sortable="true">
@@ -344,7 +358,7 @@
                     </div>
                     <div class="clearfix"></div>
                 </div>
-                <div id="delete_ikp" class="modal fade" role="dialog">
+                <div id="delete_ikp_modal" class="modal fade" role="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -1101,11 +1115,10 @@
                 </div>
             </div>
         </div>
-
-    
-        <script type="text/javascript" src="../resources/js/maintainIkp.js"></script>
-        <script  src="../resources/js/bootstraps/bootstrap.min.js"></script>
-        <script  src="../resources/js/bootstraps/bootstrap-table.min.js"></script>
-        <script  src="../resources/js/bootstraps/bootstrap-table-2.min.js"></script>
-    </body>
+        <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="../resources/js/bootstraps/bootstrap-table.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../resources/js/lovtable.js"></script>
+<script type="text/javascript" src="../resources/js/maintainIkp.js"></script>
+</body>
 </html>

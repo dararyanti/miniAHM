@@ -36,5 +36,54 @@ public class AreaPekerjaan implements Serializable {
     @Column(name = "LOGIN_PATROL")
     private String loginPatrol;
 
+    public AreaPekerjaanPk getAhmgawpmDtlikpareasPk() {
+        return ahmgawpmDtlikpareasPk;
+    }
+
+    public void setAhmgawpmDtlikpareasPk(AreaPekerjaanPk ahmgawpmDtlikpareasPk) {
+        this.ahmgawpmDtlikpareasPk = ahmgawpmDtlikpareasPk;
+    }
+
+    public String getAreaDetail() {
+        return areaDetail;
+    }
+
+    public void setAreaDetail(String areaDetail) {
+        this.areaDetail = areaDetail;
+    }
+
+    public String getInOut() {
+        return inOut;
+    }
+
+    public void setInOut(String inOut) {
+        this.inOut = inOut;
+    }
+
+    public String getCriticality() {
+        return criticality;
+    }
+
+    public void setCriticality(String criticality) {
+        this.criticality = criticality;
+    }
+
+    public String getTaskList() {
+        return taskList;
+    }
+
+    public void setTaskList(String taskList) {
+        this.taskList = taskList;
+    }
+
+    public String getLoginPatrol() {
+        return loginPatrol;
+    }
+
+    public void setLoginPatrol(String loginPatrol) {
+        this.loginPatrol = loginPatrol;
+    }
+
+    
     
 }

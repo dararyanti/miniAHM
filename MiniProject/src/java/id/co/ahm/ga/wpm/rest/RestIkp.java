@@ -1,5 +1,7 @@
 package id.co.ahm.ga.wpm.rest;
 
+import id.co.ahm.ga.wpm.rest.view.DownloadPdfIkp;
+import id.co.ahm.ga.wpm.rest.view.ExportExcelIkp;
 import id.co.ahm.ga.wpm.util.DtoParamPaging;
 import id.co.ahm.ga.wpm.util.DtoResponse;
 import id.co.ahm.ga.wpm.util.UserUtilsService;
@@ -17,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import id.co.ahm.ga.wpm.service.ServiceIkp;
+import java.util.Map;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -58,6 +63,16 @@ public class RestIkp {
         return this.serviceIkp.getTableIkp(dtoParamPaging, voPstUserCred);
     }
     
+    @RequestMapping(value = "delete-ikp", method = RequestMethod.POST,
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    DtoResponse deleteIkp(@RequestHeader(value = CommonConstant.JXID, defaultValue = "") String token,
+            @RequestParam String ikpId) {
+        VoPstUserCred voPstUserCred = tokenPstUtil.getUserCred(token);
+        return this.serviceIkp.deleteIkp(ikpId, voPstUserCred);
+    }
+    
      @RequestMapping(value = "get-areaproject-table", method = RequestMethod.POST,
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -66,6 +81,26 @@ public class RestIkp {
             @RequestBody DtoParamPaging dtoParamPaging) {
         VoPstUserCred voPstUserCred = tokenPstUtil.getUserCred(token);
         return this.serviceIkp.getAreaProjectTableIkp(dtoParamPaging, voPstUserCred);
+    }
+    
+    @RequestMapping(value = "export-to-excel-ikp",
+            method = RequestMethod.GET)
+    public @ResponseBody
+    ModelAndView exportToExcelIkp(@RequestParam(value = CommonConstant.JXID, defaultValue = "") String token,
+            @RequestParam Map<String, Object> params) {
+        VoPstUserCred voPstUserCred = tokenPstUtil.getUserCred(token);
+        ModelAndView model = new ModelAndView(new ExportExcelIkp(), "IKP", this.serviceIkp.exportToExcelIkp(params, voPstUserCred));
+        return model;
+    }
+    
+    @RequestMapping(value = "download-ikp",
+            method = RequestMethod.GET)
+    public @ResponseBody
+    ModelAndView downloadIkp(@RequestParam(value = CommonConstant.JXID, defaultValue = "") String token,
+            @RequestParam Map<String, Object> params) throws Exception {
+        VoPstUserCred voPstUserCred = tokenPstUtil.getUserCred(token);
+        ModelAndView model = new ModelAndView(new DownloadPdfIkp(), "IKP", this.serviceIkp.downloadIkp(params, voPstUserCred));
+        return model;
     }
     
 }
