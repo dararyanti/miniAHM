@@ -94,7 +94,9 @@ public class ExportExcelIkp extends AbstractXlsView {
             throw new RuntimeException("Fail generate excel file");
         }
         Date date = new Date();
-        String fileName = "Maintain_Tabel_IKP";
+         SimpleDateFormat format = new SimpleDateFormat("ddMMyyyyhhmmss");
+        String fileName = "Maintain_Tabel_IKP_"+format.format(date);
+        
 
         response.setHeader("Content-Disposition", "attachment ; fileName=\"" + fileName + ".xls\"");
 

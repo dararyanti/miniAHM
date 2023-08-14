@@ -289,11 +289,11 @@ $('#delete_ikp_modal').on('show.bs.modal', function (e) {
 // DOWNLOAD IKP BUTTON
 function download_ikp(index) {
     params = new Object();
-    params.ikpId = $('#search_maintain_ikp_table').bootstrapTable('getData')[index].nomorIkp;
+    params.ikpId = $('#search_maintain_ikp_table').bootstrapTable('getData')[index].ikpId;
     params.status = ["00-IKP", "01-IKP", "02-IKP", "03-IKP", "04-IKP", "05-IKP", "06-IKP", "07-IKP"];
     alert("Downloading "+params.ikpId)
     setTimeout(function () {
-        var exportUrl = "/jx04/ahmgawpm000-pst/rest/ga/wpm001/download-ikp?";
+        var exportUrl = "/MiniProject/rest/ga/wpm001/download-ikp?";
         $.each(params, function (keypar, param) {
             exportUrl += '' + keypar + '=' + param + '&';
         });
