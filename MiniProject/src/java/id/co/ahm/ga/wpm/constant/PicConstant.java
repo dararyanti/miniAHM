@@ -29,7 +29,7 @@ public class PicConstant {
             = " SELECT NRP_ID, NAMA, DEPARTEMEN, SEKSI, DIVISI FROM PIC "
             + " WHERE (:nrpId IS NULL OR "
             + " LOWER(NRP_ID) LIKE LOWER(CONCAT(CONCAT('%',:nrpId),'%'))) "
-            + " AND (:nama IS NULL "
+            + " OR (:nama IS NULL "
             + " OR LOWER(NAMA) LIKE LOWER(CONCAT(CONCAT('%',:nama),'%'))) ";
 
     public final static Query FILTER_LOV_PIC(Query q, DtoParamPaging input) {

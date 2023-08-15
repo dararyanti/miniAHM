@@ -28,7 +28,7 @@ public class PurchasingOrderConstant {
             = " SELECT NO_PO, PO_DESC FROM PURCHASING_ORDER "
             + " WHERE (:noPo IS NULL OR "
             + " LOWER(NO_PO) LIKE LOWER(CONCAT(CONCAT('%',:noPo),'%'))) "
-            + " AND (:poDesc IS NULL OR "
+            + " OR (:poDesc IS NULL OR "
             + " LOWER(PO_DESC) LIKE LOWER(CONCAT(CONCAT('%',:poDesc),'%'))) ";
     
     public final static Query FILTER_LOV_PO(Query q, DtoParamPaging input) {

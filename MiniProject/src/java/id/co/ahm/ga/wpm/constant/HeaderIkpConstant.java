@@ -252,9 +252,10 @@ public class HeaderIkpConstant {
     public static final String LOV_SUPPLIER_MAINTENANCE_QUERY
             = "SELECT SUPPLY_ID, SUPPLY_DESC FROM HEADER_IKP "
             + "WHERE (:supplyId IS NULL OR "
-            + "SUPPLY_ID = :supplyId) "
-            + "AND (:supplyDesc IS NULL OR "
-            + "SUPPLY_DESC = :supplyDesc) ";
+            + "LOWER(SUPPLY_ID) LIKE LOWER(CONCAT(CONCAT('%',:supplyId),'%'))) " 
+            + "OR (:supplyDesc IS NULL OR "
+            + "LOWER(SUPPLY_DESC) LIKE LOWER(CONCAT(CONCAT('%', :supplyDesc), '%'))) ";
+    
 
     public final static Query FILTER_LOV_SUPPLIER_MAINTENANCE(Query q, DtoParamPaging input) {
         q.setParameter("supplyId", input.getSearch().get("supplyId"));
@@ -313,9 +314,9 @@ public class HeaderIkpConstant {
             + " FROM HEADER_IKP A JOIN PIC B "
             + " ON A.NRP_ID = B.NRP_ID "
             + " WHERE (:nrpId IS NULL OR "
-            + " B.NRP_ID LIKE (CONCAT(CONCAT('%',:nrpId),'%'))) "
-            + " AND (:nama IS NULL OR "
-            + " B.NAMA LIKE (CONCAT(CONCAT('%',:nama),'%'))) ";
+            + " LOWER(B.NRP_ID) LIKE LOWER(CONCAT(CONCAT('%',:nrpId),'%'))) "
+            + " OR (:nama IS NULL OR "
+            + " LOWER(B.NAMA) LIKE LOWER(CONCAT(CONCAT('%',:nama),'%'))) ";
 
     public final static Query FILTER_LOV_PIC_MAINTENANCE(Query q, DtoParamPaging input) {
         q.setParameter("nrpId", input.getSearch().get("nrpId"));
@@ -372,9 +373,9 @@ public class HeaderIkpConstant {
             + " FROM HEADER_IKP A JOIN PURCHASING_ORDER B "
             + " ON A.NO_PO = B.NO_PO"
             + " WHERE (:noPo IS NULL OR "
-            + " B.NO_PO LIKE (CONCAT(CONCAT('%',:noPo),'%'))) "
-            + " AND (:poDesc IS NULL OR "
-            + " B.PO_DESC LIKE (CONCAT(CONCAT('%',:poDesc),'%'))) ";
+            + " LOWER(B.NO_PO) LIKE LOWER(CONCAT(CONCAT('%',:noPo),'%'))) "
+            + " OR (:poDesc IS NULL OR "
+            + " LOWER(B.PO_DESC) LIKE LOWER(CONCAT(CONCAT('%',:poDesc),'%'))) ";
 
     public final static Query FILTER_LOV_PO_MAINTENANCE(Query q, DtoParamPaging input) {
         q.setParameter("noPo", input.getSearch().get("noPo"));

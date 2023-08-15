@@ -27,7 +27,7 @@ public class SupplierConstant {
             "SELECT SUPPLY_ID, SUPPLY_DESC FROM SUPPLIER "
             + "WHERE (:supplyId IS NULL OR "
             + "LOWER(SUPPLY_ID) LIKE LOWER(CONCAT(CONCAT('%',:supplyId),'%'))) " 
-            + "AND (:supplyDesc IS NULL OR "
+            + "OR (:supplyDesc IS NULL OR "
             + "LOWER(SUPPLY_DESC) LIKE LOWER(CONCAT(CONCAT('%', :supplyDesc), '%'))) ";
     
     public final static Query FILTER_LOV_SUPPLIER(Query q, DtoParamPaging input) {

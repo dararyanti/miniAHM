@@ -29,7 +29,7 @@ public class AssetConstant {
             + " WHERE (:plantVar = PLANT_VAR) "
             + " AND (:noAsset IS NULL OR "
             + " LOWER(NO_ASSET) LIKE LOWER(CONCAT(CONCAT('%',:noAsset),'%')))"
-            + " AND (:descAsset IS NULL OR "
+            + " OR (:descAsset IS NULL OR "
             + " LOWER(DESC_ASSET) LIKE LOWER(CONCAT(CONCAT('%',:descAsset),'%'))) ";
     
     public final static Query FILTER_LOV_ASSET(Query q, DtoParamPaging input) {

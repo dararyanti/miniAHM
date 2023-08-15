@@ -29,7 +29,7 @@ public class TaskListConstant {
             + " WHERE (NO_ASSET = :noAsset) "
             + " AND (:kode IS NULL OR "
             + " LOWER(KODE_TASK_LIST) LIKE LOWER(CONCAT(CONCAT('%',:kode),'%'))) "
-            + " AND (:title IS NULL OR "
+            + " OR (:title IS NULL OR "
             + " LOWER(TITLE_TASK_LIST) LIKE LOWER(CONCAT(CONCAT('%',:title),'%'))) ";
     
     public final static Query FILTER_LOV_TASK_LIST(Query q, DtoParamPaging input) {

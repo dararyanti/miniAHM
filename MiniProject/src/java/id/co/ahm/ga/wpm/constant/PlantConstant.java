@@ -26,7 +26,7 @@ public class PlantConstant {
             = " SELECT PLANT_VAR, PLANT_DESC FROM PLANT "
             + " WHERE (:plantVar IS NULL OR "
             + " LOWER(PLANT_VAR) LIKE LOWER(CONCAT(CONCAT('%',:plantVar),'%'))) "
-            + " AND (:plantDesc IS NULL OR "
+            + " OR (:plantDesc IS NULL OR "
             + " LOWER(PLANT_DESC) LIKE LOWER(CONCAT(CONCAT('%',:plantDesc),'%'))) ";
     
     public final static Query FILTER_LOV_PLANT(Query q, DtoParamPaging input) {
