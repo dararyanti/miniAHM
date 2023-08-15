@@ -3,9 +3,14 @@ var selectedIkpId = null;
 var lookupTableId = null;
 var openLookup = false;
 var correctPlant = false;
+var uniqueId = null;
 
 $(document).ready(() => {
 
+});
+
+$('#area_create_ikp_table',createIkp).bootstrapTable({
+   
 });
 
 
@@ -408,8 +413,8 @@ function lov_tasklist_add_area(params){
     return params;
 }
 
-function create_ikp_page(obj) {
-    window.location.href = '/MiniProject/forms/createIkp.htm';
+function cancel_create_ikp(obj) {
+    window.location.href = '/MiniProject/forms/maintainIkp.htm';
 }
 function check_plant_create_ikp(){
     if ($("#id_plant_create_ikp", createIkp).val()!=null &&
@@ -421,6 +426,7 @@ function check_plant_create_ikp(){
     }
 }
 
+// ADD AREA MODAL
 function add_area(){
     if ($("#nomor_asset_add_area").val() != null &&
     $("#nomor_asset_add_area").val() != ""){
@@ -436,9 +442,9 @@ function add_area(){
                         criticality: $("#criticality_add_area").val(),
                         taskListTitle: $("#task_list_title_add_area").val(),
                     });
-                    console.log(rows);
                     $('#area_create_ikp_table', createIkp).bootstrapTable('append', rows);
-
+                    reset_add_modal_area();
+                    check_exist_area();
                 }
                 else {
                     alert("Area tidak boleh lebih dari 6")
@@ -478,3 +484,37 @@ function reset_add_modal_area() {
     $("#area_detail_add_area").val(null);
     $("#task_list_title_add_area").val(null);
 }
+
+$('#delete_area_modal').on('show.bs.modal', function (e) {
+    var index = $(e.relatedTarget).data('selected-index');
+    uniqueId = $("#area_create_ikp_table",createIkp).bootstrapTable('getData')[index].nomorAsset;
+});
+
+function delete_area_modal(){
+    $("#area_create_ikp_table",createIkp).bootstrapTable('removeByUniqueId', uniqueId);
+    check_exist_area()
+    uniqueId = null;
+}
+
+// EDIT AREA MODAL
+$('#edit_area_modal').on('show.bs.modal', function (e) {
+    var selectedIndex = $(e.relatedTarget).data('selected-index');
+    uniqueId = $("#area_create_ikp_table",createIkp).bootstrapTable('getData')[selectedIndex].nomorAsset;
+    $("#nomor_asset_edit_area").val($("#area_create_ikp_table",createIkp).bootstrapTable('getData')[selectedIndex].nomorAsset);
+    $("#area_detail_edit_area").val($("#area_create_ikp_table",createIkp).bootstrapTable('getData')[selectedIndex].areaDetail);
+    $("#indoor_outdoor_edit_area").val($("#area_create_ikp_table",createIkp).bootstrapTable('getData')[selectedIndex].indoorOutdoor);
+    $("#criticality_edit_area").val($("#area_create_ikp_table",createIkp).bootstrapTable('getData')[selectedIndex].criticality);
+    $("#task_list_title_edit_area").val($("#area_create_ikp_table",createIkp).bootstrapTable('getData')[selectedIndex].taskListTitle);
+});
+function edit_area_modal() {
+        $("#area_create_ikp_table",createIkp).bootstrapTable('updateByUniqueId', {
+            id: uniqueId,
+            row: {
+                nomorAsset: $("#nomor_asset_edit_area").val(),
+                areaDetail: $("#area_detail_edit_area").val(),
+                indoorOutdoor: $("#indoor_outdoor_edit_area").val(),
+                criticality: $("#criticality_edit_area").val(),
+                taskListTitle: $("#task_list_title_edit_area").val(),
+            }
+        });
+    };

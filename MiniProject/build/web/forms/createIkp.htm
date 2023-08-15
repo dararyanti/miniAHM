@@ -3,6 +3,7 @@
     <head>
         <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
         <script type="text/javascript" src="../resources/js/bootstraps/bootstrap-table.min.js"></script>
+        <script type="text/javascript" src="../resources/js/bootstraps/bootstrap-table-2.min.js"></script>
         <script type="text/javascript" src="../resources/js/common.js"></script>
         <link rel="stylesheet" href="../resources/css/maintainIkp.css" />
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -280,11 +281,11 @@
             </div>
             <div class="row" style="margin-top: 20px; margin-bottom: 10px">
                 <div class="form-group-button">
-                    <button id="delete_all_area_create_ikp" style="float: right; margin-right: 5px"
+                    <!-- <button id="delete_all_area_create_ikp" style="float: right; margin-right: 5px"
                             class="btn bg-red large-button" data-toggle="modal" data-target="#delete_all_area_modal"
                             data-area-table="area_create_ikp_table">
                         <i class="glyphicon glyphicon-trash fg-white"></i> Delete All Area
-                    </button>
+                    </button> -->
                     <button id="add_new_area_create_ikp" style="float: right; margin-right: 5px"
                             class="btn bg-orange large-button" data-toggle="modal" onclick="check_plant_create_ikp()">
                         <i class="glyphicon glyphicon-plus fg-white"></i> Add New Area
@@ -677,50 +678,27 @@
                         <div class="form-group required modal-label">
                             <label class="control-label col-lg-4">Nomor Asset</label>
                             <div class="lookup-wrapper col-lg-8">
-                                <div class="input-group lookup"
+                                <div class="input-group lookup" id="id_asset_edit_lookup_wrapper"
                                      data-url="/MiniProject/rest/ga/wpm001/get-lov-nomorasset"
                                      data-lookup-pre-func="lov_nomor_asset_edit_area"
                                      data-lookup-change-func="lov_nomor_asset_edit_area_change" data-columns='[{"id":"nomorAsset","name":"Nomor Asset","visible":"true","sortable":"true"},
-                                     {"id":"building","name":"Building","visible":"true","sortable":"true"}, 
-                                     {"id":"floor","name":"Floor","visible":"true","sortable":"true"}, 
-                                     {"id":"sectionLocation","name":"Section Location","visible":"true","sortable":"true"}, 
                                      {"id":"areaDetail","name":"Area Detail","visible":"true","sortable":"true"}, 
                                      {"id":"criticality","name":"Criticality","visible":"true","sortable":"true"}]'
                                      data-callback='{"nomor_asset_edit_area":"nomorAsset",
-                                     "building_edit_area":"building",
-                                     "floor_edit_area":"floor",
-                                     "section_location_edit_area":"sectionLocation",
                                      "area_detail_edit_area":"areaDetail",
                                      "criticality_edit_area":"criticality"}'>
                                     <input id="nomor_asset_edit_area"
                                            class="form-control input-lookup gawpm001-uppercase" placeholder=" LoV Nomor Asset"
-                                           maxlength="100" oninput="lov_nomor_asset_edit_area_empty()" />
+                                           maxlength="100" oninput="lov_nomor_asset_edit_area_empty()" 
+                                           readonly="true"/>
                                     <span class="input-group-btn">
                                         <button class="btn btn-default large-button btn-lookup" type="button"
-                                                id="lov_nomor_asset_button"></button>
+                                                id="lov_nomor_asset_button"
+                                                disabled="disabled">
+                                        <i class="glyphicon glyphicon-search fg-white"></i>
+                                            </button>
                                     </span>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="form-group modal-label">
-                            <label class="control-label col-lg-4">Building</label>
-                            <div class="col-lg-8">
-                                <input id="building_edit_area" class="form-control" placeholder=""
-                                       maxlength="50" autocomplete="off" readonly />
-                            </div>
-                        </div>
-                        <div class="form-group modal-label">
-                            <label class="control-label col-lg-4">Floor</label>
-                            <div class="col-lg-8">
-                                <input id="floor_edit_area" class="form-control" placeholder="" maxlength="50"
-                                       autocomplete="off" readonly />
-                            </div>
-                        </div>
-                        <div class="form-group modal-label">
-                            <label class="control-label col-lg-4">Section Location</label>
-                            <div class="col-lg-8">
-                                <input id="section_location_edit_area" class="form-control" placeholder=""
-                                       maxlength="6" autocomplete="off" readonly />
                             </div>
                         </div>
                         <div class="form-group modal-label">
@@ -733,8 +711,7 @@
                         <div class="form-group required modal-label">
                             <label class="control-label col-lg-4">Indoor / Outdoor</label>
                             <div class="col-lg-8">
-                                <select id="indoor_outdoor_edit_area" class="form-control"
-                                        onChange="indoor_outdoor_edit_area_change(this)">
+                                <select id="indoor_outdoor_edit_area" class="form-control">
                                     <option value="Indoor">Indoor</option>
                                     <option value="Outdoor">Outdoor</option>
                                 </select>
@@ -743,14 +720,17 @@
                         <div class="form-group modal-label">
                             <label class="control-label col-lg-4">Criticality</label>
                             <div class="col-lg-8">
-                                <input id="criticality_edit_area" class="form-control" placeholder=""
-                                       maxlength="6" autocomplete="off" readonly />
+                                <select id="criticality_edit_area" class="form-control">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group required modal-label">
                             <label class="control-label col-lg-4">Task List</label>
                             <div class="lookup-wrapper col-lg-8">
-                                <div class="input-group lookup"
+                                <div class="input-group lookup" id="id_tasklist_edit_lookup_wrapper"
                                      data-url="/MiniProject/rest/ga/wpm001/get-lov-tasklist"
                                      data-lookup-pre-func="lov_tasklist_edit_area"
                                      data-lookup-change-func="lov_tasklist_edit_area_change" data-columns='[{"id":"taskListCode","name":"Code","visible":"true","sortable":"false"},
@@ -759,10 +739,14 @@
                                      "task_list_title_edit_area":"taskListTitle"}'>
                                     <input id="task_list_title_edit_area"
                                            class="form-control input-lookup gawpm001-uppercase" placeholder=" LoV Task List"
-                                           maxlength="100" oninput="lov_tasklist_edit_area_empty()" />
+                                           maxlength="100" oninput="lov_tasklist_edit_area_empty()"
+                                           readonly="true"/>
                                     <span class="input-group-btn">
                                         <button class="btn btn-default large-button btn-lookup" type="button"
-                                                id="button_task_list_title_edit_area"></button>
+                                                id="button_task_list_title_edit_area"
+                                                disabled="disabled">
+                                                <i class="glyphicon glyphicon-search fg-white"></i>
+                                            </button>
                                     </span>
                                 </div>
                             </div>
@@ -1076,7 +1060,7 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-    <script type="text/javascript" src="../resources/js/bootstraps/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../resources/js/bootstraps/bootstrap-table.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../resources/js/lovtable.js"></script>
     <script type="text/javascript" src="../resources/js/createIkp.js"></script>
