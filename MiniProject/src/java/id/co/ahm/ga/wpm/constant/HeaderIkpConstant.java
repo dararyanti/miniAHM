@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import static java.util.Collections.list;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.hibernate.query.Query;
@@ -15,7 +16,6 @@ import org.hibernate.query.Query;
  * @author Irzan Maulana
  */
 public class HeaderIkpConstant {
-    
 
     public static final String[] IKP_TABLE_COLUMN_NAME = {
         "IKP_ID",
@@ -99,8 +99,8 @@ public class HeaderIkpConstant {
             + "     OR :endPeriode IS NULL) "
             + "     OR (A.END_JOB BETWEEN TO_DATE(:startPeriode, 'dd-MM-yyyy') "
             + "     AND TO_DATE(:endPeriode, 'dd-MM-yyyy'))) ";
-    
-   public final static Query FILTER_TABLE_IKP(Query q, DtoParamPaging input) {
+
+    public final static Query FILTER_TABLE_IKP(Query q, DtoParamPaging input) {
         q.setParameter("supplierId", input.getSearch().get("supplierId"));
         q.setParameter("nrpId", input.getSearch().get("nrpId"));
         q.setParameterList("status", (Collection) input.getSearch().get("status"));
@@ -122,9 +122,9 @@ public class HeaderIkpConstant {
         q.setParameter("startPeriode", input.getSearch().get("startPeriode"));
         q.setParameter("endPeriode", input.getSearch().get("endPeriode"));
         return q;
-    } 
-   
-       public final static String ORDER_TABLE_IKP(String sql, DtoParamPaging input) {
+    }
+
+    public final static String ORDER_TABLE_IKP(String sql, DtoParamPaging input) {
         StringBuilder order = new StringBuilder();
         StringBuilder sqlString = new StringBuilder();
         sqlString.append(sql);
@@ -183,7 +183,7 @@ public class HeaderIkpConstant {
         return sqlString.toString();
     }
 
-    public final static   List<VoShowTableIkp> SET_VO_SHOW_TABLE_IKP(List<Map<String, Object>> list){
+    public final static List<VoShowTableIkp> SET_VO_SHOW_TABLE_IKP(List<Map<String, Object>> list) {
         List<VoShowTableIkp> voList = new ArrayList<>();
         for (Map<String, Object> map : list) {
             VoShowTableIkp vo = new VoShowTableIkp();
@@ -234,20 +234,22 @@ public class HeaderIkpConstant {
                     vo.setStatus("IKP Rejected");
                     break;
             }
+            vo.setStartJob((Date) map.get("START_JOB"));
+            vo.setEndJob((Date) map.get("END_JOB"));
             voList.add(vo);
         }
         return voList;
     }
-   
-   public final static Query SET_OFFSET(Query q, DtoParamPaging input) {
+
+    public final static Query SET_OFFSET(Query q, DtoParamPaging input) {
         if (input != null && input.getLimit() >= 0 && input.getOffset() >= 0) {
             q.setFirstResult(input.getOffset());
             q.setMaxResults(input.getLimit());
         }
         return q;
     }
-   
-   public final static String SELECT_COUNT(String input) {
+
+    public final static String SELECT_COUNT(String input) {
         StringBuffer sb = new StringBuffer();
         sb.append(" SELECT COUNT(*) FROM (");
         sb.append(input);
@@ -255,6 +257,5 @@ public class HeaderIkpConstant {
         String selectCount = sb.toString();
         return selectCount;
     }
-   
 
 }

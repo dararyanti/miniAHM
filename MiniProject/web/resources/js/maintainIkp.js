@@ -1,9 +1,10 @@
 const maintainIkp = $("#maintainIkp");
 var selectedIkpId = null;
+var lookupTableId = null;
+var openLookup = false;
 
 $(document).ready(() => {
-    $('.lookup-wrapper').lovtable({
-    });
+  
 });
 
 function load_data(resps) {
@@ -302,5 +303,112 @@ function download_ikp(index) {
         setTimeout(function () {
         }, 3000);
     }, 3000)
+}
+// LOV SUPPLIER
+function id_supplier_display_lookup(){
+    var $lookupWrapper = $('#id_supplier_lookup_wrapper');
+    var url = $lookupWrapper.data('url');
+    var lookupPreFunc = $lookupWrapper.data('lookup-pre-func');
+    var columns = $lookupWrapper.data('columns');
+    var callback = $lookupWrapper.data('callback');
+    if (openLookup == false){
+        $('.lookup-wrapper .lookup-form').remove();
+        setTimeout(function(){
+            $('#id_supplier_lookup_wrapper',maintainIkp).lovtable({
+                delay: 500,
+                width: null,
+                isBindFunc: false,
+                url: url,
+                queryParams: lookupPreFunc,
+                changeFunction: null,
+                bindFunction: null,
+                nextFocus: null,
+                nextFunction: null,
+                tableId: generateUUID(),
+                columns: columns,
+                callbacks: callback,
+                multiple: false,
+                multipleValue: null,
+                multipleText: null,
+                loadFirstTime: openLookup,
+                otherValue: false
+            });
+        },500);
+        openLookup = true;
+    } else {
+        openLookup = false;
+            $('#id_supplier_lookup_wrapper',maintainIkp).lovtable({
+                loadFirstTime: openLookup,
+            });
+    }
+}
+function lov_supplier_filter(params){
+    params.search = {
+        idSupplier: $("#id_supplier_filter", maintainIkp).val(),
+        namaSupplier: $("#id_supplier_filter", maintainIkp).val(),
+    };
+    if (params.sort === undefined) {
+        return {
+            limit: params.limit,
+            offset: params.offset,
+            search: params.search,
+            sort: "idSupplier",
+            order: "asc",
+        };
+    }
+    return params;
+}
+
+// LOV PIC
+function id_pic_display_lookup(){
+    var $lookupWrapper = $('#id_pic_lookup_wrapper');
+    var url = $lookupWrapper.data('url');
+    var lookupPreFunc = $lookupWrapper.data('lookup-pre-func');
+    var columns = $lookupWrapper.data('columns');
+    var callback = $lookupWrapper.data('callback');
+    if (openLookup == false){
+        $('.lookup-wrapper .lookup-form').remove();
+        setTimeout(function(){
+            $('#id_pic_lookup_wrapper',maintainIkp).lovtable({
+                delay: 500,
+                width: null,
+                isBindFunc: false,
+                url: url,
+                queryParams: lookupPreFunc,
+                changeFunction: null,
+                bindFunction: null,
+                nextFocus: null,
+                nextFunction: null,
+                tableId: generateUUID(),
+                columns: columns,
+                callbacks: callback,
+                multiple: false,
+                multipleValue: null,
+                multipleText: null,
+                loadFirstTime: openLookup,
+                otherValue: false
+            });
+        },500);
+        openLookup = true;
+    } else {
+        openLookup = false;
+    }
+    
+}
+function lov_pic_filter(params){
+    params.search = {
+        nrpId: $("id_pic_filter", maintainIkp).val(),
+        namaPic: $("#id_pic_filter", maintainIkp).val(),
+    };
+    if (params.sort === undefined) {
+        return {
+            limit: params.limit,
+            offset: params.offset,
+            search: params.search,
+            sort: "idSupplier",
+            order: "asc",
+        };
+    }
+    return params;
 }
 

@@ -5,6 +5,7 @@
 package id.co.ahm.ga.wpm.vo;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,7 +33,27 @@ public class VoShowTableIkp {
     private String divisi;
     private String departemen;
     private String seksi;
+    private Date startJob;
+    private Date endJob;
     private List<VoShowAreaPekerjaan> areaPekerjaan;
+
+    public Date getStartJob() {
+        return startJob;
+    }
+
+    public void setStartJob(Date startJob) {
+        this.startJob = startJob;
+    }
+
+    public Date getEndJob() {
+        return endJob;
+    }
+
+    public void setEndJob(Date endJob) {
+        this.endJob = endJob;
+    }
+    
+    
 
     public List<VoShowAreaPekerjaan> getAreaPekerjaan() {
         return areaPekerjaan;
