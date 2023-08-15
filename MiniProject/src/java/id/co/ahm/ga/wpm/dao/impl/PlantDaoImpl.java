@@ -4,14 +4,12 @@
  */
 package id.co.ahm.ga.wpm.dao.impl;
 
-import id.co.ahm.ga.wpm.constant.HeaderIkpConstant;
-import id.co.ahm.ga.wpm.constant.PicConstant;
-import id.co.ahm.ga.wpm.dao.PicDao;
-import id.co.ahm.ga.wpm.model.Pic;
+import id.co.ahm.ga.wpm.constant.PlantConstant;
+import id.co.ahm.ga.wpm.dao.PlantDao;
+import id.co.ahm.ga.wpm.model.Plant;
 import id.co.ahm.ga.wpm.util.DtoParamPaging;
 import id.co.ahm.ga.wpm.util.dao.DefaultHibernateDao;
-import id.co.ahm.ga.wpm.vo.VoLovPic;
-import id.co.ahm.ga.wpm.vo.VoLovSupplier;
+import id.co.ahm.ga.wpm.vo.VoLovPlant;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,16 +22,16 @@ import org.springframework.stereotype.Repository;
  *
  * @author USER
  */
-@Repository("picDao")
-public class PicDaoImpl extends DefaultHibernateDao<Pic, String> implements PicDao {
+@Repository("plantDao")
+public class PlantDaoImpl extends DefaultHibernateDao<Plant, String> implements PlantDao {
 
     @Override
-    public List<VoLovPic> getLovPic(DtoParamPaging input) {
-        String sql = PicConstant.LOV_PIC_QUERY;
-        sql = PicConstant.ORDER_LOV_PIC(sql, input);
+    public List<VoLovPlant> getLovPlant(DtoParamPaging input) {
+        String sql = PlantConstant.LOV_PLANT_QUERY;
+        sql = PlantConstant.ORDER_LOV_PLANT(sql, input);
         Query q = getCurrentSession().createSQLQuery(sql);
-        q = PicConstant.FILTER_LOV_PIC(q, input);
-        q = PicConstant.SET_OFFSET(q, input);
+        q = PlantConstant.FILTER_LOV_PLANT(q, input);
+        q = PlantConstant.SET_OFFSET(q, input);
 
         List<Object[]> results = q.list();
         List<Map<String, Object>> list = new ArrayList<>();
@@ -41,19 +39,19 @@ public class PicDaoImpl extends DefaultHibernateDao<Pic, String> implements PicD
         for (Object[] row : results) {
             Map<String, Object> map = new HashMap<>();
             for (int i = 0; i < row.length; i++) {
-                map.put(PicConstant.PIC_COLUMN_NAME[i], row[i]);
+                map.put(PlantConstant.PLANT_COLUMN_NAME[i], row[i]);
             }
             list.add(map);
         }
-        List<VoLovPic> voList = PicConstant.SET_VO_LOV_PIC(list);
+        List<VoLovPlant> voList = PlantConstant.SET_VO_LOV_PLANT(list);
         return voList;
     }
 
     @Override
-    public int getCountLovPic(DtoParamPaging input) {
-        String count = PicConstant.SELECT_COUNT(PicConstant.LOV_PIC_QUERY);
+    public int getCountLovPlant(DtoParamPaging input) {
+        String count = PlantConstant.SELECT_COUNT(PlantConstant.LOV_PLANT_QUERY);
         Query q = getCurrentSession().createSQLQuery(count);
-        q = HeaderIkpConstant.FILTER_LOV_SUPPLIER_MAINTENANCE(q, input);
+        q = PlantConstant.FILTER_LOV_PLANT(q, input);
         BigDecimal resultCount = (BigDecimal) q.uniqueResult();
         Integer total = resultCount.intValue();
         return total;

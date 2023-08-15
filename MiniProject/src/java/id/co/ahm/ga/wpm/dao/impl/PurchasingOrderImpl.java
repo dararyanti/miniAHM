@@ -4,14 +4,12 @@
  */
 package id.co.ahm.ga.wpm.dao.impl;
 
-import id.co.ahm.ga.wpm.constant.HeaderIkpConstant;
-import id.co.ahm.ga.wpm.constant.PicConstant;
-import id.co.ahm.ga.wpm.dao.PicDao;
-import id.co.ahm.ga.wpm.model.Pic;
+import id.co.ahm.ga.wpm.constant.PurchasingOrderConstant;
+import id.co.ahm.ga.wpm.dao.PurchasingOrderDao;
+import id.co.ahm.ga.wpm.model.PurchasingOrder;
 import id.co.ahm.ga.wpm.util.DtoParamPaging;
 import id.co.ahm.ga.wpm.util.dao.DefaultHibernateDao;
-import id.co.ahm.ga.wpm.vo.VoLovPic;
-import id.co.ahm.ga.wpm.vo.VoLovSupplier;
+import id.co.ahm.ga.wpm.vo.VoLovPo;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,16 +22,16 @@ import org.springframework.stereotype.Repository;
  *
  * @author USER
  */
-@Repository("picDao")
-public class PicDaoImpl extends DefaultHibernateDao<Pic, String> implements PicDao {
+@Repository("purchasingOrderDao")
+public class PurchasingOrderImpl extends DefaultHibernateDao<PurchasingOrder, String> implements PurchasingOrderDao {
 
     @Override
-    public List<VoLovPic> getLovPic(DtoParamPaging input) {
-        String sql = PicConstant.LOV_PIC_QUERY;
-        sql = PicConstant.ORDER_LOV_PIC(sql, input);
+    public List<VoLovPo> getLovPo(DtoParamPaging input) {
+        String sql = PurchasingOrderConstant.LOV_PO_QUERY;
+        sql = PurchasingOrderConstant.ORDER_LOV_PO(sql, input);
         Query q = getCurrentSession().createSQLQuery(sql);
-        q = PicConstant.FILTER_LOV_PIC(q, input);
-        q = PicConstant.SET_OFFSET(q, input);
+        q = PurchasingOrderConstant.FILTER_LOV_PO(q, input);
+        q = PurchasingOrderConstant.SET_OFFSET(q, input);
 
         List<Object[]> results = q.list();
         List<Map<String, Object>> list = new ArrayList<>();
@@ -41,19 +39,19 @@ public class PicDaoImpl extends DefaultHibernateDao<Pic, String> implements PicD
         for (Object[] row : results) {
             Map<String, Object> map = new HashMap<>();
             for (int i = 0; i < row.length; i++) {
-                map.put(PicConstant.PIC_COLUMN_NAME[i], row[i]);
+                map.put(PurchasingOrderConstant.PO_COLUMN_NAME[i], row[i]);
             }
             list.add(map);
         }
-        List<VoLovPic> voList = PicConstant.SET_VO_LOV_PIC(list);
+        List<VoLovPo> voList = PurchasingOrderConstant.SET_VO_LOV_PO(list);
         return voList;
     }
 
     @Override
-    public int getCountLovPic(DtoParamPaging input) {
-        String count = PicConstant.SELECT_COUNT(PicConstant.LOV_PIC_QUERY);
+    public int getCountLovPo(DtoParamPaging input) {
+        String count = PurchasingOrderConstant.SELECT_COUNT(PurchasingOrderConstant.LOV_PO_QUERY);
         Query q = getCurrentSession().createSQLQuery(count);
-        q = HeaderIkpConstant.FILTER_LOV_SUPPLIER_MAINTENANCE(q, input);
+        q = PurchasingOrderConstant.FILTER_LOV_PO(q, input);
         BigDecimal resultCount = (BigDecimal) q.uniqueResult();
         Integer total = resultCount.intValue();
         return total;

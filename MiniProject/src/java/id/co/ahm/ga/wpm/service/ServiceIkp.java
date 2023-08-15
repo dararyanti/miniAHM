@@ -22,5 +22,13 @@ public interface ServiceIkp {
     List<VoShowTableIkp> exportToExcelIkp(Map<String, Object> params, VoPstUserCred voPstUserCred);
 
     VoShowTableIkp downloadIkp(Map<String, Object> params, VoPstUserCred voPstUserCred) throws Exception;
+    
+    DtoResponse getLovSupplier(DtoParamPaging input);
+    
+    DtoResponse getLovPic(DtoParamPaging input);
+    
+    DtoResponse getLovPlant(DtoParamPaging input);
+    
+    DtoResponse getLovPo(DtoParamPaging input);
 
 }

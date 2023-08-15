@@ -5,8 +5,8 @@
 package id.co.ahm.ga.wpm.constant;
 
 import id.co.ahm.ga.wpm.util.DtoParamPaging;
-import id.co.ahm.ga.wpm.vo.VoLovPic;
-import id.co.ahm.ga.wpm.vo.VoLovSupplier;
+import id.co.ahm.ga.wpm.vo.VoLovPlant;
+import id.co.ahm.ga.wpm.vo.VoLovPo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,41 +16,39 @@ import org.hibernate.query.Query;
  *
  * @author USER
  */
-public class PicConstant {
-    
-    public static final String[] PIC_COLUMN_NAME = {
-        "NRP_ID",
-        "NAMA",
-        "DEPARTEMEN",
-        "SEKSI",
-        "DIVISI"
+public class PurchasingOrderConstant {
+
+    public static final String[] PO_COLUMN_NAME = {
+        "NO_PO",
+        "PO_DESC",
+        "SUPPLY_ID"
     };
+
+    public static final String LOV_PO_QUERY
+            = " SELECT NO_PO, PO_DESC FROM PURCHASING_ORDER "
+            + " WHERE (:noPo IS NULL OR "
+            + " NO_PO LIKE (CONCAT(CONCAT('%',:noPo),'%'))) "
+            + " AND (:poDesc IS NULL OR "
+            + " PO_DESC LIKE (CONCAT(CONCAT('%',:poDesc),'%'))) ";
     
-    public static final String LOV_PIC_QUERY =
-            " SELECT NRP_ID, NAMA FROM PIC "
-            + " WHERE (:nrpId IS NULL OR "
-            + " NRP_ID LIKE (CONCAT(CONCAT('%',:nrpId),'%'))) "
-            + " AND (:nama IS NULL "
-            + " OR NAMA LIKE (CONCAT(CONCAT('%',:nama),'%'))) ";
-    
-    public final static Query FILTER_LOV_PIC(Query q, DtoParamPaging input) {
-        q.setParameter("nrpId", input.getSearch().get("nrpId"));
-        q.setParameter("nama", input.getSearch().get("nama"));
+    public final static Query FILTER_LOV_PO(Query q, DtoParamPaging input) {
+        q.setParameter("noPo", input.getSearch().get("noPo"));
+        q.setParameter("poDesc", input.getSearch().get("poDesc"));
         return q;
     }
     
-    public final static String ORDER_LOV_PIC(String sql, DtoParamPaging input) {
+    public final static String ORDER_LOV_PO(String sql, DtoParamPaging input) {
         StringBuilder order = new StringBuilder();
         StringBuilder sqlString = new StringBuilder();
         sqlString.append(sql);
         if (input.getSort() != null) {
             order.append(" ORDER BY ");
             switch (input.getSort().toString().toLowerCase()) {
-                case "nrpId":
-                    order.append(" NRP_ID ");
+                case "noPo":
+                    order.append(" NO_PO ");
                     break;
-                case "nama":
-                    order.append(" NAMA ");
+                case "poDesc":
+                    order.append(" PO_DESC ");
                     break;
                 default:
                     return sqlString.toString();
@@ -65,12 +63,12 @@ public class PicConstant {
         return sqlString.toString();
     }
     
-    public final static List<VoLovPic> SET_VO_LOV_PIC(List<Map<String, Object>> list) {
-       List<VoLovPic> voList = new ArrayList<>();
+    public final static List<VoLovPo> SET_VO_LOV_PO(List<Map<String, Object>> list) {
+       List<VoLovPo> voList = new ArrayList<>();
        for (Map<String, Object> map : list) {
-           VoLovPic vo = new VoLovPic();
-           vo.setNrpId((String) map.get("NRP_ID"));
-           vo.setNama((String) map.get("NAMA"));
+           VoLovPo vo = new VoLovPo();
+           vo.setNoPo((String) map.get("NO_PO"));
+           vo.setPoDesc((String) map.get("PO_DESC"));
            voList.add(vo);
        }
        

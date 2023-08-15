@@ -23,7 +23,7 @@ import org.springframework.stereotype.Repository;
  * @author USER
  */
 
-@Repository("supplier")
+@Repository("supplierDao")
 public class SupplierDaoImpl extends DefaultHibernateDao<Supplier, String> implements SupplierDao {
 
     @Override

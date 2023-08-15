@@ -103,4 +103,44 @@ public class RestIkp {
         return model;
     }
     
+    @RequestMapping(value = "get-lov-supplier", method = RequestMethod.POST,
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    DtoResponse getLovSupplier(@RequestHeader(value = CommonConstant.JXID, defaultValue = "") String token,
+            @RequestBody DtoParamPaging dtoParamPaging) {
+        VoPstUserCred voPstUserCred = tokenPstUtil.getUserCred(token);
+        return this.serviceIkp.getLovSupplier(dtoParamPaging);
+    }
+    
+    @RequestMapping(value = "get-lov-pic", method = RequestMethod.POST,
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    DtoResponse getLovPic(@RequestHeader(value = CommonConstant.JXID, defaultValue = "") String token,
+            @RequestBody DtoParamPaging dtoParamPaging) {
+        VoPstUserCred voPstUserCred = tokenPstUtil.getUserCred(token);
+        return this.serviceIkp.getLovPic(dtoParamPaging);
+    }
+    
+    @RequestMapping(value = "get-lov-plant", method = RequestMethod.POST,
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    DtoResponse getLovPlant(@RequestHeader(value = CommonConstant.JXID, defaultValue = "") String token,
+            @RequestBody DtoParamPaging dtoParamPaging) {
+        VoPstUserCred voPstUserCred = tokenPstUtil.getUserCred(token);
+        return this.serviceIkp.getLovPlant(dtoParamPaging);
+    }
+    
+    @RequestMapping(value = "get-lov-po", method = RequestMethod.POST,
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    DtoResponse getLovPo(@RequestHeader(value = CommonConstant.JXID, defaultValue = "") String token,
+            @RequestBody DtoParamPaging dtoParamPaging) {
+        VoPstUserCred voPstUserCred = tokenPstUtil.getUserCred(token);
+        return this.serviceIkp.getLovPo(dtoParamPaging);
+    }
+    
 }
