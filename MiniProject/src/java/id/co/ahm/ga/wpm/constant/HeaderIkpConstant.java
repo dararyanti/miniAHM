@@ -1,6 +1,7 @@
 package id.co.ahm.ga.wpm.constant;
 
 import id.co.ahm.ga.wpm.util.DtoParamPaging;
+import id.co.ahm.ga.wpm.vo.VoLovSupplier;
 import id.co.ahm.ga.wpm.vo.VoShowTableIkp;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -238,6 +239,62 @@ public class HeaderIkpConstant {
         }
         return voList;
     }
+    
+    public static final String[] SUPPLIER_COLUMN_NAME = {
+        "SUPPLY_ID",
+        "SUPPLY_DESC"
+    };
+    
+    public static final String LOV_SUPPLIER_MAINTENANCE_QUERY = 
+            "SELECT SUPPLY_ID, SUPPLY_DESC FROM HEADER_IKP "
+            + "WHERE (:supplyId IS NULL OR "
+            + "SUPPLY_ID LIKE (CONCAT(CONCAT('%',:supplyId),'%'))) " 
+            + "AND (:supplyDesc IS NULL OR "
+            + "SUPPLY_DESC LIKE (CONCAT(CONCAT('%', :supplyDesc), '%'))) ";
+    
+    public final static Query FILTER_LOV_SUPPLIER_MAINTENANCE(Query q, DtoParamPaging input) {
+        q.setParameter("supplyId", input.getSearch().get("supplyId"));
+        q.setParameter("supplyDesc", input.getSearch().get("supplyDesc"));
+        return q;
+    }
+    
+    public final static String ORDER_LOV_SUPPLIER_MAINTENANCE(String sql, DtoParamPaging input) {
+        StringBuilder order = new StringBuilder();
+        StringBuilder sqlString = new StringBuilder();
+        sqlString.append(sql);
+        if (input.getSort() != null) {
+            order.append(" ORDER BY ");
+            switch (input.getSort().toString().toLowerCase()) {
+                case "idsupplier":
+                    order.append(" SUPPLY_ID ");
+                    break;
+                case "namasupplier":
+                    order.append(" SUPPLY_DESC ");
+                    break;
+                default:
+                    return sqlString.toString();
+            }
+            if (input.getOrder().toString().equals("asc")) {
+                order.append(" ASC ");
+            } else {
+                order.append(" DESC ");
+            }
+            sqlString.append(order);
+        }
+        return sqlString.toString();
+    }
+   
+   public final static List<VoLovSupplier> SET_VO_LOV_SUPPLIER_MAINTENANCE(List<Map<String, Object>> list) {
+       List<VoLovSupplier> voList = new ArrayList<>();
+       for (Map<String, Object> map : list) {
+           VoLovSupplier vo = new VoLovSupplier();
+           vo.setSupplyId((String) map.get("SUPPLY_ID"));
+           vo.setSupplyDesc((String) map.get("SUPPLY_DESC"));
+           voList.add(vo);
+       }
+       
+       return voList;
+   }
    
    public final static Query SET_OFFSET(Query q, DtoParamPaging input) {
         if (input != null && input.getLimit() >= 0 && input.getOffset() >= 0) {

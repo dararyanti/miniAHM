@@ -1,6 +1,7 @@
 package id.co.ahm.ga.wpm.dao.impl;
 
 import id.co.ahm.ga.wpm.constant.HeaderIkpConstant;
+import id.co.ahm.ga.wpm.constant.SupplierConstant;
 import id.co.ahm.ga.wpm.model.HeaderIkp;
 import id.co.ahm.ga.wpm.util.dao.DefaultHibernateDao;
 import id.co.ahm.ga.wpm.util.DtoParamPaging;
@@ -15,6 +16,7 @@ import java.util.Map;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import id.co.ahm.ga.wpm.dao.HeaderIkpDao;
+import id.co.ahm.ga.wpm.vo.VoLovSupplier;
 
 /**
  *
@@ -50,7 +52,39 @@ public class HeaderIkpDaoImpl extends DefaultHibernateDao<HeaderIkp, String> imp
             }
             list.add(map);
         }
-        List<VoShowTableIkp> voList =  HeaderIkpConstant.SET_VO_SHOW_TABLE_IKP(list);
+        List<VoShowTableIkp> voList = HeaderIkpConstant.SET_VO_SHOW_TABLE_IKP(list);
         return voList;
+    }
+
+    @Override
+    public List<VoLovSupplier> getLovSupplierMaintenance(DtoParamPaging input) {
+        String sql = HeaderIkpConstant.LOV_SUPPLIER_MAINTENANCE_QUERY;
+        sql = HeaderIkpConstant.ORDER_LOV_SUPPLIER_MAINTENANCE(sql, input);
+        Query q = getCurrentSession().createSQLQuery(sql);
+        q = HeaderIkpConstant.FILTER_LOV_SUPPLIER_MAINTENANCE(q, input);
+        q = HeaderIkpConstant.SET_OFFSET(q, input);
+
+        List<Object[]> results = q.list();
+        List<Map<String, Object>> list = new ArrayList<>();
+
+        for (Object[] row : results) {
+            Map<String, Object> map = new HashMap<>();
+            for (int i = 0; i < row.length; i++) {
+                map.put(HeaderIkpConstant.SUPPLIER_COLUMN_NAME[i], row[i]);
+            }
+            list.add(map);
+        }
+        List<VoLovSupplier> voList = HeaderIkpConstant.SET_VO_LOV_SUPPLIER_MAINTENANCE(list);
+        return voList;
+    }
+
+    @Override
+    public int getCountLovSupplierMaintenance(DtoParamPaging input) {
+        String countSupplier = HeaderIkpConstant.SELECT_COUNT(HeaderIkpConstant.LOV_SUPPLIER_MAINTENANCE_QUERY);
+        Query q = getCurrentSession().createSQLQuery(countSupplier);
+        q = HeaderIkpConstant.FILTER_LOV_SUPPLIER_MAINTENANCE(q, input);
+        BigDecimal resultCount = (BigDecimal) q.uniqueResult();
+        Integer total = resultCount.intValue();
+        return total;
     }
 }
