@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package id.co.ahm.ga.wpm.model;
 
 import java.io.Serializable;
@@ -12,10 +8,10 @@ import javax.persistence.Embeddable;
  *
  * @author USER
  */
-
 @Embeddable
 public class AreaPekerjaanPk implements Serializable {
-     @Column(name = "ASSET_NO")
+
+    @Column(name = "ASSET_NO")
     private String assetNo;
 
     @Column(name = "IKP_ID")
@@ -36,7 +32,5 @@ public class AreaPekerjaanPk implements Serializable {
     public void setIkpId(String ikpId) {
         this.ikpId = ikpId;
     }
-    
-    
 
 }

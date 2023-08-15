@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import id.co.ahm.ga.wpm.service.ServiceIkp;
 import id.co.ahm.ga.wpm.vo.VoCreateUpdateIkp;
+import id.co.ahm.ga.wpm.vo.VoSaveIkp;
 import java.util.Map;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -179,7 +180,7 @@ public class RestIkp {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     DtoResponse saveIkp(@RequestHeader(value = CommonConstant.JXID, defaultValue = "") String token,
-            @RequestBody VoCreateUpdateIkp vo) throws Exception {
+            @RequestBody VoSaveIkp vo) throws Exception {
         VoPstUserCred voPstUserCred = tokenPstUtil.getUserCred(token);
         return this.serviceIkp.saveIkp(vo);
     }

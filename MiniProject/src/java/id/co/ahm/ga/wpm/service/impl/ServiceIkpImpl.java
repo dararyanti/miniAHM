@@ -25,12 +25,14 @@ import org.springframework.stereotype.Service;
 import id.co.ahm.ga.wpm.service.ServiceIkp;
 import id.co.ahm.ga.wpm.vo.VoCreateUpdateIkp;
 import id.co.ahm.ga.wpm.util.vo.VoLovIkpId;
+import id.co.ahm.ga.wpm.vo.VoCreateUpdateAreaPekerjaan;
 import id.co.ahm.ga.wpm.vo.VoLovAsset;
 import id.co.ahm.ga.wpm.vo.VoLovPic;
 import id.co.ahm.ga.wpm.vo.VoLovPlant;
 import id.co.ahm.ga.wpm.vo.VoLovPo;
 import id.co.ahm.ga.wpm.vo.VoLovSupplier;
 import id.co.ahm.ga.wpm.vo.VoLovTaskList;
+import id.co.ahm.ga.wpm.vo.VoSaveIkp;
 import id.co.ahm.ga.wpm.vo.VoShowAreaPekerjaan;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -224,26 +226,54 @@ public class ServiceIkpImpl implements ServiceIkp {
     }
 
     @Override
-    public DtoResponse saveIkp(VoCreateUpdateIkp vo) throws Exception {
-        HeaderIkp entity = Optional.ofNullable(headerIkpDao.findOne(vo.getIkpId()))
+    public DtoResponse saveIkp(VoSaveIkp vo) throws Exception {
+        VoCreateUpdateIkp voIkp = vo.getIkp();
+        List<VoCreateUpdateAreaPekerjaan> listArea = vo.getListArea();
+        
+        HeaderIkp entityIkp = Optional.ofNullable(headerIkpDao.findOne(voIkp.getIkpId()))
                 .orElse(new HeaderIkp());
 
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
 
-        BeanUtils.copyProperties(vo, entity);
-        entity.setStartJob(format.parse(vo.getStartJob()));
-        entity.setEndJob(format.parse(vo.getEndJob()));
+        BeanUtils.copyProperties(voIkp, entityIkp);
+        entityIkp.setStartJob(format.parse(voIkp.getStartJob()));
+        entityIkp.setEndJob(format.parse(voIkp.getEndJob()));
 
-        if (vo.getIkpId().isEmpty()) {
-            entity.setIkpId(ikpId(entity.getPlantId()));
+        if (voIkp.getIkpId().isEmpty()) {
+            entityIkp.setIkpId(ikpId(entityIkp.getPlantId()));
         } else {
-            entity.setIkpId(vo.getIkpId());
-            entity.setStatus(vo.getStatus());
+            entityIkp.setIkpId(voIkp.getIkpId());
+            entityIkp.setStatus(voIkp.getStatus());
         }
 
-        headerIkpDao.save(entity);
+        headerIkpDao.save(entityIkp);
+        headerIkpDao.flush();
+        
+        for (int i = 0; i < listArea.size(); i++) {
+//            VoCreateUpdateAreaPekerjaan voArea = new VoCreateUpdateAreaPekerjaan();
+            
+            AreaPekerjaanPk pk = new AreaPekerjaanPk();
+            if (listArea.get(i).getIkpId().isEmpty()) {
+                pk.setIkpId(entityIkp.getIkpId());
+            } else {
+                pk.setIkpId(listArea.get(i).getIkpId());
+            }    
+            pk.setAssetNo(listArea.get(i).getAssetNo());
+            
+            AreaPekerjaan entityArea = Optional.ofNullable(areaPekerjaanDao.findOne(pk))
+                    .orElse(new AreaPekerjaan());
+            
+            entityArea.setAhmgawpmDtlikpareasPk(pk);
+            entityArea.setAreaDetail(listArea.get(i).getAreaDetail());
+            entityArea.setCriticality(listArea.get(i).getCriticality());
+            entityArea.setInOut(listArea.get(i).getInOut());
+            entityArea.setLoginPatrol(listArea.get(i).getLoginPatrol());
+            entityArea.setTaskList(listArea.get(i).getTaskList());
+            areaPekerjaanDao.save(entityArea);
+            areaPekerjaanDao.flush();
+        }
 
-        return DtoHelper.constructResponse(StatusMsgEnum.SUKSES, null, Arrays.asList(entity));
+        return DtoHelper.constructResponse(StatusMsgEnum.SUKSES, null, Arrays.asList(entityIkp));
     }
 
     private String ikpId(String plantId) {

@@ -3,6 +3,7 @@ package id.co.ahm.ga.wpm.service;
 import id.co.ahm.ga.wpm.util.DtoParamPaging;
 import id.co.ahm.ga.wpm.util.DtoResponse;
 import id.co.ahm.ga.wpm.vo.VoCreateUpdateIkp;
+import id.co.ahm.ga.wpm.vo.VoSaveIkp;
 import id.co.ahm.ga.wpm.vo.VoShowTableIkp;
 import id.co.jxf.security.vo.VoPstUserCred;
 import java.util.List;
@@ -38,6 +39,6 @@ public interface ServiceIkp {
     
     DtoResponse getLovIkpId(DtoParamPaging input);
     
-    DtoResponse saveIkp(VoCreateUpdateIkp vo) throws Exception;
+    DtoResponse saveIkp(VoSaveIkp vo) throws Exception;
 
 }
