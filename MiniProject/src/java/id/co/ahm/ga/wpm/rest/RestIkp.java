@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import id.co.ahm.ga.wpm.service.ServiceIkp;
+import id.co.ahm.ga.wpm.vo.VoCreateUpdateIkp;
 import java.util.Map;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -171,5 +172,15 @@ public class RestIkp {
             @RequestBody DtoParamPaging dtoParamPaging) {
         VoPstUserCred voPstUserCred = tokenPstUtil.getUserCred(token);
         return this.serviceIkp.getLovIkpId(dtoParamPaging);
+    }
+    
+    @RequestMapping(value = "save-ikp", method = RequestMethod.POST,
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    DtoResponse saveIkp(@RequestHeader(value = CommonConstant.JXID, defaultValue = "") String token,
+            @RequestBody VoCreateUpdateIkp vo) throws Exception {
+        VoPstUserCred voPstUserCred = tokenPstUtil.getUserCred(token);
+        return this.serviceIkp.saveIkp(vo);
     }
 }

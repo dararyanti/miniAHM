@@ -23,7 +23,7 @@ import id.co.ahm.ga.wpm.model.AreaPekerjaanPk;
 import id.co.ahm.ga.wpm.model.HeaderIkp;
 import org.springframework.stereotype.Service;
 import id.co.ahm.ga.wpm.service.ServiceIkp;
-import id.co.ahm.ga.wpm.util.vo.VoCreateUpdateIkp;
+import id.co.ahm.ga.wpm.vo.VoCreateUpdateIkp;
 import id.co.ahm.ga.wpm.util.vo.VoLovIkpId;
 import id.co.ahm.ga.wpm.vo.VoLovAsset;
 import id.co.ahm.ga.wpm.vo.VoLovPic;
@@ -215,7 +215,7 @@ public class ServiceIkpImpl implements ServiceIkp {
         List<VoLovTaskList> result = taskListDao.getLovTaskList(input);
         return DtoHelper.constructResponsePaging(StatusMsgEnum.SUKSES, null, result, total);
     }
-    
+
     @Override
     public DtoResponse getLovIkpId(DtoParamPaging input) {
         int total = headerIkpDao.getCountLovIkpId(input);
@@ -224,35 +224,37 @@ public class ServiceIkpImpl implements ServiceIkp {
     }
 
     @Override
-    public DtoResponse createUpdateIkp(VoCreateUpdateIkp vo) throws Exception {
+    public DtoResponse saveIkp(VoCreateUpdateIkp vo) throws Exception {
         HeaderIkp entity = Optional.ofNullable(headerIkpDao.findOne(vo.getIkpId()))
                 .orElse(new HeaderIkp());
-        
+
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-        
+
         BeanUtils.copyProperties(vo, entity);
         entity.setStartJob(format.parse(vo.getStartJob()));
         entity.setEndJob(format.parse(vo.getEndJob()));
-        
-        if(vo.getIkpId().isEmpty()) {
+
+        if (vo.getIkpId().isEmpty()) {
             entity.setIkpId(ikpId(entity.getPlantId()));
         } else {
             entity.setIkpId(vo.getIkpId());
             entity.setStatus(vo.getStatus());
-       }
-        
+        }
+
+        headerIkpDao.save(entity);
+
         return DtoHelper.constructResponse(StatusMsgEnum.SUKSES, null, Arrays.asList(entity));
     }
-    
+
     private String ikpId(String plantId) {
-        
+
         SimpleDateFormat bulan = new SimpleDateFormat("MM");
-	SimpleDateFormat tahun = new SimpleDateFormat("yyyy");
-        
+        SimpleDateFormat tahun = new SimpleDateFormat("yyyy");
+
         Date newDate = new Date();
-	String month = bulan.format(newDate);
-	String year = tahun.format(newDate);
-        
+        String month = bulan.format(newDate);
+        String year = tahun.format(newDate);
+
         List<String> sequence = headerIkpDao.findSequence(plantId, monthToRomawi(month), year);
         String splitSequence = "0000";
         int splitSequenceValue = 0;
@@ -267,39 +269,37 @@ public class ServiceIkpImpl implements ServiceIkp {
             int length = String.valueOf(splitSequenceValue).length();
             splitSequence = generateSequence(length, splitSequenceValue);
         }
-        
+
         String ikpId = "IKP/" + plantId + "/"
                 + monthToRomawi(month) + "/" + year + "/" + splitSequence;
-        
+
         return ikpId;
     }
-    
+
     private String monthToRomawi(String date) {
-	date = date.replace("01", "I");
-	date = date.replace("02", "II");
-	date = date.replace("03", "III");
-	date = date.replace("04", "IV");
-	date = date.replace("05", "V");
-	date = date.replace("06", "VI");
-	date = date.replace("07", "VII");
-	date = date.replace("08", "VIII");
-	date = date.replace("09", "IX");
-	date = date.replace("10", "X");
-	date = date.replace("11", "XI");
-	date = date.replace("12", "XII");
-	return date;
+        date = date.replace("01", "I");
+        date = date.replace("02", "II");
+        date = date.replace("03", "III");
+        date = date.replace("04", "IV");
+        date = date.replace("05", "V");
+        date = date.replace("06", "VI");
+        date = date.replace("07", "VII");
+        date = date.replace("08", "VIII");
+        date = date.replace("09", "IX");
+        date = date.replace("10", "X");
+        date = date.replace("11", "XI");
+        date = date.replace("12", "XII");
+        return date;
     }
 
     private String generateSequence(int digit, int value) {
-	int maxDigit = 5;
-	StringBuilder sb = new StringBuilder();
-	for (int i = 0; i < maxDigit - digit; i++) {
-	    sb.append('0');
-	}
-	sb.append(value);
-	return sb.toString();
+        int maxDigit = 5;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < maxDigit - digit; i++) {
+            sb.append('0');
+        }
+        sb.append(value);
+        return sb.toString();
     }
-
-    
 
 }

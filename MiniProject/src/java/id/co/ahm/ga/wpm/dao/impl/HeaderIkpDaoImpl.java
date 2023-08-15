@@ -161,7 +161,7 @@ public class HeaderIkpDaoImpl extends DefaultHibernateDao<HeaderIkp, String> imp
         sb.append(month);
         sb.append('/');
         sb.append(year);
-        String sql = " SELECT IKP_ID FROM HEADER_IKP WHERE VNOIKP LIKE CONCAT(CONCAT('%',:param),'%') ";
+        String sql = " SELECT IKP_ID FROM HEADER_IKP WHERE IKP_ID LIKE CONCAT(CONCAT('%',:param),'%') ";
         Query q = getCurrentSession().createSQLQuery(sql);
         q.setParameter("param", sb.toString());
         List resultList = q.list();
