@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import static java.util.Collections.list;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.hibernate.query.Query;
@@ -236,6 +237,8 @@ public class HeaderIkpConstant {
                     vo.setStatus("IKP Rejected");
                     break;
             }
+            vo.setStartJob((Date) map.get("START_JOB"));
+            vo.setEndJob((Date) map.get("END_JOB"));
             voList.add(vo);
         }
         return voList;

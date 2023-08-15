@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package id.co.ahm.ga.wpm.dao.impl;
 
 import id.co.ahm.ga.wpm.constant.HeaderIkpConstant;
@@ -11,7 +7,6 @@ import id.co.ahm.ga.wpm.model.Pic;
 import id.co.ahm.ga.wpm.util.DtoParamPaging;
 import id.co.ahm.ga.wpm.util.dao.DefaultHibernateDao;
 import id.co.ahm.ga.wpm.vo.VoLovPic;
-import id.co.ahm.ga.wpm.vo.VoLovSupplier;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;

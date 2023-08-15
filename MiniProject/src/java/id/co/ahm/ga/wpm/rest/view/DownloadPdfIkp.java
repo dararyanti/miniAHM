@@ -110,10 +110,18 @@ public class DownloadPdfIkp extends AbstractPdfView {
             table.addCell(setNonBorderLabel("Detail Proyek"));
             table.addCell(setBorderLabel(Optional.ofNullable(data.getProjectDetail()).orElse("-")));
             table.addCell(setNonBorderLabel(""));
+            table.addCell(setNonBorderLabel("Tanggal Pekerjaan (Start-End)"));
+            if (data.getStartJob() != null) {
+                table.addCell(setBorderLabel(data.getStartJob().toString()));
+            } else {
+                table.addCell(setBorderLabel(""));
+            }
             table.addCell(setNonBorderLabel(""));
-            table.addCell(setNonBorderLabel(""));
-            table.addCell(setNonBorderLabel(""));
-            table.addCell(setNonBorderLabel(""));
+            if (data.getEndJob() != null) {
+                table.addCell(setBorderLabel(data.getEndJob().toString()));
+            } else {
+                table.addCell(setBorderLabel(""));
+            }
             table.addCell(setNonBorderLabel(""));
             table.addCell(setNonBorderLabel(""));
 
