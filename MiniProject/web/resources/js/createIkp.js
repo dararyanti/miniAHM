@@ -89,8 +89,8 @@ function lov_supplier_create_ikp(params){
 function lov_supplier_create_ikp_change(){
     if ($('#id_supplier_create_ikp',createIkp).val()!=null &&
         $('#id_supplier_create_ikp',createIkp).val()!=""){
-            $('#ordering_type_create_ikp',createIkp).val("PO");
-        check_po($('#ordering_type_create_ikp',createIkp).val());
+            $('#tipe_order_create_ikp',createIkp).val("PO");
+        check_po($('#tipe_order_create_ikp',createIkp).val());
     }
 
 }
@@ -150,7 +150,7 @@ function lov_pic_create_ikp(params){
 
 // LOV PO
 function check_po(selectObject) {
-    var value = $('#ordering_type_create_ikp',createIkp).val();
+    var value = $('#tipe_order_create_ikp',createIkp).val();
     if (value == "PO") {
         if ($('#id_supplier_create_ikp',createIkp).val()!=null &&
         $('#id_supplier_create_ikp',createIkp).val()!=""){
@@ -518,3 +518,101 @@ function edit_area_modal() {
             }
         });
     };
+
+// SUBMIT FUNCTION ADD EHS
+function submit_create_ikp(obj) {
+    var tableAreaProject = $('#area_create_ikp_table', createIkp).bootstrapTable('getData');
+    _fw_validation_clear(createIkp);
+    var thisContent = $(obj);
+    thisContent.html('<i class="fa fa-spin fa-spinner mr-10"></i> Submitting...').prop("disabled", true);
+    $('#cancel_create_ikp', createIkp).prop("disabled", true);
+    $(".has-error", createIkp).removeClass("has-error").removeClass("has-feedback");
+    _fw_validation_add(createIkp, 'login_patrol_create_ikp', 'required');
+    _fw_validation_add(createIkp, 'id_supplier_create_ikp', 'required');
+    _fw_validation_add(createIkp, 'nomor_pengajuan_proyek_create_ikp', 'required');
+    _fw_validation_add(createIkp, 'tipe_order_create_ikp', 'required');
+    if ($("#tipe_order_create_ikp", createIkp).val() == "PO") {
+        _fw_validation_add(createIkp, 'no_po_create_ikp', 'required');
+    } else {
+        _fw_validation_add(createIkp, 'no_spk_create_ikp', 'required');
+    }
+    _fw_validation_add(createIkp, 'id_pic_create_ikp', 'required');
+    _fw_validation_add(createIkp, 'id_plant_create_ikp', 'required');
+    var index = $("#area_create_ikp_table", createIkp).bootstrapTable('getData').length;
+    $("#kategori_izin_kerja_create_ikp", createIkp).val("Izin Kerja Proyek");
+    setTimeout(function () {
+        if (_fw_validation_validate(createIkp)) {
+            if (index < 1) {
+                alert("Data Area tidak boleh kosong!");
+            } else {
+                let data = new Object();
+
+                let areaProject = new Object();
+
+                data.ikp = {
+                    ikpId: "",
+                    katPekerjaan: $( "#kategori_izin_kerja_create_ikp",createIkp).val(),
+                    nomorIkp: $("#nomor_ikp_create_ikp", createIkp).val(),
+                    noPengajuanProyek: $("#nomor_pengajuan_lk3_create_ikp", createIkp).val(),
+                    kategoriPekerjaan: $("#kategori_pekerjaan_create_ikp",createIkp).val(),
+                    tipeOrder: $("#tipe_order_create_ikp", createIkp).val(),
+                    purchasingOrg: $("#purchasing_organization_create_ikp",createIkp).val(),
+                    noSpk: $("#no_spk_create_ikp", createIkp).val(),
+                    deskripsiItem: $("#deskripsi_item_create_ikp", createIkp).val(),
+                    plantId: $("#id_plant_create_ikp", createIkp).val(), 
+                    katIzinKerja:"Izin Kerja Proyek",  
+                    nrpId: $("#id_pic_create_ikp", createIkp).val(), 
+                    supplyId: $("#id_supplier_create_ikp", createIkp).val(), 
+                    supplyDesc: $("#nama_supplier_create_ikp", createIkp).val(),                 
+                }
+
+                data.listArea = new Array();
+                
+
+                for (let i = 0; i < tableAreaProject.length; i++) {
+                    areaProject = {
+                        ikpId: "",
+                        inOut: tableAreaProject[i].indoorOutdoor,
+                        areaDetail: tableAreaProject[i].areaDetail,
+                        criticality: tableAreaProject[i].criticality,
+                        taskList: tableAreaProject[i].taskListTitle,
+                        assetNo: tableAreaProject[i].nomorAsset,
+                        loginPatrol: $("#login_patrol_create_ikp", createIkp).val(),
+                    }
+                    data.listArea.push(areaProject);
+                }
+
+
+                let stringData = JSON.stringify(data);
+                let jsonSendString = JSON.parse(stringData);
+                let validateResult = true;
+                _fw_post(
+                    "/MiniProject/rest/ga/wpm001/save-ikp",
+                    jsonSendString,
+                    function (ret) {
+                        if (ret.status == "1") {
+                            alert("IKP has been successfully submitted");
+                        }
+
+                        if (ret.status == "0") {
+                            validateResult = false;
+                        }
+                    }
+                );
+                if (validateResult) {
+                    $('#cancel_create_ikp', createIkp).prop("disabled", false);
+                    $("#area_create_ikp_table", createIkp).bootstrapTable('removeAll');
+                    cancel_create_ikp();
+                }
+            }
+        } else {
+            alert("Harap mengisi data Mandatory*");
+        }
+        thisContent.html('<i class="glyphicon glyphicon-file fg-white"> </i> Submit').prop("disabled", false);
+        $('#cancel_create_ikp', createIkp).prop("disabled", false);
+    }, 1000);
+
+
+
+
+};

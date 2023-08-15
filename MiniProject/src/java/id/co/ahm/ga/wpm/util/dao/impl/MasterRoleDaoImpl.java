@@ -5,9 +5,9 @@ import id.co.ahm.ga.wpm.util.model.MasterRole;
 import id.co.ahm.ga.wpm.util.vo.VoRole;
 import java.util.ArrayList;
 import java.util.List;
-import org.hibernate.SQLQuery;
 import org.springframework.stereotype.Repository;
 import id.co.ahm.ga.wpm.util.dao.MasterRoleDao;
+import org.hibernate.query.Query;
 
 /**
  *
@@ -49,9 +49,9 @@ public class MasterRoleDaoImpl extends DefaultHibernateDao<MasterRole, Long>
 //                + "AND mn.vdeviceflag = 'J' "
 //                + "AND mn.vmenucode = :BINDMENUCODE )";
 
-        SQLQuery sqlQuery = getCurrentSession().createSQLQuery(sql);
-        sqlQuery.setString("BINDUSERNAME", username);
-        sqlQuery.setString("BINDMENUCODE", menuCode);
+        Query sqlQuery = getCurrentSession().createSQLQuery(sql);
+//        sqlQuery.setString("BINDUSERNAME", username);
+//        sqlQuery.setString("BINDMENUCODE", menuCode);
 
         List<String> tempList = sqlQuery.list();
         if (tempList != null) {
@@ -83,9 +83,9 @@ public class MasterRoleDaoImpl extends DefaultHibernateDao<MasterRole, Long>
                 + "FROM AHMIPUAM_MSTUSERRLS "
                 + "WHERE VUSERNAME = :BINDUSERNAME) ";
 
-        SQLQuery sqlQuery = getCurrentSession().createSQLQuery(sql);
-        sqlQuery.setString("BINDMENUCODE", menuCode);
-        sqlQuery.setString("BINDUSERNAME", username);
+        Query sqlQuery = getCurrentSession().createSQLQuery(sql);
+//        sqlQuery.setString("BINDMENUCODE", menuCode);
+//        sqlQuery.setString("BINDUSERNAME", username);
 
         List<Object[]> tempList = sqlQuery.list();
         if (tempList != null) {
@@ -118,9 +118,9 @@ public class MasterRoleDaoImpl extends DefaultHibernateDao<MasterRole, Long>
                 + "FROM AHMIPUAM_MSTUSERRLS "
                 + "WHERE VUSERNAME = :BINDUSERNAME) ";
 
-        SQLQuery sqlQuery = getCurrentSession().createSQLQuery(sql);
-        sqlQuery.setString("BINDURL", url);
-        sqlQuery.setString("BINDUSERNAME", username);
+        Query sqlQuery = getCurrentSession().createSQLQuery(sql);
+//        sqlQuery.setString("BINDURL", url);
+//        sqlQuery.setString("BINDUSERNAME", username);
 
         List<Object[]> tempList = sqlQuery.list();
         if (tempList != null) {

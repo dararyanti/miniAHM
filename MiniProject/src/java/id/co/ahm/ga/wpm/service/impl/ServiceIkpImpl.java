@@ -229,18 +229,19 @@ public class ServiceIkpImpl implements ServiceIkp {
     public DtoResponse saveIkp(VoSaveIkp vo) throws Exception {
         VoCreateUpdateIkp voIkp = vo.getIkp();
         List<VoCreateUpdateAreaPekerjaan> listArea = vo.getListArea();
-        
+
         HeaderIkp entityIkp = Optional.ofNullable(headerIkpDao.findOne(voIkp.getIkpId()))
                 .orElse(new HeaderIkp());
 
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
 
         BeanUtils.copyProperties(voIkp, entityIkp);
-        entityIkp.setStartJob(format.parse(voIkp.getStartJob()));
-        entityIkp.setEndJob(format.parse(voIkp.getEndJob()));
+//        entityIkp.setStartJob(format.parse(voIkp.getStartJob()));
+//        entityIkp.setEndJob(format.parse(voIkp.getEndJob()));
 
         if (voIkp.getIkpId().isEmpty()) {
             entityIkp.setIkpId(ikpId(entityIkp.getPlantId()));
+            entityIkp.setStatus(voIkp.getStatus());
         } else {
             entityIkp.setIkpId(voIkp.getIkpId());
             entityIkp.setStatus(voIkp.getStatus());
@@ -248,21 +249,21 @@ public class ServiceIkpImpl implements ServiceIkp {
 
         headerIkpDao.save(entityIkp);
         headerIkpDao.flush();
-        
+
         for (int i = 0; i < listArea.size(); i++) {
 //            VoCreateUpdateAreaPekerjaan voArea = new VoCreateUpdateAreaPekerjaan();
-            
+
             AreaPekerjaanPk pk = new AreaPekerjaanPk();
             if (listArea.get(i).getIkpId().isEmpty()) {
                 pk.setIkpId(entityIkp.getIkpId());
             } else {
                 pk.setIkpId(listArea.get(i).getIkpId());
-            }    
+            }
             pk.setAssetNo(listArea.get(i).getAssetNo());
-            
+
             AreaPekerjaan entityArea = Optional.ofNullable(areaPekerjaanDao.findOne(pk))
                     .orElse(new AreaPekerjaan());
-            
+
             entityArea.setAhmgawpmDtlikpareasPk(pk);
             entityArea.setAreaDetail(listArea.get(i).getAreaDetail());
             entityArea.setCriticality(listArea.get(i).getCriticality());
