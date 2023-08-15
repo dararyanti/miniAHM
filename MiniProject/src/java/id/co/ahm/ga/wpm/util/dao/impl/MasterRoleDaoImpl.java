@@ -13,7 +13,7 @@ import id.co.ahm.ga.wpm.util.dao.MasterRoleDao;
  *
  * @author Irzan Maulana
  */
-@Repository("ahmipuamMstroleaasDao")
+@Repository("masterRoleDao")
 public class MasterRoleDaoImpl extends DefaultHibernateDao<MasterRole, Long>
         implements MasterRoleDao {
 

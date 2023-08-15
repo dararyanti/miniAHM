@@ -12,7 +12,7 @@ import id.co.ahm.ga.wpm.util.dao.MasterKaryawanDao;
  *
  * @author Irzan Maulana
  */
-@Repository("ahmmoerpMstkaryawansDao")
+@Repository("masterKaryawanDao")
 public class MasterKaryawanDaoImpl extends DefaultHibernateDao<MasterKaryawan, Integer>
         implements MasterKaryawanDao{
     

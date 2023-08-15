@@ -7,6 +7,9 @@ $(document).ready(() => {
   
 });
 
+// $('.lookup-wrapper').lovtable({
+// });
+
 function load_data(resps) {
     if (resps.status !== '0') {
         return {
@@ -23,19 +26,16 @@ function load_data(resps) {
 
 // MAINTAIN IKP FILTER
 function maintain_ikp_filter(params) {
-    vstatus = ['00-IKP', '01-IKP', '02-IKP', '03-IKP', '04-IKP', '05-IKP', '06-IKP', '07-IKP'];
-    vsupplyid = $("#id_supplier_filter", maintainIkp).val();
-
     params.search = {
         ikpId: $("#nomor_ikp_filter", maintainIkp).val(),
-        supplierId : vsupplyid,
+        supplierId : $("#id_supplier_filter", maintainIkp).val(),
         namaSupplier: $("#nama_supplier_filter", maintainIkp).val(),
         nrpId: $("#id_pic_filter", maintainIkp).val(),
         nomorPoSpk: $("#nomor_po_filter", maintainIkp).val(),
         orderingType: $("#ordering_type_filter", maintainIkp).val(),
         startPeriode: $("#start_periode_filter", maintainIkp).val(),
         endPeriode: $("#end_periode_filter", maintainIkp).val(),
-        status: vstatus,
+        status: ['00-IKP', '01-IKP', '02-IKP', '03-IKP', '04-IKP', '05-IKP', '06-IKP', '07-IKP'],
         plantId: "",
     };
 
@@ -107,16 +107,16 @@ $("#export_maintain_ikp_button", maintainIkp).click(
                 $("#ordering_type_filter", maintainIkp).val("");
             }
                 // params.JXID = encodeURIComponent(getJxid());
-                params.idSupplier = $("#id_supplier_filter", maintainIkp).val();
+                params.supplierId = $("#id_supplier_filter", maintainIkp).val();
                 params.namaSupplier = $("#nama_supplier_filter", maintainIkp).val();
                 params.nrpId = $("#id_pic_filter", maintainIkp).val();
                 params.nomorPoSpk = $("#nomor_po_filter", maintainIkp).val();
                 params.tipeOrder = $("#ordering_type_filter", maintainIkp).val();
                 params.startPeriode = $("#start_periode_filter", maintainIkp).val();
                 params.endPeriode = $("#end_periode_filter", maintainIkp).val();
-                params.nomorIkp = $("#nomor_ikp_filter", maintainIkp).val();
+                params.ikpId = $("#nomor_ikp_filter", maintainIkp).val();
                 params.status = ["00-IKP", "01-IKP", "02-IKP", "03-IKP", "04-IKP", "05-IKP", "06-IKP", "07-IKP"];
-                params.sort = "idSupplier";
+                params.sort = "supplierId";
                 params.order = "asc";
             var exportUrl = "/MiniProject/rest/ga/wpm001/export-to-excel-ikp?";
             $.each(params, function (keypar, param) {
@@ -304,6 +304,8 @@ function download_ikp(index) {
         }, 3000);
     }, 3000)
 }
+
+
 // LOV SUPPLIER
 function id_supplier_display_lookup(){
     var $lookupWrapper = $('#id_supplier_lookup_wrapper');
@@ -317,7 +319,7 @@ function id_supplier_display_lookup(){
             $('#id_supplier_lookup_wrapper',maintainIkp).lovtable({
                 delay: 500,
                 width: null,
-                isBindFunc: true,
+                isBindFunc: false,
                 url: url,
                 queryParams: lookupPreFunc,
                 changeFunction: null,
@@ -330,7 +332,7 @@ function id_supplier_display_lookup(){
                 multiple: false,
                 multipleValue: null,
                 multipleText: null,
-                loadFirstTime: false,
+                loadFirstTime: true,
                 otherValue: false
             });
         },500);
@@ -341,8 +343,8 @@ function id_supplier_display_lookup(){
 }
 function lov_supplier_filter(params){
     params.search = {
-        idSupplier: $("#id_supplier_filter", maintainIkp).val(),
-        namaSupplier: $("#id_supplier_filter", maintainIkp).val(),
+        supplyId: $("#id_supplier_filter", maintainIkp).val(),
+        supplyDesc: $("#id_supplier_filter", maintainIkp).val(),
     };
     if (params.sort === undefined) {
         return {
@@ -394,18 +396,73 @@ function id_pic_display_lookup(){
 }
 function lov_pic_filter(params){
     params.search = {
-        nrpId: $("id_pic_filter", maintainIkp).val(),
-        namaPic: $("#id_pic_filter", maintainIkp).val(),
+        nrpId: $("#id_pic_filter", maintainIkp).val(),
+        nama: $("#id_pic_filter", maintainIkp).val(),
     };
     if (params.sort === undefined) {
         return {
             limit: params.limit,
             offset: params.offset,
             search: params.search,
-            sort: "idSupplier",
+            sort: "nrpId",
             order: "asc",
         };
     }
     return params;
 }
+
+// LOV PO
+function id_po_display_lookup(){
+    var $lookupWrapper = $('#id_po_lookup_wrapper');
+    var url = $lookupWrapper.data('url');
+    var lookupPreFunc = $lookupWrapper.data('lookup-pre-func');
+    var columns = $lookupWrapper.data('columns');
+    var callback = $lookupWrapper.data('callback');
+    if (openLookup == false){
+        $('.lookup-wrapper .lookup-form').remove();
+        setTimeout(function(){
+            $('#id_po_lookup_wrapper',maintainIkp).lovtable({
+                delay: 500,
+                width: null,
+                isBindFunc: false,
+                url: url,
+                queryParams: lookupPreFunc,
+                changeFunction: null,
+                bindFunction: null,
+                nextFocus: null,
+                nextFunction: null,
+                tableId: generateUUID(),
+                columns: columns,
+                callbacks: callback,
+                multiple: false,
+                multipleValue: null,
+                multipleText: null,
+                loadFirstTime: openLookup,
+                otherValue: false
+            });
+        },500);
+        openLookup = true;
+    } else {
+        openLookup = false;
+    }
+    
+}
+function lov_po_filter(params){
+    params.search = {
+        noPo: $("#nomor_po_filter", maintainIkp).val(),
+        poDesc: $("#nomor_po_filter", maintainIkp).val(),
+    };
+    if (params.sort === undefined) {
+        return {
+            limit: params.limit,
+            offset: params.offset,
+            search: params.search,
+            sort: "noPo",
+            order: "asc",
+        };
+    }
+    return params;
+}
+
+
 

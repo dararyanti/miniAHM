@@ -26,9 +26,9 @@
                                             <div class="input-group lookup" id="id_supplier_lookup_wrapper"
                                                  data-url="/MiniProject/rest/ga/wpm001/get-lov-supplier"
                                                  data-query-params-type="limit" data-lookup-pre-func="lov_supplier_filter"
-                                                 data-columns='[{"id":"idSupplier","name":"ID Supplier","visible":"true","sortable":"true"},
-                                                 {"id":"namaSupplier","name":"Deskripsi Supplier","visible":"true","sortable":"true"}]'
-                                                 data-callback='{"id_supplier_filter":"idSupplier","nama_supplier_filter":"namaSupplier"}'>
+                                                 data-columns='[{"id":"supplyId","name":"ID Supplier","visible":"true","sortable":"true"},
+                                                 {"id":"supplyDesc","name":"Deskripsi Supplier","visible":"true","sortable":"true"}]'
+                                                 data-callback='{"id_supplier_filter":"supplyId","nama_supplier_filter":"supplyDesc"}'>
                                                 <input id="id_supplier_filter"
                                                        class="form-control input-lookup gawpm001-uppercase"
                                                        placeholder=" LoV ID Supplier" maxlength="100"/>
@@ -63,9 +63,9 @@
                                             <div class="input-group lookup" id="id_pic_lookup_wrapper"
                                                  data-url="/MiniProject/rest/ga/wpm001/get-lov-pic"
                                                  data-lookup-pre-func="lov_pic_filter" data-query-params-type="limit"
-                                                 data-columns='[{"id":"nrpPic","name":"NRP PIC","visible":"true","sortable":"true"},
-                                                 {"id":"namaPic","name":"Nama PIC","visible":"true","sortable":"true"}]'
-                                                 data-callback='{"id_pic_filter":"nrpPic","nama_pic_filter":"namaPic"}'>
+                                                 data-columns='[{"id":"nrpId","name":"NRP PIC","visible":"true","sortable":"true"},
+                                                 {"id":"nama","name":"Nama PIC","visible":"true","sortable":"true"}]'
+                                                 data-callback='{"id_pic_filter":"nrpId","nama_pic_filter":"nama"}'>
                                                 <input id="id_pic_filter"
                                                        class="form-control input-lookup gawpm001-uppercase" placeholder=" LoV NRP PIC"
                                                        maxlength="100" />
@@ -110,12 +110,12 @@
                                         <label for="nomor_po_spk" class="col-sm-12 control-label">Nomor PO/SPK/SPK
                                             Sementara</label>
                                         <div class="lookup-wrapper col-lg-12">
-                                            <div class="input-group lookup"
+                                            <div class="input-group lookup" id="id_po_lookup_wrapper"
                                                  data-url="/MiniProject/rest/ga/wpm001/get-lov-po"
-                                                 data-lookup-pre-func="lov_po" data-query-params-type="limit"
-                                                 data-columns='[{"id":"nomorPo","name":"Nomor PO / SPK / SPK Sementara","visible":"true","sortable":"true"},
-                                                 {"id":"deskripsiItem","name":"Deskripsi Item","visible":"true","sortable":"true"}]'
-                                                 data-callback='{"nomor_po_filter":"nomorPo"}'>
+                                                 data-lookup-pre-func="lov_po_filter" data-query-params-type="limit"
+                                                 data-columns='[{"id":"noPo","name":"Nomor PO / SPK / SPK Sementara","visible":"true","sortable":"true"},
+                                                 {"id":"poDesc","name":"Deskripsi Item","visible":"true","sortable":"true"}]'
+                                                 data-callback='{"nomor_po_filter":"noPo"}'>
                                                 <input id="nomor_po_filter"
                                                        class="form-control input-lookup gawpm001-uppercase"
                                                        placeholder=" LoV Nomor PO / SPK / SPK Sementara" maxlength="100" 
@@ -123,7 +123,8 @@
                                                 <span class="input-group-btn">
                                                     <button id="lookup_nomor_po_filter"
                                                             class="btn btn-default large-button btn-lookup" type="button"
-                                                            disabled="disabled">
+                                                            disabled="disabled"
+                                                            onclick="id_po_display_lookup()">
                                                         <i class="glyphicon glyphicon-search fg-white"></i>
                                                     </button>
                                                 </span>
@@ -196,10 +197,10 @@
                 </div>
                 <div class="row" style="margin-bottom: 10px">
                     <div id="button_add_submit" class="form-group-button">
-                        <button id="request_ikp_button" style="float: right; margin-right: 5px" 
+                        <!-- <button id="request_ikp_button" style="float: right; margin-right: 5px" 
                                 class="btn bg-orange large-button" onclick="requestIkp(this);"> 
                             <i class="glyphicon glyphicon-plus fg-white"></i> Request IKP 
-                        </button> 
+                        </button>  -->
 
                         <button id="create_ikp_button" style="float: right; margin-right: 5px" 
                                 class="btn bg-orange large-button" onclick="createIkp(this);"> 

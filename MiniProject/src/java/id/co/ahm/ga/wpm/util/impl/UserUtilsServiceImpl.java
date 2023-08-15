@@ -31,12 +31,12 @@ public class UserUtilsServiceImpl implements UserUtilsService {
     private TokenPstUtil tokenPstUtil;
 
     @Autowired
-    @Qualifier(value = "ahmipuamMstroleaasDao")
-    private MasterRoleDao ahmipuamMstroleaasDao;
+    @Qualifier(value = "masterRoleDao")
+    private MasterRoleDao masterRoleDao;
     
     @Autowired
-    @Qualifier(value = "ahmmoerpMstkaryawansDao")
-    private MasterKaryawanDao ahmmoerpMstkaryawansDao;
+    @Qualifier(value = "masterKaryawanDao")
+    private MasterKaryawanDao masterKaryawanDao;
 
     @Override
     public VoPstUserCred getUserCred(String token) {
@@ -74,24 +74,24 @@ public class UserUtilsServiceImpl implements UserUtilsService {
     @Override
     public List<VoRole> getCustomRolesByApplication(String menuCode, String token) {
         VoPstUserCred voPstUserCred = this.getUserCred(token);
-        return ahmipuamMstroleaasDao.getCustomRolesByApplication(menuCode, voPstUserCred.getUsername());
+        return masterRoleDao.getCustomRolesByApplication(menuCode, voPstUserCred.getUsername());
     }
 
     @Override
     public List<VoRole> getRolesByApplication(String menuCode, String token) {
         VoPstUserCred voPstUserCred = this.getUserCred(token);
-        return ahmipuamMstroleaasDao.getRolesByApplication(menuCode, voPstUserCred.getUsername());
+        return masterRoleDao.getRolesByApplication(menuCode, voPstUserCred.getUsername());
     }
 
     @Override
     public List<VoRole> getRolesByService(String url, String token) {
         VoPstUserCred voPstUserCred = this.getUserCred(token);
-        return ahmipuamMstroleaasDao.getRolesByService(url, voPstUserCred.getUsername());
+        return masterRoleDao.getRolesByService(url, voPstUserCred.getUsername());
     }
     
     @Override
     public VoOrganization getOrganization(int nrp){        
-        return ahmmoerpMstkaryawansDao.getUserOrganization(nrp);
+        return masterKaryawanDao.getUserOrganization(nrp);
     }
 
 }

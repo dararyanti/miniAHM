@@ -133,44 +133,44 @@ public class HeaderIkpConstant {
         sqlString.append(sql);
         if (input.getSort() != null) {
             order.append(" ORDER BY ");
-            switch (input.getSort().toString().toLowerCase()) {
-                case "idsupplier":
+            switch (input.getSort().toString()) {
+                case "idSupplier":
                     order.append(" A.SUPPLY_ID ");
                     break;
-                case "namasupplier":
+                case "namaSupplier":
                     order.append(" A.SUPPLY_DESC ");
                     break;
-                case "orderingtype":
+                case "tipeOrder":
                     order.append(" A.TIPE_ORDER ");
                     break;
-                case "nomorpospk":
+                case "nomorPoSpk":
                     order.append(" A.NO_PO, A.NO_SPK ");
                     break;
-                case "deskripsiitem":
+                case "deskripsiItem":
                     order.append(" A.DESKRIPSI_ITEM ");
                     break;
-                case "plantid":
+                case "plantId":
                     order.append(" A.PLANT_ID ");
                     break;
-                case "nomorpengajuanlk3":
+                case "nomorPengajuanProyek":
                     order.append(" A.NO_PENGAJUAN_PROYEK ");
                     break;
-                case "loginpatrol":
+                case "loginPatrol":
                     order.append(" B.LOGIN_PATROL ");
                     break;
                 case "status":
                     order.append(" A.STATUS ");
                     break;
-                case "nrppicid":
+                case "nrpId":
                     order.append(" A.NRP_ID ");
                     break;
-                case "namadivisi":
+                case "divisi":
                     order.append(" C.DIVISI ");
                     break;
-                case "namadepartemen":
+                case "departemen":
                     order.append(" C.DEPARTEMEN ");
                     break;
-                case "namaseksi":
+                case "seksi":
                     order.append(" C.SEKSI ");
                     break;
                 default:
