@@ -3,16 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/USER/Documents/Github/miniAHM/MiniProject/src/java/id/co/ahm/ga/wpm/dao/impl/HeaderIkpDaoImpl.java</file>
-            <file>file:/C:/Users/USER/Documents/Github/miniAHM/MiniProject/src/java/id/co/ahm/ga/wpm/service/impl/ServiceIkpImpl.java</file>
-            <file>file:/C:/Users/USER/Documents/Github/miniAHM/MiniProject/src/java/id/co/ahm/ga/wpm/dao/HeaderIkpDao.java</file>
-            <file>file:/C:/Users/USER/Documents/Github/miniAHM/MiniProject/src/java/id/co/ahm/ga/wpm/service/ServiceIkp.java</file>
-            <file>file:/C:/Users/USER/Documents/Github/miniAHM/MiniProject/src/java/id/co/ahm/ga/wpm/rest/RestIkp.java</file>
-            <file>file:/C:/Users/USER/Documents/Github/miniAHM/MiniProject/src/java/id/co/ahm/ga/wpm/util/vo/VoLovIkpId.java</file>
-            <file>file:/C:/Users/USER/Documents/Github/miniAHM/MiniProject/src/java/id/co/ahm/ga/wpm/constant/HeaderIkpConstant.java</file>
-            <file>file:/C:/Users/USER/Documents/Github/miniAHM/MiniProject/src/java/id/co/jxf/security/CryptoSecurity.java</file>
-            <file>file:/C:/Users/USER/Documents/Github/miniAHM/MiniProject/nbproject/build-impl.xml</file>
-            <file>file:/C:/Users/USER/Documents/Github/miniAHM/MiniProject/nbproject/project.properties</file>
+            <file>file:/C:/MiniAHM/miniAHM/MiniProject/web/WEB-INF/web.xml</file>
+            <file>file:/C:/MiniAHM/miniAHM/MiniProject/web/WEB-INF/dispatcher-servlet.xml</file>
         </group>
     </open-files>
 </project-private>
