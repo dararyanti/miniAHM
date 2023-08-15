@@ -38,7 +38,7 @@ public class ServiceIkpImpl implements ServiceIkp {
     private HeaderIkpDao headerIkpDao;
 
     @Autowired
-    @Qualifier(value = "AreaPekerjaanDao")
+    @Qualifier(value = "areaPekerjaanDao")
     private AreaPekerjaanDao areaPekerjaanDao;
 
     @Override

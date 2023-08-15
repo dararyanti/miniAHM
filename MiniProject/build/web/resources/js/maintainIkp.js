@@ -317,7 +317,7 @@ function id_supplier_display_lookup(){
             $('#id_supplier_lookup_wrapper',maintainIkp).lovtable({
                 delay: 500,
                 width: null,
-                isBindFunc: false,
+                isBindFunc: true,
                 url: url,
                 queryParams: lookupPreFunc,
                 changeFunction: null,
@@ -330,16 +330,13 @@ function id_supplier_display_lookup(){
                 multiple: false,
                 multipleValue: null,
                 multipleText: null,
-                loadFirstTime: openLookup,
+                loadFirstTime: false,
                 otherValue: false
             });
         },500);
         openLookup = true;
     } else {
         openLookup = false;
-            $('#id_supplier_lookup_wrapper',maintainIkp).lovtable({
-                loadFirstTime: openLookup,
-            });
     }
 }
 function lov_supplier_filter(params){

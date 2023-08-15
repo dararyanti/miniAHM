@@ -13,7 +13,7 @@ import org.hibernate.query.Query;
  *
  * @author Irzan Maulana
  */
-@Repository("AreaPekerjaanDao")
+@Repository("areaPekerjaanDao")
 public class AreaPekerjaanDaoImpl extends DefaultHibernateDao<AreaPekerjaan, AreaPekerjaanPk> implements AreaPekerjaanDao {
     
     @Override
