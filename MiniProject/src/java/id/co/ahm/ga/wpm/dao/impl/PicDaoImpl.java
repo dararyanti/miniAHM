@@ -1,6 +1,5 @@
 package id.co.ahm.ga.wpm.dao.impl;
 
-import id.co.ahm.ga.wpm.constant.HeaderIkpConstant;
 import id.co.ahm.ga.wpm.constant.PicConstant;
 import id.co.ahm.ga.wpm.dao.PicDao;
 import id.co.ahm.ga.wpm.model.Pic;
@@ -48,7 +47,7 @@ public class PicDaoImpl extends DefaultHibernateDao<Pic, String> implements PicD
     public int getCountLovPic(DtoParamPaging input) {
         String count = PicConstant.SELECT_COUNT(PicConstant.LOV_PIC_QUERY);
         Query q = getCurrentSession().createSQLQuery(count);
-        q = HeaderIkpConstant.FILTER_LOV_SUPPLIER_MAINTENANCE(q, input);
+        q = PicConstant.FILTER_LOV_PIC(q, input);
         BigDecimal resultCount = (BigDecimal) q.uniqueResult();
         Integer total = resultCount.intValue();
         return total;

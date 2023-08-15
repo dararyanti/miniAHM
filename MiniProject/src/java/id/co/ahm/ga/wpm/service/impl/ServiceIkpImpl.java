@@ -11,20 +11,24 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import id.co.ahm.ga.wpm.dao.AreaPekerjaanDao;
+import id.co.ahm.ga.wpm.dao.AssetDao;
 import id.co.ahm.ga.wpm.dao.HeaderIkpDao;
 import id.co.ahm.ga.wpm.dao.PicDao;
 import id.co.ahm.ga.wpm.dao.PlantDao;
 import id.co.ahm.ga.wpm.dao.PurchasingOrderDao;
 import id.co.ahm.ga.wpm.dao.SupplierDao;
+import id.co.ahm.ga.wpm.dao.TaskListDao;
 import id.co.ahm.ga.wpm.model.AreaPekerjaan;
 import id.co.ahm.ga.wpm.model.AreaPekerjaanPk;
 import id.co.ahm.ga.wpm.model.HeaderIkp;
 import org.springframework.stereotype.Service;
 import id.co.ahm.ga.wpm.service.ServiceIkp;
+import id.co.ahm.ga.wpm.vo.VoLovAsset;
 import id.co.ahm.ga.wpm.vo.VoLovPic;
 import id.co.ahm.ga.wpm.vo.VoLovPlant;
 import id.co.ahm.ga.wpm.vo.VoLovPo;
 import id.co.ahm.ga.wpm.vo.VoLovSupplier;
+import id.co.ahm.ga.wpm.vo.VoLovTaskList;
 import id.co.ahm.ga.wpm.vo.VoShowAreaPekerjaan;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -64,6 +68,14 @@ public class ServiceIkpImpl implements ServiceIkp {
     @Autowired
     @Qualifier(value = "purchasingOrderDao")
     private PurchasingOrderDao purchasingOrderDao;
+
+    @Autowired
+    @Qualifier(value = "assetDao")
+    private AssetDao assetDao;
+
+    @Autowired
+    @Qualifier(value = "taskListDao")
+    private TaskListDao taskListDao;
 
     @Override
     public DtoResponse getTableIkp(DtoParamPaging input, VoPstUserCred voPstUserCred) {
@@ -180,6 +192,20 @@ public class ServiceIkpImpl implements ServiceIkp {
     public DtoResponse getLovPo(DtoParamPaging input) {
         int total = purchasingOrderDao.getCountLovPo(input);
         List<VoLovPo> result = purchasingOrderDao.getLovPo(input);
+        return DtoHelper.constructResponsePaging(StatusMsgEnum.SUKSES, null, result, total);
+    }
+
+    @Override
+    public DtoResponse getLovAsset(DtoParamPaging input) {
+        int total = assetDao.getCountLovAsset(input);
+        List<VoLovAsset> result = assetDao.getLovAsset(input);
+        return DtoHelper.constructResponsePaging(StatusMsgEnum.SUKSES, null, result, total);
+    }
+
+    @Override
+    public DtoResponse getLovTaskList(DtoParamPaging input) {
+        int total = taskListDao.getCountLovTaskList(input);
+        List<VoLovTaskList> result = taskListDao.getLovTaskList(input);
         return DtoHelper.constructResponsePaging(StatusMsgEnum.SUKSES, null, result, total);
     }
 

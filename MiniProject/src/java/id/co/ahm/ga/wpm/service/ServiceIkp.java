@@ -30,5 +30,9 @@ public interface ServiceIkp {
     DtoResponse getLovPlant(DtoParamPaging input);
     
     DtoResponse getLovPo(DtoParamPaging input);
+    
+    DtoResponse getLovAsset(DtoParamPaging input);
+    
+    DtoResponse getLovTaskList(DtoParamPaging input);
 
 }

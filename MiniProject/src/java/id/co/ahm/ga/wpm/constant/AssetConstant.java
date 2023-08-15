@@ -5,9 +5,9 @@
 package id.co.ahm.ga.wpm.constant;
 
 import id.co.ahm.ga.wpm.util.DtoParamPaging;
-import id.co.ahm.ga.wpm.vo.VoLovSupplier;
+import id.co.ahm.ga.wpm.vo.VoLovAsset;
+import id.co.ahm.ga.wpm.vo.VoLovPic;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import org.hibernate.query.Query;
@@ -16,38 +16,41 @@ import org.hibernate.query.Query;
  *
  * @author USER
  */
-public class SupplierConstant {
-    
-    public static final String[] SUPPLIER_COLUMN_NAME = {
-        "SUPPLY_ID",
-        "SUPPLY_DESC"
+public class AssetConstant {
+
+    public static final String[] ASSET_COLUMN_NAME = {
+        "NO_ASSET",
+        "DESC_ASSET",
+        "PLANT_VAR"
     };
+
+    public static final String LOV_ASSET_QUERY
+            = " SELECT NO_ASSET, DESC_ASSET FROM ASSET "
+            + " WHERE (:plantVar = PLANT_VAR) "
+            + " AND (:noAsset IS NULL OR "
+            + " LOWER(NO_ASSET) LIKE LOWER(CONCAT(CONCAT('%',:noAsset),'%')))"
+            + " AND (:descAsset IS NULL OR "
+            + " LOWER(DESC_ASSET) LIKE LOWER(CONCAT(CONCAT('%',:descAsset),'%'))) ";
     
-    public static final String LOV_SUPPLIER_QUERY = 
-            "SELECT SUPPLY_ID, SUPPLY_DESC FROM SUPPLIER "
-            + "WHERE (:supplyId IS NULL OR "
-            + "LOWER(SUPPLY_ID) LIKE LOWER(CONCAT(CONCAT('%',:supplyId),'%'))) " 
-            + "AND (:supplyDesc IS NULL OR "
-            + "LOWER(SUPPLY_DESC) LIKE LOWER(CONCAT(CONCAT('%', :supplyDesc), '%'))) ";
-    
-    public final static Query FILTER_LOV_SUPPLIER(Query q, DtoParamPaging input) {
-        q.setParameter("supplyId", input.getSearch().get("supplyId"));
-        q.setParameter("supplyDesc", input.getSearch().get("supplyDesc"));
+    public final static Query FILTER_LOV_ASSET(Query q, DtoParamPaging input) {
+        q.setParameter("plantVar", input.getSearch().get("plantVar"));
+        q.setParameter("noAsset", input.getSearch().get("noAsset"));
+        q.setParameter("descAsset", input.getSearch().get("descAsset"));
         return q;
     }
     
-    public final static String ORDER_LOV_SUPPLIER(String sql, DtoParamPaging input) {
+    public final static String ORDER_LOV_ASSET(String sql, DtoParamPaging input) {
         StringBuilder order = new StringBuilder();
         StringBuilder sqlString = new StringBuilder();
         sqlString.append(sql);
         if (input.getSort() != null) {
             order.append(" ORDER BY ");
             switch (input.getSort().toString()) {
-                case "idsupplier":
-                    order.append(" SUPPLY_ID ");
+                case "noAsset":
+                    order.append(" NO_ASSET ");
                     break;
-                case "namasupplier":
-                    order.append(" SUPPLY_DESC ");
+                case "descAsset":
+                    order.append(" DESC_ASSET ");
                     break;
                 default:
                     return sqlString.toString();
@@ -61,6 +64,18 @@ public class SupplierConstant {
         }
         return sqlString.toString();
     }
+    
+    public final static List<VoLovAsset> SET_VO_LOV_ASSET(List<Map<String, Object>> list) {
+       List<VoLovAsset> voList = new ArrayList<>();
+       for (Map<String, Object> map : list) {
+           VoLovAsset vo = new VoLovAsset();
+           vo.setNoAsset((String) map.get("NO_ASSET"));
+           vo.setDescAsset((String) map.get("DESC_ASSET"));
+           voList.add(vo);
+       }
+       
+       return voList;
+   }
     
     public final static Query SET_OFFSET(Query q, DtoParamPaging input) {
         if (input != null && input.getLimit() >= 0 && input.getOffset() >= 0) {
@@ -78,16 +93,4 @@ public class SupplierConstant {
         String selectCount = sb.toString();
         return selectCount;
     }
-   
-   public final static List<VoLovSupplier> SET_VO_LOV_SUPPLIER(List<Map<String, Object>> list) {
-       List<VoLovSupplier> voList = new ArrayList<>();
-       for (Map<String, Object> map : list) {
-           VoLovSupplier vo = new VoLovSupplier();
-           vo.setSupplyId((String) map.get("SUPPLY_ID"));
-           vo.setSupplyDesc((String) map.get("SUPPLY_DESC"));
-           voList.add(vo);
-       }
-       
-       return voList;
-   }
 }

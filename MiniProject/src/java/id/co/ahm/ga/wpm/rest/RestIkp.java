@@ -143,4 +143,23 @@ public class RestIkp {
         return this.serviceIkp.getLovPo(dtoParamPaging);
     }
     
+    @RequestMapping(value = "get-lov-asset", method = RequestMethod.POST,
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    DtoResponse getLovAsset(@RequestHeader(value = CommonConstant.JXID, defaultValue = "") String token,
+            @RequestBody DtoParamPaging dtoParamPaging) {
+        VoPstUserCred voPstUserCred = tokenPstUtil.getUserCred(token);
+        return this.serviceIkp.getLovAsset(dtoParamPaging);
+    }
+    
+    @RequestMapping(value = "get-lov-task-list", method = RequestMethod.POST,
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    DtoResponse getLovTaskList(@RequestHeader(value = CommonConstant.JXID, defaultValue = "") String token,
+            @RequestBody DtoParamPaging dtoParamPaging) {
+        VoPstUserCred voPstUserCred = tokenPstUtil.getUserCred(token);
+        return this.serviceIkp.getLovTaskList(dtoParamPaging);
+    }
 }

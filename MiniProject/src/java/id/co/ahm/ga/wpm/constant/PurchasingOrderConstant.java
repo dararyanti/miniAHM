@@ -27,9 +27,9 @@ public class PurchasingOrderConstant {
     public static final String LOV_PO_QUERY
             = " SELECT NO_PO, PO_DESC FROM PURCHASING_ORDER "
             + " WHERE (:noPo IS NULL OR "
-            + " NO_PO LIKE (CONCAT(CONCAT('%',:noPo),'%'))) "
+            + " LOWER(NO_PO) LIKE LOWER(CONCAT(CONCAT('%',:noPo),'%'))) "
             + " AND (:poDesc IS NULL OR "
-            + " PO_DESC LIKE (CONCAT(CONCAT('%',:poDesc),'%'))) ";
+            + " LOWER(PO_DESC0 LIKE LOWER(CONCAT(CONCAT('%',:poDesc),'%'))) ";
     
     public final static Query FILTER_LOV_PO(Query q, DtoParamPaging input) {
         q.setParameter("noPo", input.getSearch().get("noPo"));
@@ -43,7 +43,7 @@ public class PurchasingOrderConstant {
         sqlString.append(sql);
         if (input.getSort() != null) {
             order.append(" ORDER BY ");
-            switch (input.getSort().toString().toLowerCase()) {
+            switch (input.getSort().toString()) {
                 case "noPo":
                     order.append(" NO_PO ");
                     break;

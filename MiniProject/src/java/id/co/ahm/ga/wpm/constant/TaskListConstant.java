@@ -6,7 +6,7 @@ package id.co.ahm.ga.wpm.constant;
 
 import id.co.ahm.ga.wpm.util.DtoParamPaging;
 import id.co.ahm.ga.wpm.vo.VoLovPic;
-import id.co.ahm.ga.wpm.vo.VoLovPlant;
+import id.co.ahm.ga.wpm.vo.VoLovTaskList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,38 +16,41 @@ import org.hibernate.query.Query;
  *
  * @author USER
  */
-public class PlantConstant {
+public class TaskListConstant {
 
-    public static final String[] PLANT_COLUMN_NAME = {
-        "PLANT_VAR",
-        "PLANT_DESC"
+    public static final String[] TASK_LIST_COLUMN_NAME = {
+        "KODE_TASK_LIST",
+        "TITLE_TASK_LIST",
+        "NO_ASSET"
     };
 
-    public static final String LOV_PLANT_QUERY
-            = " SELECT PLANT_VAR, PLANT_DESC FROM PLANT "
-            + " WHERE (:plantVar IS NULL OR "
-            + " LOWER(PLANT_VAR) LIKE LOWER(CONCAT(CONCAT('%',:plantVar),'%'))) "
-            + " AND (:plantDesc IS NULL OR "
-            + " LOWER(PLANT_DESC) LIKE LOWER(CONCAT(CONCAT('%',:plantDesc),'%'))) ";
+    public static final String LOV_TASK_LIST_QUERY
+            = " SELECT KODE_TASK_LIST, TITLE_TASK_LIST FROM TASK_LIST "
+            + " WHERE (NO_ASSET = :noAsset) "
+            + " AND (:kode IS NULL OR "
+            + " LOWER(KODE_TASK_LIST) LIKE LOWER(CONCAT(CONCAT('%',:kode),'%'))) "
+            + " AND (:title IS NULL OR "
+            + " LOWER(TITLE_TASK_LIST) LIKE LOWER(CONCAT(CONCAT('%',:title),'%'))) ";
     
-    public final static Query FILTER_LOV_PLANT(Query q, DtoParamPaging input) {
-        q.setParameter("plantVar", input.getSearch().get("plantVar"));
-        q.setParameter("plantDesc", input.getSearch().get("plantDesc"));
+    public final static Query FILTER_LOV_TASK_LIST(Query q, DtoParamPaging input) {
+        q.setParameter("noAsset", input.getSearch().get("noAsset"));
+        q.setParameter("kode", input.getSearch().get("kode"));
+        q.setParameter("title", input.getSearch().get("title"));
         return q;
     }
     
-    public final static String ORDER_LOV_PLANT(String sql, DtoParamPaging input) {
+    public final static String ORDER_LOV_TASK_LIST(String sql, DtoParamPaging input) {
         StringBuilder order = new StringBuilder();
         StringBuilder sqlString = new StringBuilder();
         sqlString.append(sql);
         if (input.getSort() != null) {
             order.append(" ORDER BY ");
-            switch (input.getSort().toString()) {
-                case "plantVar":
-                    order.append(" PLANT_VAR ");
+            switch (input.getSort().toString().toLowerCase()) {
+                case "kode":
+                    order.append(" KODE_TASK_LIST ");
                     break;
-                case "plantDesc":
-                    order.append(" PLANT_DESC ");
+                case "title":
+                    order.append(" TITLE_TASK_LIST ");
                     break;
                 default:
                     return sqlString.toString();
@@ -62,12 +65,12 @@ public class PlantConstant {
         return sqlString.toString();
     }
     
-    public final static List<VoLovPlant> SET_VO_LOV_PLANT(List<Map<String, Object>> list) {
-       List<VoLovPlant> voList = new ArrayList<>();
+    public final static List<VoLovTaskList> SET_VO_LOV_TASK_LIST(List<Map<String, Object>> list) {
+       List<VoLovTaskList> voList = new ArrayList<>();
        for (Map<String, Object> map : list) {
-           VoLovPlant vo = new VoLovPlant();
-           vo.setPlantVar((String) map.get("PLANT_VAR"));
-           vo.setPlantDesc((String) map.get("PLANT_DESC"));
+           VoLovTaskList vo = new VoLovTaskList();
+           vo.setKodeTaskList((String) map.get("KODE_TASK_LIST"));
+           vo.setTitleTaskList((String) map.get("TITLE_TASK_LIST"));
            voList.add(vo);
        }
        
@@ -90,5 +93,5 @@ public class PlantConstant {
         String selectCount = sb.toString();
         return selectCount;
     }
-
+    
 }
