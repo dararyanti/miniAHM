@@ -26,10 +26,10 @@ public class TaskListConstant {
     public static final String LOV_TASK_LIST_QUERY
             = " SELECT KODE_TASK_LIST, TITLE_TASK_LIST FROM TASK_LIST "
             + " WHERE (NO_ASSET = :noAsset) "
-            + " AND (:kode IS NULL OR "
+            + " AND ((:kode IS NULL OR "
             + " LOWER(KODE_TASK_LIST) LIKE LOWER(CONCAT(CONCAT('%',:kode),'%'))) "
             + " OR (:title IS NULL OR "
-            + " LOWER(TITLE_TASK_LIST) LIKE LOWER(CONCAT(CONCAT('%',:title),'%'))) ";
+            + " LOWER(TITLE_TASK_LIST) LIKE LOWER(CONCAT(CONCAT('%',:title),'%')))) ";
     
     public final static Query FILTER_LOV_TASK_LIST(Query q, DtoParamPaging input) {
         q.setParameter("noAsset", input.getSearch().get("noAsset"));

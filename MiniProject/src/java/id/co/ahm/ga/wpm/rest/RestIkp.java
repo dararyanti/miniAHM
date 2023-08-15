@@ -154,7 +154,7 @@ public class RestIkp {
         return this.serviceIkp.getLovAsset(dtoParamPaging);
     }
     
-    @RequestMapping(value = "get-lov-task-list", method = RequestMethod.POST,
+    @RequestMapping(value = "get-lov-tasklist", method = RequestMethod.POST,
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
