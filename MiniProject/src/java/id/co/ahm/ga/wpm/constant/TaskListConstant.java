@@ -20,8 +20,7 @@ public class TaskListConstant {
 
     public static final String[] TASK_LIST_COLUMN_NAME = {
         "KODE_TASK_LIST",
-        "TITLE_TASK_LIST",
-        "NO_ASSET"
+        "TITLE_TASK_LIST"
     };
 
     public static final String LOV_TASK_LIST_QUERY

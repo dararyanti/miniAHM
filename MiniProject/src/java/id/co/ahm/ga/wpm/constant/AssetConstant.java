@@ -20,8 +20,7 @@ public class AssetConstant {
 
     public static final String[] ASSET_COLUMN_NAME = {
         "NO_ASSET",
-        "DESC_ASSET",
-        "PLANT_VAR"
+        "DESC_ASSET"
     };
 
     public static final String LOV_ASSET_QUERY

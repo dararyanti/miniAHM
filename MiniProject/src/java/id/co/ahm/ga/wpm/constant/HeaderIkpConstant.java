@@ -303,10 +303,7 @@ public class HeaderIkpConstant {
 
     public static final String[] PIC_COLUMN_NAME = {
         "NRP_ID",
-        "NAMA",
-        "DEPARTEMEN",
-        "SEKSI",
-        "DIVISI"
+        "NAMA"
     };
 
     public static final String LOV_PIC_MAINTENANCE_QUERY
@@ -364,8 +361,7 @@ public class HeaderIkpConstant {
 
     public static final String[] PO_COLUMN_NAME = {
         "NO_PO",
-        "PO_DESC",
-        "SUPPLY_ID"
+        "PO_DESC"
     };
 
     public static final String LOV_PO_MAINTENANCE_QUERY

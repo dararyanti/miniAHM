@@ -38,7 +38,7 @@ public class PurchasingOrderImpl extends DefaultHibernateDao<PurchasingOrder, St
 
         for (Object[] row : results) {
             Map<String, Object> map = new HashMap<>();
-            for (int i = 0; i < row.length; i++) {
+            for (int i = 0; i < PurchasingOrderConstant.PO_COLUMN_NAME.length; i++) {
                 map.put(PurchasingOrderConstant.PO_COLUMN_NAME[i], row[i]);
             }
             list.add(map);

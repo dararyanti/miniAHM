@@ -47,7 +47,7 @@ public class HeaderIkpDaoImpl extends DefaultHibernateDao<HeaderIkp, String> imp
 
         for (Object[] row : results) {
             Map<String, Object> map = new HashMap<>();
-            for (int i = 0; i < row.length; i++) {
+            for (int i = 0; i < HeaderIkpConstant.IKP_TABLE_COLUMN_NAME.length; i++) {
                 map.put(HeaderIkpConstant.IKP_TABLE_COLUMN_NAME[i], row[i]);
             }
             list.add(map);
@@ -69,7 +69,7 @@ public class HeaderIkpDaoImpl extends DefaultHibernateDao<HeaderIkp, String> imp
 
         for (Object[] row : results) {
             Map<String, Object> map = new HashMap<>();
-            for (int i = 0; i < row.length; i++) {
+            for (int i = 0; i < HeaderIkpConstant.SUPPLIER_COLUMN_NAME.length; i++) {
                 map.put(HeaderIkpConstant.SUPPLIER_COLUMN_NAME[i], row[i]);
             }
             list.add(map);
@@ -101,7 +101,7 @@ public class HeaderIkpDaoImpl extends DefaultHibernateDao<HeaderIkp, String> imp
 
         for (Object[] row : results) {
             Map<String, Object> map = new HashMap<>();
-            for (int i = 0; i < row.length; i++) {
+            for (int i = 0; i < HeaderIkpConstant.PIC_COLUMN_NAME.length; i++) {
                 map.put(HeaderIkpConstant.PIC_COLUMN_NAME[i], row[i]);
             }
             list.add(map);
@@ -133,7 +133,7 @@ public class HeaderIkpDaoImpl extends DefaultHibernateDao<HeaderIkp, String> imp
 
         for (Object[] row : results) {
             Map<String, Object> map = new HashMap<>();
-            for (int i = 0; i < row.length; i++) {
+            for (int i = 0; i < HeaderIkpConstant.PO_COLUMN_NAME.length; i++) {
                 map.put(HeaderIkpConstant.PO_COLUMN_NAME[i], row[i]);
             }
             list.add(map);

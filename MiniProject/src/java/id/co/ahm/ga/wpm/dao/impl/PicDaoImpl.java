@@ -34,7 +34,7 @@ public class PicDaoImpl extends DefaultHibernateDao<Pic, String> implements PicD
 
         for (Object[] row : results) {
             Map<String, Object> map = new HashMap<>();
-            for (int i = 0; i < row.length; i++) {
+            for (int i = 0; i < PicConstant.PIC_COLUMN_NAME.length; i++) {
                 map.put(PicConstant.PIC_COLUMN_NAME[i], row[i]);
             }
             list.add(map);

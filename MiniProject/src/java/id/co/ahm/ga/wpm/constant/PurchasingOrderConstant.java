@@ -20,8 +20,7 @@ public class PurchasingOrderConstant {
 
     public static final String[] PO_COLUMN_NAME = {
         "NO_PO",
-        "PO_DESC",
-        "SUPPLY_ID"
+        "PO_DESC"
     };
 
     public static final String LOV_PO_QUERY

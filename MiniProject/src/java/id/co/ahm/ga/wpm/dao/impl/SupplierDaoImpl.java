@@ -22,7 +22,6 @@ import org.springframework.stereotype.Repository;
  *
  * @author USER
  */
-
 @Repository("supplierDao")
 public class SupplierDaoImpl extends DefaultHibernateDao<Supplier, String> implements SupplierDao {
 
@@ -33,18 +32,18 @@ public class SupplierDaoImpl extends DefaultHibernateDao<Supplier, String> imple
         Query q = getCurrentSession().createSQLQuery(sql);
         q = SupplierConstant.FILTER_LOV_SUPPLIER(q, input);
         q = SupplierConstant.SET_OFFSET(q, input);
-        
+
         List<Object[]> results = q.list();
         List<Map<String, Object>> list = new ArrayList<>();
 
         for (Object[] row : results) {
             Map<String, Object> map = new HashMap<>();
-            for (int i = 0; i < row.length; i++) {
+            for (int i = 0; i < SupplierConstant.SUPPLIER_COLUMN_NAME.length; i++) {
                 map.put(SupplierConstant.SUPPLIER_COLUMN_NAME[i], row[i]);
             }
             list.add(map);
         }
-        List<VoLovSupplier> voList =  SupplierConstant.SET_VO_LOV_SUPPLIER(list);
+        List<VoLovSupplier> voList = SupplierConstant.SET_VO_LOV_SUPPLIER(list);
         return voList;
     }
 
@@ -57,5 +56,5 @@ public class SupplierDaoImpl extends DefaultHibernateDao<Supplier, String> imple
         Integer total = resultCount.intValue();
         return total;
     }
-    
+
 }
