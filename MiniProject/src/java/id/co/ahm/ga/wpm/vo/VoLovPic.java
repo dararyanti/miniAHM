@@ -12,6 +12,9 @@ public class VoLovPic {
     
     private String nrpId;
     private String nama;
+    private String departemen;
+    private String seksi;
+    private String divisi;
 
     public String getNrpId() {
         return nrpId;
@@ -27,6 +30,30 @@ public class VoLovPic {
 
     public void setNama(String nama) {
         this.nama = nama;
+    }
+
+    public String getDepartemen() {
+        return departemen;
+    }
+
+    public void setDepartemen(String departemen) {
+        this.departemen = departemen;
+    }
+
+    public String getSeksi() {
+        return seksi;
+    }
+
+    public void setSeksi(String seksi) {
+        this.seksi = seksi;
+    }
+
+    public String getDivisi() {
+        return divisi;
+    }
+
+    public void setDivisi(String divisi) {
+        this.divisi = divisi;
     }
     
     

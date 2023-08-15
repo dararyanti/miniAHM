@@ -27,7 +27,7 @@ public class PicConstant {
     };
     
     public static final String LOV_PIC_QUERY =
-            " SELECT NRP_ID, NAMA FROM PIC "
+            " SELECT NRP_ID, NAMA, DEPARTEMEN, SEKSI, DIVISI FROM PIC "
             + " WHERE (:nrpId IS NULL OR "
             + " NRP_ID LIKE (CONCAT(CONCAT('%',:nrpId),'%'))) "
             + " AND (:nama IS NULL "
@@ -71,6 +71,9 @@ public class PicConstant {
            VoLovPic vo = new VoLovPic();
            vo.setNrpId((String) map.get("NRP_ID"));
            vo.setNama((String) map.get("NAMA"));
+           vo.setDepartemen((String) map.get("DEPARTEMEN"));
+           vo.setSeksi((String) map.get("SEKSI"));
+           vo.setDivisi((String) map.get("DIVISI"));
            voList.add(vo);
        }
        
