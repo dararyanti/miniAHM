@@ -2,6 +2,7 @@ package id.co.ahm.ga.wpm.service;
 
 import id.co.ahm.ga.wpm.util.DtoParamPaging;
 import id.co.ahm.ga.wpm.util.DtoResponse;
+import id.co.ahm.ga.wpm.util.vo.VoCreateUpdateIkp;
 import id.co.ahm.ga.wpm.vo.VoShowTableIkp;
 import id.co.jxf.security.vo.VoPstUserCred;
 import java.util.List;
@@ -34,5 +35,9 @@ public interface ServiceIkp {
     DtoResponse getLovAsset(DtoParamPaging input);
     
     DtoResponse getLovTaskList(DtoParamPaging input);
+    
+    DtoResponse getLovIkpId(DtoParamPaging input);
+    
+    DtoResponse createUpdateIkp(VoCreateUpdateIkp vo) throws Exception;
 
 }

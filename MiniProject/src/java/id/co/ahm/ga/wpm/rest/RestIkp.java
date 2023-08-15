@@ -162,4 +162,14 @@ public class RestIkp {
         VoPstUserCred voPstUserCred = tokenPstUtil.getUserCred(token);
         return this.serviceIkp.getLovTaskList(dtoParamPaging);
     }
+    
+    @RequestMapping(value = "get-lov-ikp-id", method = RequestMethod.POST,
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    DtoResponse getLovIkpId(@RequestHeader(value = CommonConstant.JXID, defaultValue = "") String token,
+            @RequestBody DtoParamPaging dtoParamPaging) {
+        VoPstUserCred voPstUserCred = tokenPstUtil.getUserCred(token);
+        return this.serviceIkp.getLovIkpId(dtoParamPaging);
+    }
 }

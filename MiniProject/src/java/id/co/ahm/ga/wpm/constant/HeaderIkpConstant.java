@@ -1,6 +1,7 @@
 package id.co.ahm.ga.wpm.constant;
 
 import id.co.ahm.ga.wpm.util.DtoParamPaging;
+import id.co.ahm.ga.wpm.util.vo.VoLovIkpId;
 import id.co.ahm.ga.wpm.vo.VoLovPic;
 import id.co.ahm.ga.wpm.vo.VoLovPo;
 import id.co.ahm.ga.wpm.vo.VoLovSupplier;
@@ -252,10 +253,9 @@ public class HeaderIkpConstant {
     public static final String LOV_SUPPLIER_MAINTENANCE_QUERY
             = "SELECT SUPPLY_ID, SUPPLY_DESC FROM HEADER_IKP "
             + "WHERE (:supplyId IS NULL OR "
-            + "LOWER(SUPPLY_ID) LIKE LOWER(CONCAT(CONCAT('%',:supplyId),'%'))) " 
+            + "LOWER(SUPPLY_ID) LIKE LOWER(CONCAT(CONCAT('%',:supplyId),'%'))) "
             + "OR (:supplyDesc IS NULL OR "
             + "LOWER(SUPPLY_DESC) LIKE LOWER(CONCAT(CONCAT('%', :supplyDesc), '%'))) ";
-    
 
     public final static Query FILTER_LOV_SUPPLIER_MAINTENANCE(Query q, DtoParamPaging input) {
         q.setParameter("supplyId", input.getSearch().get("supplyId"));
@@ -411,6 +411,62 @@ public class HeaderIkpConstant {
             VoLovPo vo = new VoLovPo();
             vo.setNoPo((String) map.get("NO_PO"));
             vo.setPoDesc((String) map.get("PO_DESC"));
+            voList.add(vo);
+        }
+
+        return voList;
+    }
+    
+    public static final String[] LOV_IKP_ID_COLUMN = {
+        "IKP_ID",
+        "PROJECT_DETAIL"
+    };
+
+    public static final String LOV_IKP_ID_QUERY
+            = " SELECT IKP_ID, PROJECT_DETAIL FROM HEADER_IKP "
+            + " WHERE (:ikpId IS NULL OR "
+            + " LOWER(IKP_ID) LIKE LOWER(CONCAT(CONCAT('%',:ikpId),'%'))) "
+            + " OR (:projectDetail IS NULL OR "
+            + " LOWER(PROJECT_DETAIL) LIKE LOWER(CONCAT(CONCAT('%',:projectDetail),'%'))) ";
+
+    public final static Query FILTER_LOV_IKP_ID(Query q, DtoParamPaging input) {
+        q.setParameter("ikpId", input.getSearch().get("ikpId"));
+        q.setParameter("projectDetail", input.getSearch().get("projectDetail"));
+        return q;
+    }
+
+    public final static String ORDER_LOV_IKP_ID(String sql, DtoParamPaging input) {
+        StringBuilder order = new StringBuilder();
+        StringBuilder sqlString = new StringBuilder();
+        sqlString.append(sql);
+        if (input.getSort() != null) {
+            order.append(" ORDER BY ");
+            switch (input.getSort().toString().toLowerCase()) {
+                case "ikpId":
+                    order.append(" IKP_ID ");
+                    break;
+                case "projectDetail":
+                    order.append(" PROJECT_DETAIL");
+                    break;
+                default:
+                    return sqlString.toString();
+            }
+            if (input.getOrder().toString().equals("asc")) {
+                order.append(" ASC ");
+            } else {
+                order.append(" DESC ");
+            }
+            sqlString.append(order);
+        }
+        return sqlString.toString();
+    }
+
+    public final static List<VoLovIkpId> SET_VO_LOV_IKP_ID(List<Map<String, Object>> list) {
+        List<VoLovIkpId> voList = new ArrayList<>();
+        for (Map<String, Object> map : list) {
+            VoLovIkpId vo = new VoLovIkpId();
+            vo.setIkpId((String) map.get("IKP_ID"));
+            vo.setProjectDetail((String) map.get("PROJECT_DETAIL"));
             voList.add(vo);
         }
 

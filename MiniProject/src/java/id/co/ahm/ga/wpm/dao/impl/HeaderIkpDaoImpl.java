@@ -14,6 +14,7 @@ import java.util.Map;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import id.co.ahm.ga.wpm.dao.HeaderIkpDao;
+import id.co.ahm.ga.wpm.util.vo.VoLovIkpId;
 import id.co.ahm.ga.wpm.vo.VoLovPic;
 import id.co.ahm.ga.wpm.vo.VoLovPo;
 import id.co.ahm.ga.wpm.vo.VoLovSupplier;
@@ -147,6 +148,57 @@ public class HeaderIkpDaoImpl extends DefaultHibernateDao<HeaderIkp, String> imp
         String count = HeaderIkpConstant.SELECT_COUNT(HeaderIkpConstant.LOV_PO_MAINTENANCE_QUERY);
         Query q = getCurrentSession().createSQLQuery(count);
         q = HeaderIkpConstant.FILTER_LOV_PO_MAINTENANCE(q, input);
+        BigDecimal resultCount = (BigDecimal) q.uniqueResult();
+        Integer total = resultCount.intValue();
+        return total;
+    }
+
+    @Override
+    public List<String> findSequence(String plantId, String month, String year) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(plantId);
+        sb.append('/');
+        sb.append(month);
+        sb.append('/');
+        sb.append(year);
+        String sql = " SELECT IKP_ID FROM HEADER_IKP WHERE VNOIKP LIKE CONCAT(CONCAT('%',:param),'%') ";
+        Query q = getCurrentSession().createSQLQuery(sql);
+        q.setParameter("param", sb.toString());
+        List resultList = q.list();
+        List<String> result = new ArrayList<>();
+        for (int i = 0; i < resultList.size(); i++) {
+            result.add((String) resultList.get(i));
+        }
+        return result;
+    }
+
+    @Override
+    public List<VoLovIkpId> getLovIkpId(DtoParamPaging input) {
+        String sql = HeaderIkpConstant.LOV_IKP_ID_QUERY;
+        sql = HeaderIkpConstant.ORDER_LOV_IKP_ID(sql, input);
+        Query q = getCurrentSession().createSQLQuery(sql);
+        q = HeaderIkpConstant.FILTER_LOV_IKP_ID(q, input);
+        q = HeaderIkpConstant.SET_OFFSET(q, input);
+
+        List<Object[]> results = q.list();
+        List<Map<String, Object>> list = new ArrayList<>();
+
+        for (Object[] row : results) {
+            Map<String, Object> map = new HashMap<>();
+            for (int i = 0; i < HeaderIkpConstant.LOV_IKP_ID_COLUMN.length; i++) {
+                map.put(HeaderIkpConstant.LOV_IKP_ID_COLUMN[i], row[i]);
+            }
+            list.add(map);
+        }
+        List<VoLovIkpId> voList = HeaderIkpConstant.SET_VO_LOV_IKP_ID(list);
+        return voList;
+    }
+
+    @Override
+    public int getCountLovIkpId(DtoParamPaging input) {
+        String count = HeaderIkpConstant.SELECT_COUNT(HeaderIkpConstant.LOV_IKP_ID_QUERY);
+        Query q = getCurrentSession().createSQLQuery(count);
+        q = HeaderIkpConstant.FILTER_LOV_IKP_ID(q, input);
         BigDecimal resultCount = (BigDecimal) q.uniqueResult();
         Integer total = resultCount.intValue();
         return total;
