@@ -11,7 +11,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     </head>    
     <body>
-        <div id="maintainIkp" class="div-app" data-version="1.0">
+        <div id="createIkp" class="div-app" data-version="1.0">
             <!--Create IKP -->
             <div id="halaman_create_ehs_controller" class="subpage"
                  data-path="Maintain Izin Kerja Proyek/Create Izin Kerja Proyek">
@@ -25,20 +25,21 @@
                                         <label for="id_supplier_create_ikp" class="col-sm-12 control-label">ID Supplier
                                         </label>
                                         <div class="lookup-wrapper col-lg-12">
-                                        <div class="input-group lookup"
+                                        <div class="input-group lookup" id="id_supplier_lookup_wrapper"
                                              data-url="/MiniProject/rest/ga/wpm001/get-lov-supplier"
                                              data-query-params-type="limit"
                                              data-lookup-pre-func="lov_supplier_create_ikp"
                                              data-lookup-change-func="lov_supplier_create_ikp_change"
-                                             data-columns='[{"id":"idSupplier","name":"ID Supplier","visible":"true","sortable":"true"},
-                                             {"id":"namaSupplier","name":"Deskripsi Supplier","visible":"true","sortable":"true"}]'
-                                             data-callback='{"id_supplier_create_ikp":"idSupplier","nama_supplier_create_ikp":"namaSupplier"}'>
+                                             data-columns='[{"id":"supplyId","name":"ID Supplier","visible":"true","sortable":"true"},
+                                             {"id":"supplyDesc","name":"Deskripsi Supplier","visible":"true","sortable":"true"}]'
+                                             data-callback='{"id_supplier_create_ikp":"supplyId","nama_supplier_create_ikp":"supplyDesc"}'>
                                             <input id="id_supplier_create_ikp"
-                                                   class="form-control input-lookup gawpm001-uppercase"
-                                                   placeholder=" LoV ID Supplier" maxlength="100"
-                                                   oninput="lov_supplier_create_ikp_empty()" />
+                                                   class="form-control input-lookup"
+                                                   placeholder=" LoV ID Supplier" maxlength="100" 
+                                                   oninput="check_po()"/>
                                             <span class="input-group-btn">
-                                                <button class="btn btn-default large-button btn-lookup" type="button">
+                                                <button class="btn btn-default large-button btn-lookup" type="button"
+                                                onclick="id_supplier_display_lookup()">
                                                     <i class="glyphicon glyphicon-search fg-white"></i>
                                                 </button>
                                             </span>
@@ -101,19 +102,20 @@
                                     <label for="id_pic_create_ikp" class="col-sm-12 control-label">NRP PIC
                                         Project</label>
                                     <div class="lookup-wrapper col-lg-12">
-                                        <div class="input-group lookup"
+                                        <div class="input-group lookup" id="id_pic_lookup_wrapper"
                                              data-url="/MiniProject/rest/ga/wpm001/get-lov-pic"
-                                             data-lookup-pre-func="lov_pic_create_ikp" data-columns='[{"id":"nrpPic","name":"NRP PIC","visible":"true","sortable":"true"},
-                                             {"id":"namaPic","name":"Nama PIC","visible":"true","sortable":"true"}]'
-                                             data-callback='{"id_pic_create_ikp":"nrpPic","nama_pic_create_ikp":"namaPic",
-                                             "seksi_pic_create_ikp":"seksiPic","departemen_pic_create_ikp":"departemenPic",
-                                             "divisi_pic_create_ikp":"divisiPic"}'>
+                                             data-lookup-pre-func="lov_pic_create_ikp" data-columns='[{"id":"nrpId","name":"NRP PIC","visible":"true","sortable":"true"},
+                                             {"id":"nama","name":"Nama PIC","visible":"true","sortable":"true"}]'
+                                             data-callback='{"id_pic_create_ikp":"nrpId","nama_pic_create_ikp":"nama",
+                                             "seksi_pic_create_ikp":"seksi","departemen_pic_create_ikp":"departemen",
+                                             "divisi_pic_create_ikp":"divisi"}'>
                                             <input id="id_pic_create_ikp"
                                                    class="form-control input-lookup gawpm001-uppercase"
                                                    placeholder=" LoV NRP PIC" maxlength="100" />
                                             <span class="input-group-btn">
                                                 <button class="btn btn-default large-button btn-lookup"
-                                                        type="button">
+                                                        type="button"
+                                                        onclick="id_pic_display_lookup()">
                                                         <i class="glyphicon glyphicon-search fg-white"></i>
                                                     </button>
                                             </span>
@@ -134,35 +136,29 @@
                                            autocomplete="off" />
                                 </div>
                             </div>
-                            <div class="col-md-4" id="no_po_create_ikp_lookup">
+                            <div class="col-md-4">
                                 <div class="form-group large-font">
-                                    <label for="no_po_create_ikp" class="col-sm-12 control-label">Nomor PO</label>
+                                    <label class="col-sm-12 control-label">Nomor PO</label>
                                     <div class="lookup-wrapper col-lg-12">
-                                        <div class="input-group lookup"
+                                        <div class="input-group lookup" id="id_po_lookup_wrapper"
                                              data-url="/MiniProject/rest/ga/wpm001/get-lov-po"
                                              data-lookup-pre-func="lov_po_create_ikp"
-                                             data-columns='[{"id":"nomorPo","name":"Nomor PO / SPK / SPK Sementara","visible":"true","sortable":"true"},
-                                             {"id":"deskripsiItem","name":"Deskripsi Item","visible":"true","sortable":"true"}]'
-                                             data-callback='{"no_po_create_ikp":"nomorPo","deskripsi_item_create_ikp":"deskripsiItem"}'>
+                                             data-columns='[{"id":"noPo","name":"Nomor PO / SPK / SPK Sementara","visible":"true","sortable":"true"},
+                                             {"id":"poDesc","name":"Deskripsi Item","visible":"true","sortable":"true"}]'
+                                             data-callback='{"no_po_create_ikp":"noPo","deskripsi_item_create_ikp":"poDesc"}'>
                                             <input id="no_po_create_ikp"
-                                                   class="form-control input-lookup gawpm001-uppercase"
-                                                   placeholder=" LoV Nomor PO" maxlength="100" readonly="true" />
+                                                   class="form-control input-lookup"
+                                                   placeholder=" LoV Nomor PO" maxlength="100" readonly="true"/>
                                             <span class="input-group-btn">
-                                                <button id="no_po_create_ikp_button" disabled
+                                                <button id="no_po_create_ikp_button"
                                                         class="btn btn-default large-button btn-lookup" type="button"
-                                                        disabled="disabled">
+                                                        disabled="disabled"
+                                                        onclick="id_po_display_lookup()">
                                                         <i class="glyphicon glyphicon-search fg-white"></i>
                                                     </button>
                                             </span>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4" id="no_po_create_ikp_non_lookup" style="display: none">
-                                <div class="form-group large-font">
-                                    <label for="no_po_create_ikp" class="col-sm-12 control-label">Nomor PO</label>
-                                    <input id="no_po_create_ikp_non_lookup_value" type="text" class="form-control"
-                                           maxlength="50" autocomplete="off" readonly />
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -242,39 +238,32 @@
                                            placeholder="Input Login Patrol" required maxlength="50" autocomplete="off" />
                                 </div>
                             </div>
-                            <div class="col-md-4" id="id_plant_create_ikp_lookup">
+                            <div class="col-md-4">
                                 <div class="form-group required large-font">
                                     <label for="id_plant_create_ikp" class="col-sm-12 control-label">Plant
                                         Pekerjaan</label>
                                     <div class="lookup-wrapper col-lg-12">
-                                        <div class="input-group lookup"
+                                        <div class="input-group lookup" id="id_plant_lookup_wrapper"
                                              data-url="/MiniProject/rest/ga/wpm001/get-lov-plant"
                                              data-lookup-pre-func="lov_plant_create_ikp"
                                              data-lookup-change-func="lov_plant_create_ikp_change"
-                                             data-columns='[{"id":"plantVar1","name":"Plant ID 1","visible":"true","sortable":"true"},
-                                             {"id":"plantVar2","name":"Plant ID 2","visible":"true","sortable":"true"},
-                                             {"id":"description","name":"Deskripsi Plant","visible":"true","sortable":"true"}]'
-                                             data-callback='{"id_plant_create_ikp":"plantVar2"}'>
+                                             data-columns='[{"id":"plantVar","name":"Plant ID ","visible":"true","sortable":"true"},
+                                             {"id":"plantDesc","name":"Deskripsi Plant","visible":"true","sortable":"true"}]'
+                                             data-callback='{"id_plant_create_ikp":"plantVar"}'>
                                             <input id="id_plant_create_ikp"
                                                    class="form-control input-lookup gawpm001-uppercase"
-                                                   placeholder=" LoV Plant " maxlength="100"
-                                                   oninput="lov_plant_create_ikp_empty()" />
+                                                   placeholder=" LoV Plant " maxlength="100" 
+                                                   oninput="lov_plant_create_ikp_input()"/>
                                             <span class="input-group-btn">
-                                                <button class="btn btn-default large-button btn-lookup"
-                                                        type="button">
+                                                <button id="button_id_plant_create_ikp"
+                                                        class="btn btn-default large-button btn-lookup"
+                                                        type="button"
+                                                        onclick="id_plant_display_lookup()">
                                                         <i class="glyphicon glyphicon-search fg-white"></i>
                                                     </button>
                                             </span>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4" id="id_plant_create_ikp_non_lookup" style="display: none">
-                                <div class="form-group large-font">
-                                    <label for="id_plant_create_ikp_non_lookup"
-                                           class="col-sm-12 control-label">Plant Pekerjaan</label>
-                                    <input id="id_plant_create_ikp_non_lookup_value" type="text"
-                                           class="form-control" maxlength="50" autocomplete="off" readonly />
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -297,7 +286,7 @@
                         <i class="glyphicon glyphicon-trash fg-white"></i> Delete All Area
                     </button>
                     <button id="add_new_area_create_ikp" style="float: right; margin-right: 5px"
-                            class="btn bg-orange large-button" data-toggle="modal">
+                            class="btn bg-orange large-button" data-toggle="modal" onclick="check_plant_create_ikp()">
                         <i class="glyphicon glyphicon-plus fg-white"></i> Add New Area
                     </button>
                     <strong style="padding-top: 8px">*Area Project</strong>
@@ -321,7 +310,7 @@
                                 <thead>
                                     <tr>
                                         <th data-field="id" data-sortable="false" data-visible="true" data-align="center"
-                                            data-formatter="index_formatter_local">
+                                            data-formatter="index_formatter">
                                             No.
                                         </th>
                                         <th data-field="nomorAsset">
@@ -442,49 +431,23 @@
                         <div class="form-group required modal-label">
                             <label class="control-label col-lg-4">Nomor Asset</label>
                             <div class="lookup-wrapper col-lg-8">
-                                <div class="input-group lookup"
-                                     data-url="/MiniProject/rest/ga/wpm001/get-lov-nomorasset"
+                                <div class="input-group lookup" id="id_asset_lookup_wrapper"
+                                     data-url="/MiniProject/rest/ga/wpm001/get-lov-asset"
                                      data-lookup-pre-func="lov_nomor_asset_add_area"
-                                     data-lookup-change-func="lov_nomor_asset_add_area_change" data-columns='[{"id":"nomorAsset","name":"Nomor Asset","visible":"true","sortable":"true"},
-                                     {"id":"building","name":"Building","visible":"true","sortable":"true"}, 
-                                     {"id":"floor","name":"Floor","visible":"true","sortable":"true"}, 
-                                     {"id":"sectionLocation","name":"Section Location","visible":"true","sortable":"true"}, 
-                                     {"id":"areaDetail","name":"Area Detail","visible":"true","sortable":"true"}, 
-                                     {"id":"criticality","name":"Criticality","visible":"true","sortable":"true"}]'
-                                     data-callback='{"nomor_asset_add_area":"nomorAsset",
-                                     "building_add_area":"building",
-                                     "floor_add_area":"floor",
-                                     "section_location_add_area":"sectionLocation",
-                                     "area_detail_add_area":"areaDetail",
-                                     "criticality_add_area":"criticality"}'>
+                                     data-lookup-change-func="lov_nomor_asset_add_area_change" data-columns='[{"id":"noAsset","name":"Nomor Asset","visible":"true","sortable":"true"},
+                                     {"id":"descAsset","name":"Area Detail","visible":"true","sortable":"true"}]'
+                                     data-callback='{"nomor_asset_add_area":"noAsset",
+                                     "area_detail_add_area":"descAsset"}'>
                                     <input id="nomor_asset_add_area"
                                            class="form-control input-lookup gawpm001-uppercase" placeholder=" LoV Nomor Asset"
-                                           maxlength="100" oninput="lov_nomor_asset_add_area_empty()" />
+                                           maxlength="100" oninput="lov_nomor_asset_add_area_input()" />
                                     <span class="input-group-btn">
-                                        <button class="btn btn-default large-button btn-lookup" type="button"></button>
+                                        <button class="btn btn-default large-button btn-lookup" type="button"
+                                        onclick="id_asset_display_lookup()">
+                                            <i class="glyphicon glyphicon-search fg-white"></i>
+                                        </button>
                                     </span>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="form-group modal-label">
-                            <label class="control-label col-lg-4">Building</label>
-                            <div class="col-lg-8">
-                                <input id="building_add_area" class="form-control" maxlength="50"
-                                       autocomplete="off" readonly />
-                            </div>
-                        </div>
-                        <div class="form-group modal-label">
-                            <label class="control-label col-lg-4">Floor</label>
-                            <div class="col-lg-8">
-                                <input id="floor_add_area" class="form-control" maxlength="50"
-                                       autocomplete="off" readonly />
-                            </div>
-                        </div>
-                        <div class="form-group modal-label">
-                            <label class="control-label col-lg-4">Section Location</label>
-                            <div class="col-lg-8">
-                                <input id="section_location_add_area" class="form-control" maxlength="6"
-                                       autocomplete="off" readonly />
                             </div>
                         </div>
                         <div class="form-group modal-label">
@@ -506,27 +469,33 @@
                         <div class="form-group modal-label">
                             <label class="control-label col-lg-4">Criticality</label>
                             <div class="col-lg-8">
-                                <input id="criticality_add_area" class="form-control" placeholder=""
-                                       maxlength="6" autocomplete="off" readonly />
+                                <select id="criticality_add_area" class="form-control">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
                             </div>
                         </div>
 
                         <div class="form-group required modal-label">
                             <label class="control-label col-lg-4">Task List</label>
                             <div class="lookup-wrapper col-lg-8">
-                                <div class="input-group lookup"
+                                <div class="input-group lookup" id="id_tasklist_lookup_wrapper"
                                      data-url="/MiniProject/rest/ga/wpm001/get-lov-tasklist"
                                      data-lookup-pre-func="lov_tasklist_add_area"
-                                     data-lookup-change-func="lov_tasklist_add_area_change" data-columns='[{"id":"taskListCode","name":"Code","visible":"true","sortable":"true"},
-                                     {"id":"taskListTitle","name":"Task List","visible":"true","sortable":"true"}]'
-                                     data-callback='{"task_list_code_add_area":"taskListCode",
-                                     "task_list_title_add_area":"taskListTitle"}'>
+                                     data-lookup-change-func="lov_tasklist_add_area_change" data-columns='[{"id":"kodeTaskList","name":"Kode","visible":"true","sortable":"true"},
+                                     {"id":"titleTaskList","name":"Task List","visible":"true","sortable":"true"}]'
+                                     data-callback='{"task_list_code_add_area":"kodeTaskList",
+                                     "task_list_title_add_area":"titleTaskList"}'>
                                     <input id="task_list_title_add_area"
                                            class="form-control input-lookup gawpm001-uppercase" placeholder=" LoV Task List"
-                                           maxlength="100" oninput="lov_tasklist_add_area_empty()" readonly />
+                                           maxlength="100" readonly />
                                     <span class="input-group-btn">
                                         <button class="btn btn-default large-button btn-lookup" type="button"
-                                                id="button_task_list_title_add_area" disabled></button>
+                                                id="button_task_list_title_add_area" disabled="disabled"
+                                                onclick="id_tasklist_display_lookup()">
+                                                <i class="glyphicon glyphicon-search fg-white"></i>
+                                            </button>
                                     </span>
                                 </div>
                             </div>
@@ -1110,6 +1079,6 @@
     <script type="text/javascript" src="../resources/js/bootstraps/bootstrap-table.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../resources/js/lovtable.js"></script>
-    <script type="text/javascript" src="../resources/js/maintainIkp.js"></script>
+    <script type="text/javascript" src="../resources/js/createIkp.js"></script>
 </body>
 </html>

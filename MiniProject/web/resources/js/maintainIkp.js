@@ -464,5 +464,60 @@ function lov_po_filter(params){
     return params;
 }
 
+// LOV IKP
+function id_ikp_display_lookup(){
+    var $lookupWrapper = $('#id_ikp_lookup_wrapper');
+    var url = $lookupWrapper.data('url');
+    var lookupPreFunc = $lookupWrapper.data('lookup-pre-func');
+    var columns = $lookupWrapper.data('columns');
+    var callback = $lookupWrapper.data('callback');
+    if (openLookup == false){
+        $('.lookup-wrapper .lookup-form').remove();
+        setTimeout(function(){
+            $('#id_ikp_lookup_wrapper',maintainIkp).lovtable({
+                delay: 500,
+                width: null,
+                isBindFunc: false,
+                url: url,
+                queryParams: lookupPreFunc,
+                changeFunction: null,
+                bindFunction: null,
+                nextFocus: null,
+                nextFunction: null,
+                tableId: generateUUID(),
+                columns: columns,
+                callbacks: callback,
+                multiple: false,
+                multipleValue: null,
+                multipleText: null,
+                loadFirstTime: openLookup,
+                otherValue: false
+            });
+        },500);
+        openLookup = true;
+    } else {
+        openLookup = false;
+    }
+    
+}
+function lov_ikp_filter(params){
+    params.search = {
+        ikpId: $("#nomor_ikp_filter", maintainIkp).val(),
+        projectDetail : $("#nomor_ikp_filter", maintainIkp).val(),
+    };
+    if (params.sort === undefined) {
+        return {
+            limit: params.limit,
+            offset: params.offset,
+            search: params.search,
+            sort: "noPo",
+            order: "asc",
+        };
+    }
+    return params;
+}
 
+function create_ikp_page(obj) {
+    window.location.href = '/MiniProject/forms/createIkp.htm';
+}
 

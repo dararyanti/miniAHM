@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import id.co.ahm.ga.wpm.service.ServiceIkp;
-import id.co.ahm.ga.wpm.vo.VoCreateUpdateIkp;
 import id.co.ahm.ga.wpm.vo.VoSaveIkp;
 import java.util.Map;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -155,7 +154,7 @@ public class RestIkp {
         return this.serviceIkp.getLovAsset(dtoParamPaging);
     }
     
-    @RequestMapping(value = "get-lov-task-list", method = RequestMethod.POST,
+    @RequestMapping(value = "get-lov-tasklist", method = RequestMethod.POST,
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody

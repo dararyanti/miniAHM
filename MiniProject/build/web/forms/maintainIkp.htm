@@ -162,17 +162,19 @@
                                     <div class="form-group large-font">
                                         <label for="nomor_ikp" class="col-sm-12 control-label">Nomor IKP</label>
                                         <div class="lookup-wrapper col-lg-12">
-                                            <div class="input-group lookup"
+                                            <div class="input-group lookup" id="id_ikp_lookup_wrapper"
                                                  data-url="/MiniProject/rest/ga/wpm001/get-lov-ikp"
-                                                 data-lookup-pre-func="lov_ikp_maintain" data-query-params-type="limit"
-                                                 data-columns='[{"id":"nomorIkp","name":"Nomor IKP","visible":"true","sortable":"true"}]'
+                                                 data-lookup-pre-func="lov_ikp_filter" data-query-params-type="limit"
+                                                 data-columns='[{"id":"ikpId","name":"Nomor IKP","visible":"true","sortable":"true"},
+                                                 {"id":"projectDetail","name":"Project Detail","visible":"true","sortable":"true"}]'
                                                  data-callback='{"nomor_ikp_filter":"nomorIkp"}'>
                                                 <input id="nomor_ikp_filter"
                                                        class="form-control input-lookup gawpm001-uppercase"
                                                        placeholder=" LoV Nomor IKP" maxlength="100" />
                                                 <span class="input-group-btn">
                                                     <button id="lookup_nomor_ikp_filter"
-                                                            class="btn btn-default large-button btn-lookup" type="button">
+                                                            class="btn btn-default large-button btn-lookup" type="button"
+                                                            onclick="id_ikp_display_lookup()">
                                                         <i class="glyphicon glyphicon-search fg-white"></i>
                                                     </button>
                                                 </span>
@@ -203,7 +205,7 @@
                         </button>  -->
 
                         <button id="create_ikp_button" style="float: right; margin-right: 5px" 
-                                class="btn bg-orange large-button" onclick="createIkp(this);"> 
+                                class="btn bg-orange large-button" onclick="create_ikp_page(this);"> 
                             <i class="glyphicon glyphicon-plus fg-white"></i> Create IKP 
                         </button>
                     </div>

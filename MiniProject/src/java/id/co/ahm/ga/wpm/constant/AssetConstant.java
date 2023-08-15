@@ -26,10 +26,10 @@ public class AssetConstant {
     public static final String LOV_ASSET_QUERY
             = " SELECT NO_ASSET, DESC_ASSET FROM ASSET "
             + " WHERE (:plantVar = PLANT_VAR) "
-            + " AND (:noAsset IS NULL OR "
+            + " AND ((:noAsset IS NULL OR "
             + " LOWER(NO_ASSET) LIKE LOWER(CONCAT(CONCAT('%',:noAsset),'%')))"
             + " OR (:descAsset IS NULL OR "
-            + " LOWER(DESC_ASSET) LIKE LOWER(CONCAT(CONCAT('%',:descAsset),'%'))) ";
+            + " LOWER(DESC_ASSET) LIKE LOWER(CONCAT(CONCAT('%',:descAsset),'%')))) ";
     
     public final static Query FILTER_LOV_ASSET(Query q, DtoParamPaging input) {
         q.setParameter("plantVar", input.getSearch().get("plantVar"));
