@@ -551,8 +551,7 @@ function submit_create_ikp(obj) {
 
                 data.ikp = {
                     ikpId: "",
-                    katPekerjaan: $( "#kategori_izin_kerja_create_ikp",createIkp).val(),
-                    nomorIkp: $("#nomor_ikp_create_ikp", createIkp).val(),
+                    katIzinKerja: $( "#kategori_izin_kerja_create_ikp",createIkp).val(),
                     noPengajuanProyek: $("#nomor_pengajuan_lk3_create_ikp", createIkp).val(),
                     katPekerjaan: $("#kategori_pekerjaan_create_ikp",createIkp).val(),
                     tipeOrder: $("#tipe_order_create_ikp", createIkp).val(),
@@ -560,8 +559,7 @@ function submit_create_ikp(obj) {
                     noSpk: $("#no_spk_create_ikp", createIkp).val(),
                     noPo: $("#no_po_create_ikp", createIkp).val(),
                     deskripsiItem: $("#deskripsi_item_create_ikp", createIkp).val(),
-                    plantId: $("#id_plant_create_ikp", createIkp).val(), 
-                    katIzinKerja:"Izin Kerja Proyek",  
+                    plantId: $("#id_plant_create_ikp", createIkp).val(),  
                     nrpId: $("#id_pic_create_ikp", createIkp).val(), 
                     supplyId: $("#id_supplier_create_ikp", createIkp).val(), 
                     supplyDesc: $("#nama_supplier_create_ikp", createIkp).val(),                 

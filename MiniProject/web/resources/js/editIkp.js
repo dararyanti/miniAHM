@@ -699,20 +699,19 @@ function submit_edit_ikp(obj) {
 
                 data.ikp = {
                     ikpId: localStorage.getItem('ikpId'),
-                    katPekerjaan: $( "#kategori_izin_kerja_edit_ikp",editIkp).val(),
-                    nomorIkp: $("#nomor_ikp_edit_ikp", editIkp).val(),
-                    noPengajuanProyek: $("#nomor_pengajuan_lk3_edit_ikp", editIkp).val(),
-                    kategoriPekerjaan: $("#kategori_pekerjaan_edit_ikp",editIkp).val(),
+                    katIzinKerja: $( "#kategori_izin_kerja_edit_ikp",editIkp).val(),
+                    noPengajuanProyek: $("#nomor_pengajuan_proyek_edit_ikp", editIkp).val(),
+                    katPekerjaan: $("#kategori_pekerjaan_edit_ikp",editIkp).val(),
                     tipeOrder: $("#tipe_order_edit_ikp", editIkp).val(),
                     purchasingOrg: $("#purchasing_organization_edit_ikp",editIkp).val(),
                     noSpk: $("#no_spk_edit_ikp", editIkp).val(),
                     noPo: $("#no_po_edit_ikp", editIkp).val(),
                     deskripsiItem: $("#deskripsi_item_edit_ikp", editIkp).val(),
                     plantId: $("#id_plant_edit_ikp", editIkp).val(), 
-                    katIzinKerja:"Izin Kerja Proyek",  
                     nrpId: $("#id_pic_edit_ikp", editIkp).val(), 
                     supplyId: $("#id_supplier_edit_ikp", editIkp).val(), 
-                    supplyDesc: $("#nama_supplier_edit_ikp", editIkp).val(),                 
+                    supplyDesc: $("#nama_supplier_edit_ikp", editIkp).val(),
+                    status : "00-IKP",                 
                 }
 
                 data.listArea = new Array();
