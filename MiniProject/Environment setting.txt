@@ -1,0 +1,10 @@
+IDE Netbeans 17
+Database Oracle 21
+Apache Tomcat 7.0.81
+
+Setting database
+Database = XE
+username = ahmgawpm
+password = miniproject
+host = localhost
+port = 1521
