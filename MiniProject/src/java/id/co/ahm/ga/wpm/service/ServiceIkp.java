@@ -40,5 +40,7 @@ public interface ServiceIkp {
     DtoResponse getLovIkpId(DtoParamPaging input);
     
     DtoResponse saveIkp(VoSaveIkp vo) throws Exception;
+    
+    DtoResponse getTabelArea(DtoParamPaging input);
 
 }

@@ -92,6 +92,13 @@ public class ServiceIkpImpl implements ServiceIkp {
         List<VoShowTableIkp> result = headerIkpDao.getTableIkp(input, voPstUserCred);
         return DtoHelper.constructResponsePaging(StatusMsgEnum.SUKSES, null, result, total);
     }
+    
+    @Override
+    public DtoResponse getTabelArea(DtoParamPaging input) {
+        int total = areaPekerjaanDao.getCountTabelArea(input);
+        List<VoShowAreaPekerjaan> result = areaPekerjaanDao.getTabelArea(input);
+        return DtoHelper.constructResponsePaging(StatusMsgEnum.SUKSES, null, result, total);
+    }
 
     @Override
     public DtoResponse deleteIkp(String ikpId, VoPstUserCred voPstUserCred) {
@@ -332,5 +339,7 @@ public class ServiceIkpImpl implements ServiceIkp {
         sb.append(value);
         return sb.toString();
     }
+
+    
 
 }

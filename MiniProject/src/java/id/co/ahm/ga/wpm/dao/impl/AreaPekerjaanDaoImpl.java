@@ -1,13 +1,21 @@
 package id.co.ahm.ga.wpm.dao.impl;
 
 import id.co.ahm.ga.wpm.constant.AreaPekerjaanConstant;
+import id.co.ahm.ga.wpm.constant.HeaderIkpConstant;
 import id.co.ahm.ga.wpm.model.AreaPekerjaan;
 import id.co.ahm.ga.wpm.model.AreaPekerjaanPk;
 import id.co.ahm.ga.wpm.util.dao.DefaultHibernateDao;
 import org.springframework.stereotype.Repository;
 import id.co.ahm.ga.wpm.dao.AreaPekerjaanDao;
+import id.co.ahm.ga.wpm.util.DtoParamPaging;
+import id.co.ahm.ga.wpm.util.vo.VoLovIkpId;
+import id.co.ahm.ga.wpm.vo.VoShowAreaPekerjaan;
 import id.co.jxf.security.vo.VoPstUserCred;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.hibernate.query.Query;
 /**
  *
@@ -26,6 +34,38 @@ public class AreaPekerjaanDaoImpl extends DefaultHibernateDao<AreaPekerjaan, Are
 
         return query.list();
 
+    }
+
+    @Override
+    public List<VoShowAreaPekerjaan> getTabelArea(DtoParamPaging input) {
+        String sql = AreaPekerjaanConstant.AREA_TABEL_QUERY;
+        sql = AreaPekerjaanConstant.ORDER_AREA_TABEL(sql, input);
+        Query q = getCurrentSession().createSQLQuery(sql);
+        q = AreaPekerjaanConstant.FILTER_AREA_TABEL(q, input);
+        q = AreaPekerjaanConstant.SET_OFFSET(q, input);
+
+        List<Object[]> results = q.list();
+        List<Map<String, Object>> list = new ArrayList<>();
+
+        for (Object[] row : results) {
+            Map<String, Object> map = new HashMap<>();
+            for (int i = 0; i < AreaPekerjaanConstant.AREA_TABEL_COLUMN_NAME.length; i++) {
+                map.put(AreaPekerjaanConstant.AREA_TABEL_COLUMN_NAME[i], row[i]);
+            }
+            list.add(map);
+        }
+        List<VoShowAreaPekerjaan> voList = AreaPekerjaanConstant.SET_VO_AREA_TABEL(list);
+        return voList;
+    }
+
+    @Override
+    public int getCountTabelArea(DtoParamPaging input) {
+        String count = AreaPekerjaanConstant.SELECT_COUNT(AreaPekerjaanConstant.AREA_TABEL_QUERY);
+        Query q = getCurrentSession().createSQLQuery(count);
+        q = AreaPekerjaanConstant.FILTER_AREA_TABEL(q, input);
+        BigDecimal resultCount = (BigDecimal) q.uniqueResult();
+        Integer total = resultCount.intValue();
+        return total;
     }
 
 }

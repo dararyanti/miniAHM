@@ -183,4 +183,14 @@ public class RestIkp {
         VoPstUserCred voPstUserCred = tokenPstUtil.getUserCred(token);
         return this.serviceIkp.saveIkp(vo);
     }
+    
+    @RequestMapping(value = "get-area-table", method = RequestMethod.POST,
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    DtoResponse getTabelArea(@RequestHeader(value = CommonConstant.JXID, defaultValue = "") String token,
+            @RequestBody DtoParamPaging dtoParamPaging) {
+        VoPstUserCred voPstUserCred = tokenPstUtil.getUserCred(token);
+        return this.serviceIkp.getTabelArea(dtoParamPaging);
+    }
 }
