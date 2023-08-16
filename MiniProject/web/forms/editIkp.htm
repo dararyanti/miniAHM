@@ -12,7 +12,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     </head>    
     <body>
-        <div id="createIkp" class="div-app" data-version="1.0">
+        <div id="editIkp" class="div-app" data-version="1.0">
             <!--Create IKP -->
             <div id="halaman_create_ehs_controller" class="subpage"
                  data-path="Maintain Izin Kerja Proyek/Create Izin Kerja Proyek">
@@ -23,18 +23,18 @@
                                 <div class="col-md-4">
                                     <div class="form-group required large-font">
                                         <br />
-                                        <label for="id_supplier_create_ikp" class="col-sm-12 control-label">ID Supplier
+                                        <label for="id_supplier_edit_ikp" class="col-sm-12 control-label">ID Supplier
                                         </label>
                                         <div class="lookup-wrapper col-lg-12">
                                         <div class="input-group lookup" id="id_supplier_lookup_wrapper"
                                              data-url="/MiniProject/rest/ga/wpm001/get-lov-supplier"
                                              data-query-params-type="limit"
-                                             data-lookup-pre-func="lov_supplier_create_ikp"
-                                             data-lookup-change-func="lov_supplier_create_ikp_change"
+                                             data-lookup-pre-func="lov_supplier_edit_ikp"
+                                             data-lookup-change-func="lov_supplier_edit_ikp_change"
                                              data-columns='[{"id":"supplyId","name":"ID Supplier","visible":"true","sortable":"true"},
                                              {"id":"supplyDesc","name":"Deskripsi Supplier","visible":"true","sortable":"true"}]'
-                                             data-callback='{"id_supplier_create_ikp":"supplyId","nama_supplier_create_ikp":"supplyDesc"}'>
-                                            <input id="id_supplier_create_ikp"
+                                             data-callback='{"id_supplier_edit_ikp":"supplyId","nama_supplier_edit_ikp":"supplyDesc"}'>
+                                            <input id="id_supplier_edit_ikp"
                                                    class="form-control input-lookup"
                                                    placeholder=" LoV ID Supplier" maxlength="100" 
                                                    oninput="check_po()"/>
@@ -51,9 +51,9 @@
                             <div class="col-md-4">
                                 <div class="form-group required large-font">
                                     <strong>*Informasi Pekerjaan</strong>
-                                    <label for="kategori_pekerjaan_create_ikp"
+                                    <label for="kategori_pekerjaan_edit_ikp"
                                            class="col-sm-12 control-label">Kategori Pekerjaan (Internal / External)</label>
-                                    <select id="kategori_pekerjaan_create_ikp" class="form-control" required>
+                                    <select id="kategori_pekerjaan_edit_ikp" class="form-control" required>
                                         <option value="External Project">External Project</option>
                                         <option value="Internal Project">Internal Project</option>
                                     </select>
@@ -62,9 +62,9 @@
                             <div class="col-md-4">
                                 <div class="form-group large-font">
                                     <strong>*Informasi PIC Purchase / Commercial</strong>
-                                    <label for="purchasing_organization_create_ikp"
+                                    <label for="purchasing_organization_edit_ikp"
                                            class="col-sm-12 control-label">Purchasing Organization</label>
-                                    <select id="purchasing_organization_create_ikp" class="form-control" required>
+                                    <select id="purchasing_organization_edit_ikp" class="form-control" required>
                                         <option value="1010">1010 Procurement</option>
                                         <option value="1020">1020 Purchase Control</option>
                                         <option value="1030">1030 General Affair</option>
@@ -78,18 +78,18 @@
                             <div class="col-md-4">
                                 <div class="form-group large-font">
                                     <br />
-                                    <label for="nama_supplier_create_ikp" class="col-sm-12 control-label">Nama
+                                    <label for="nama_supplier_edit_ikp" class="col-sm-12 control-label">Nama
                                         Supplier</label>
-                                    <input id="nama_supplier_create_ikp" type="text" class="form-control"
+                                    <input id="nama_supplier_edit_ikp" type="text" class="form-control"
                                            placeholder="" maxlength="22" autocomplete="off" readonly />
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group required large-font">
                                     <br />
-                                    <label for="tipe_order_create_ikp" class="col-sm-12 control-label">Ordering
+                                    <label for="tipe_order_edit_ikp" class="col-sm-12 control-label">Ordering
                                         Type (PO / SPK / SPK Sementara)</label>
-                                    <select id="tipe_order_create_ikp" class="form-control" required
+                                    <select id="tipe_order_edit_ikp" class="form-control" required
                                             onChange="check_po(this)">
                                         <option value="PO">Purchase Order</option>
                                         <option value="SPK">SPK</option>
@@ -100,17 +100,17 @@
                             <div class="col-md-4">
                                 <div class="form-group required large-font">
                                     <strong>*Informasi PIC Project</strong>
-                                    <label for="id_pic_create_ikp" class="col-sm-12 control-label">NRP PIC
+                                    <label for="id_pic_edit_ikp" class="col-sm-12 control-label">NRP PIC
                                         Project</label>
                                     <div class="lookup-wrapper col-lg-12">
                                         <div class="input-group lookup" id="id_pic_lookup_wrapper"
                                              data-url="/MiniProject/rest/ga/wpm001/get-lov-pic"
-                                             data-lookup-pre-func="lov_pic_create_ikp" data-columns='[{"id":"nrpId","name":"NRP PIC","visible":"true","sortable":"true"},
+                                             data-lookup-pre-func="lov_pic_edit_ikp" data-columns='[{"id":"nrpId","name":"NRP PIC","visible":"true","sortable":"true"},
                                              {"id":"nama","name":"Nama PIC","visible":"true","sortable":"true"}]'
-                                             data-callback='{"id_pic_create_ikp":"nrpId","nama_pic_create_ikp":"nama",
-                                             "seksi_pic_create_ikp":"seksi","departemen_pic_create_ikp":"departemen",
-                                             "divisi_pic_create_ikp":"divisi"}'>
-                                            <input id="id_pic_create_ikp"
+                                             data-callback='{"id_pic_edit_ikp":"nrpId","nama_pic_edit_ikp":"nama",
+                                             "seksi_pic_edit_ikp":"seksi","departemen_pic_edit_ikp":"departemen",
+                                             "divisi_pic_edit_ikp":"divisi"}'>
+                                            <input id="id_pic_edit_ikp"
                                                    class="form-control input-lookup gawpm001-uppercase"
                                                    placeholder=" LoV NRP PIC" maxlength="100" />
                                             <span class="input-group-btn">
@@ -130,9 +130,9 @@
                         <div class="col-md-12">
                             <div class="col-md-4">
                                 <div class="form-group required large-font">
-                                    <label for="kategori_izin_kerja_create_ikp"
+                                    <label for="kategori_izin_kerja_edit_ikp"
                                            class="col-sm-12 control-label">Kategori Izin Kerja</label>
-                                    <input id="kategori_izin_kerja_create_ikp" type="text" class="form-control"
+                                    <input id="kategori_izin_kerja_edit_ikp" type="text" class="form-control"
                                            placeholder="Izin Kerja Proyek" required readonly maxlength="50"
                                            autocomplete="off" />
                                 </div>
@@ -143,15 +143,15 @@
                                     <div class="lookup-wrapper col-lg-12">
                                         <div class="input-group lookup" id="id_po_lookup_wrapper"
                                              data-url="/MiniProject/rest/ga/wpm001/get-lov-po"
-                                             data-lookup-pre-func="lov_po_create_ikp"
+                                             data-lookup-pre-func="lov_po_edit_ikp"
                                              data-columns='[{"id":"noPo","name":"Nomor PO / SPK / SPK Sementara","visible":"true","sortable":"true"},
                                              {"id":"poDesc","name":"Deskripsi Item","visible":"true","sortable":"true"}]'
-                                             data-callback='{"no_po_create_ikp":"noPo","deskripsi_item_create_ikp":"poDesc"}'>
-                                            <input id="no_po_create_ikp"
+                                             data-callback='{"no_po_edit_ikp":"noPo","deskripsi_item_edit_ikp":"poDesc"}'>
+                                            <input id="no_po_edit_ikp"
                                                    class="form-control input-lookup"
                                                    placeholder=" LoV Nomor PO" maxlength="100" readonly="true"/>
                                             <span class="input-group-btn">
-                                                <button id="no_po_create_ikp_button"
+                                                <button id="no_po_edit_ikp_button"
                                                         class="btn btn-default large-button btn-lookup" type="button"
                                                         disabled="disabled"
                                                         onclick="id_po_display_lookup()">
@@ -164,9 +164,9 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group large-font">
-                                    <label for="nama_pic_create_ikp" class="col-sm-12 control-label">Nama PIC
+                                    <label for="nama_pic_edit_ikp" class="col-sm-12 control-label">Nama PIC
                                         Project</label>
-                                    <input id="nama_pic_create_ikp" type="text" class="form-control" maxlength="50"
+                                    <input id="nama_pic_edit_ikp" type="text" class="form-control" maxlength="50"
                                            autocomplete="off" readonly />
                                 </div>
                             </div>
@@ -176,25 +176,25 @@
                         <div class="col-md-12">
                             <div class="col-md-4">
                                 <div class="form-group large-font">
-                                    <label for="nomor_ikp_create_ikp" class="col-sm-12 control-label">Nomor
+                                    <label for="nomor_ikp_edit_ikp" class="col-sm-12 control-label">Nomor
                                         IKP</label>
-                                    <input id="nomor_ikp_create_ikp" type="text" class="form-control"
+                                    <input id="nomor_ikp_edit_ikp" type="text" class="form-control"
                                            placeholder="IKP/" maxlength="50" autocomplete="off" readonly />
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group large-font">
-                                    <label for="no_spk_create_ikp" class="col-sm-12 control-label">Nomor SPK / SPK
+                                    <label for="no_spk_edit_ikp" class="col-sm-12 control-label">Nomor SPK / SPK
                                         Sementara</label>
-                                    <input id="no_spk_create_ikp" type="text" class="form-control" placeholder=""
+                                    <input id="no_spk_edit_ikp" type="text" class="form-control" placeholder=""
                                            maxlength="50" autocomplete="off" readonly />
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group large-font">
-                                    <label for="seksi_pic_create_ikp" class="col-sm-12 control-label">Seksi PIC
+                                    <label for="seksi_pic_edit_ikp" class="col-sm-12 control-label">Seksi PIC
                                         Project</label>
-                                    <input id="seksi_pic_create_ikp" type="text" class="form-control"
+                                    <input id="seksi_pic_edit_ikp" type="text" class="form-control"
                                            maxlength="50" autocomplete="off" readonly />
                                 </div>
                             </div>
@@ -204,26 +204,26 @@
                         <div class="col-md-12">
                             <div class="col-md-4">
                                 <div class="form-group required large-font">
-                                    <label for="nomor_pengajuan_proyek_create_ikp"
+                                    <label for="nomor_pengajuan_proyek_edit_ikp"
                                            class="col-sm-12 control-label">Nomor Pengajuan Proyek</label>
-                                    <input id="nomor_pengajuan_proyek_create_ikp" type="text" class="form-control"
+                                    <input id="nomor_pengajuan_proyek_edit_ikp" type="text" class="form-control"
                                            placeholder="Input Nomor Pengajuan Proyek" required maxlength="50"
                                            autocomplete="off" />
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group large-font">
-                                    <label for="deskripsi_item_create_ikp"
+                                    <label for="deskripsi_item_edit_ikp"
                                            class="col-sm-12 control-label">Deskripsi Item PO / SPK / SPK Sementara</label>
-                                    <input id="deskripsi_item_create_ikp" type="text" class="form-control"
+                                    <input id="deskripsi_item_edit_ikp" type="text" class="form-control"
                                            maxlength="50" autocomplete="off" readonly />
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group large-font">
-                                    <label for="departemen_pic_create_ikp"
+                                    <label for="departemen_pic_edit_ikp"
                                            class="col-sm-12 control-label">Departemen PIC Project</label>
-                                    <input id="departemen_pic_create_ikp" type="text" class="form-control"
+                                    <input id="departemen_pic_edit_ikp" type="text" class="form-control"
                                            maxlength="50" autocomplete="off" readonly />
                                 </div>
                             </div>
@@ -233,30 +233,30 @@
                         <div class="col-md-12">
                             <div class="col-md-4">
                                 <div class="form-group required large-font">
-                                    <label for="login_patrol_create_ikp" class="col-sm-12 control-label">Login
+                                    <label for="login_patrol_edit_ikp" class="col-sm-12 control-label">Login
                                         Patrol</label>
-                                    <input id="login_patrol_create_ikp" type="number" class="form-control"
+                                    <input id="login_patrol_edit_ikp" type="number" class="form-control"
                                            placeholder="Input Login Patrol" required maxlength="50" autocomplete="off" />
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group required large-font">
-                                    <label for="id_plant_create_ikp" class="col-sm-12 control-label">Plant
+                                    <label for="id_plant_edit_ikp" class="col-sm-12 control-label">Plant
                                         Pekerjaan</label>
                                     <div class="lookup-wrapper col-lg-12">
                                         <div class="input-group lookup" id="id_plant_lookup_wrapper"
                                              data-url="/MiniProject/rest/ga/wpm001/get-lov-plant"
-                                             data-lookup-pre-func="lov_plant_create_ikp"
-                                             data-lookup-change-func="lov_plant_create_ikp_change"
+                                             data-lookup-pre-func="lov_plant_edit_ikp"
+                                             data-lookup-change-func="lov_plant_edit_ikp_change"
                                              data-columns='[{"id":"plantVar","name":"Plant ID ","visible":"true","sortable":"true"},
                                              {"id":"plantDesc","name":"Deskripsi Plant","visible":"true","sortable":"true"}]'
-                                             data-callback='{"id_plant_create_ikp":"plantVar"}'>
-                                            <input id="id_plant_create_ikp"
+                                             data-callback='{"id_plant_edit_ikp":"plantVar"}'>
+                                            <input id="id_plant_edit_ikp"
                                                    class="form-control input-lookup gawpm001-uppercase"
                                                    placeholder=" LoV Plant " maxlength="100" 
-                                                   oninput="lov_plant_create_ikp_input()"/>
+                                                   oninput="lov_plant_edit_ikp_input()"/>
                                             <span class="input-group-btn">
-                                                <button id="button_id_plant_create_ikp"
+                                                <button id="button_id_plant_edit_ikp"
                                                         class="btn btn-default large-button btn-lookup"
                                                         type="button"
                                                         onclick="id_plant_display_lookup()">
@@ -269,9 +269,9 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group large-font">
-                                    <label for="divisi_pic_create_ikp" class="col-sm-12 control-label">Divisi PIC
+                                    <label for="divisi_pic_edit_ikp" class="col-sm-12 control-label">Divisi PIC
                                         Project</label>
-                                    <input id="divisi_pic_create_ikp" type="text" class="form-control"
+                                    <input id="divisi_pic_edit_ikp" type="text" class="form-control"
                                            maxlength="50" autocomplete="off" readonly />
                                 </div>
                             </div>
@@ -281,17 +281,17 @@
             </div>
             <div class="row" style="margin-top: 20px; margin-bottom: 10px">
                 <div class="form-group-button">
-                    <!-- <button id="delete_all_area_create_ikp" style="float: right; margin-right: 5px"
+                    <!-- <button id="delete_all_area_edit_ikp" style="float: right; margin-right: 5px"
                             class="btn bg-red large-button" data-toggle="modal" data-target="#delete_all_area_modal"
-                            data-area-table="area_create_ikp_table">
+                            data-area-table="area_edit_ikp_table">
                         <i class="glyphicon glyphicon-trash fg-white"></i> Delete All Area
                     </button> -->
-                    <button id="add_new_area_create_ikp" style="float: right; margin-right: 5px"
-                            class="btn bg-orange large-button" data-toggle="modal" onclick="check_plant_create_ikp()">
+                    <button id="add_new_area_edit_ikp" style="float: right; margin-right: 5px"
+                            class="btn bg-orange large-button" data-toggle="modal" onclick="check_plant_edit_ikp()">
                         <i class="glyphicon glyphicon-plus fg-white"></i> Add New Area
                     </button>
                     <strong style="padding-top: 8px">*Area Project</strong>
-                    <p style="padding-top: 7px"> Plant Pekerjaan dapat diubah setelah Area Project kosong</p>
+                    <!-- <p style="padding-top: 7px"> Plant Pekerjaan dapat diubah setelah Area Project kosong</p> -->
                 </div>
             </div>
 
@@ -306,8 +306,12 @@
                             <div class="fixed-table-loading" style="top: 39px; display: none">
                                 Loading, please wait...
                             </div>
-                            <table id="area_create_ikp_table" class="table table-hover"
-                                   data-unique-id="nomorAsset">
+                            <table id="area_edit_ikp_table"
+                            data-url="/MiniProject/rest/ga/wpm001/get-area-table" data-method="post"
+                            data-content-type="application/json" data-data-type="json" data-query-params-type="limit"
+                            data-query-params="area_edit_ikp_table_filter" data-response-handler="load_data"
+                            data-side-pagination="server" data-pagination="true" data-unique-id="assetNo"
+                            data-click-to-select="true" class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th data-field="id" data-sortable="false" data-visible="true" data-align="center"
@@ -380,12 +384,12 @@
                     </div>
                 </div>
                 <div class="center" style="margin: 20px">
-                    <button class="btn bg-green" id="submit_create_ikp" 
-                            onclick="submit_create_ikp(this)">
+                    <button class="btn bg-green" id="submit_edit_ikp" 
+                            onclick="submit_edit_ikp(this)">
                         <i class="glyphicon glyphicon-floppy-disk fg-white"></i> Submit
                     </button>
-                    <button class="btn btn-danger" id="cancel_create_ikp" 
-                            onclick="cancel_create_ikp(this)">
+                    <button class="btn btn-danger" id="cancel_edit_ikp" 
+                            onclick="cancel_edit_ikp(this)">
                         <i class="glyphicon glyphicon-remove fg-white"></i> Cancel
                     </button>
                 </div>
@@ -1063,6 +1067,6 @@
     <script type="text/javascript" src="../resources/js/bootstraps/bootstrap-table.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../resources/js/lovtable.js"></script>
-    <script type="text/javascript" src="../resources/js/createIkp.js"></script>
+    <script type="text/javascript" src="../resources/js/editIkp.js"></script>
 </body>
 </html>

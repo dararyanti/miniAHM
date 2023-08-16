@@ -163,11 +163,11 @@
                                         <label for="nomor_ikp" class="col-sm-12 control-label">Nomor IKP</label>
                                         <div class="lookup-wrapper col-lg-12">
                                             <div class="input-group lookup" id="id_ikp_lookup_wrapper"
-                                                 data-url="/MiniProject/rest/ga/wpm001/get-lov-ikp"
+                                                 data-url="/MiniProject/rest/ga/wpm001/get-lov-ikp-id"
                                                  data-lookup-pre-func="lov_ikp_filter" data-query-params-type="limit"
                                                  data-columns='[{"id":"ikpId","name":"Nomor IKP","visible":"true","sortable":"true"},
                                                  {"id":"projectDetail","name":"Project Detail","visible":"true","sortable":"true"}]'
-                                                 data-callback='{"nomor_ikp_filter":"nomorIkp"}'>
+                                                 data-callback='{"nomor_ikp_filter":"ikpId"}'>
                                                 <input id="nomor_ikp_filter"
                                                        class="form-control input-lookup gawpm001-uppercase"
                                                        placeholder=" LoV Nomor IKP" maxlength="100" />

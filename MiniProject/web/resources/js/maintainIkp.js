@@ -145,7 +145,8 @@ $("#search_maintain_ikp_table", maintainIkp).bootstrapTable({
 })
 // INDEX FORMATTER
 function index_formatter(value, row, index) {
-    return index + 1;
+    var offsetValue = $('#search_maintain_ikp_table',maintainIkp).bootstrapTable('getOptions').pageSize * ($('#search_maintain_ikp_table',maintainIkp).bootstrapTable('getOptions').pageNumber-1);
+    return index + 1 + offsetValue;
 }
 // CHECK PO
 function check_po_filter(selectObject) {
@@ -177,7 +178,7 @@ function maintain_ikp_action_button(value, row, index) {
         if (row.status.includes('Created')) {
             return '<div id="button_maintain_ehs_controller"' +
                 'style="white-space: nowrap; display: block" >' +
-                '<span class="span-btn" onclick="ehsControllerEditPage(this, ' +
+                '<span class="span-btn" onclick="edit_ikp_page(this, ' +
                 index +
                 ')" data-toggle="tooltip" data-placement="top" title="Edit">' +
                 '<i class="glyphicon glyphicon-edit fg-red"></i>' +
@@ -199,12 +200,12 @@ function maintain_ikp_action_button(value, row, index) {
         } else if (row.status.includes('Approved')) {
             return '<div id="button_maintain_ehs_controller"' +
                 'style="white-space: nowrap; display: block" >' +
-                '<span class="span-btn"  onclick="securityDisplayPage(this, ' +
-                index +
-                ')" data-toggle="tooltip" data-placement="top"' +
-                'title="Display" style="margin-left: 5px">' +
-                '<i class="glyphicon glyphicon-search fg-red"></i>' +
-                "</span>" +
+                // '<span class="span-btn"  onclick="securityDisplayPage(this, ' +
+                // index +
+                // ')" data-toggle="tooltip" data-placement="top"' +
+                // 'title="Display" style="margin-left: 5px">' +
+                // '<i class="glyphicon glyphicon-search fg-red"></i>' +
+                // "</span>" +
                 "<span>&nbsp;</span>" +
                 '<span class="span-btn" onclick="ehsControllerRenewPage(this, ' +
                 index +
@@ -221,12 +222,12 @@ function maintain_ikp_action_button(value, row, index) {
         } else {
             return '<div id="button_maintain_ehs_controller"' +
                 'style="white-space: nowrap; display: block" >' +
-                '<span class="span-btn"  onclick="ehsControllerDisplayPage(this, ' +
-                index +
-                ')" data-toggle="tooltip" data-placement="top"' +
-                'title="Display" style="margin-left: 5px">' +
-                '<i class="glyphicon glyphicon-search fg-red"></i>' +
-                "</span>" +
+                // '<span class="span-btn"  onclick="ehsControllerDisplayPage(this, ' +
+                // index +
+                // ')" data-toggle="tooltip" data-placement="top"' +
+                // 'title="Display" style="margin-left: 5px">' +
+                // '<i class="glyphicon glyphicon-search fg-red"></i>' +
+                // "</span>" +
                 '<span class="span-btn" onclick="download_ikp(' +
                 index +
                 ')" data-toggle="tooltip" data-placement="top"' +
@@ -519,5 +520,10 @@ function lov_ikp_filter(params){
 
 function create_ikp_page(obj) {
     window.location.href = '/MiniProject/forms/createIkp.htm';
+}
+function edit_ikp_page(obj, index){
+    ikpId = $("#search_maintain_ikp_table", maintainIkp).bootstrapTable("getData")[index].ikpId;
+    localStorage.setItem('ikpId', ikpId);
+    window.location.href = '/MiniProject/forms/editIkp.htm';
 }
 
