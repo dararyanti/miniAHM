@@ -92,7 +92,7 @@ public class ServiceIkpImpl implements ServiceIkp {
         List<VoShowTableIkp> result = headerIkpDao.getTableIkp(input, voPstUserCred);
         return DtoHelper.constructResponsePaging(StatusMsgEnum.SUKSES, null, result, total);
     }
-    
+
     @Override
     public DtoResponse getTabelArea(DtoParamPaging input) {
         int total = areaPekerjaanDao.getCountTabelArea(input);
@@ -284,6 +284,46 @@ public class ServiceIkpImpl implements ServiceIkp {
         return DtoHelper.constructResponse(StatusMsgEnum.SUKSES, null, Arrays.asList(entityIkp));
     }
 
+    @Override
+    public DtoResponse saveArea(VoCreateUpdateAreaPekerjaan vo) {
+        AreaPekerjaanPk pk = new AreaPekerjaanPk();
+        pk.setIkpId(vo.getIkpId());
+        pk.setAssetNo(vo.getAssetNo());
+
+        AreaPekerjaan entityArea = Optional.ofNullable(areaPekerjaanDao.findOne(pk))
+                .orElse(new AreaPekerjaan());
+
+        entityArea.setAhmgawpmDtlikpareasPk(pk);
+        entityArea.setAreaDetail(vo.getAreaDetail());
+        entityArea.setCriticality(vo.getCriticality());
+        entityArea.setInOut(vo.getInOut());
+        entityArea.setLoginPatrol(vo.getLoginPatrol());
+        entityArea.setTaskList(vo.getTaskList());
+        areaPekerjaanDao.save(entityArea);
+        areaPekerjaanDao.flush();
+
+        return DtoHelper.constructResponse(StatusMsgEnum.SUKSES, null, Arrays.asList(entityArea));
+    }
+
+    @Override
+    public DtoResponse deleteArea(String ikpId, VoPstUserCred voPstUserCred) {
+        try {
+            List<Object[]> listResultFindNomorAsset = areaPekerjaanDao.findNomorAssetAreaPekerjaanByIkpId(ikpId, voPstUserCred);
+            List<AreaPekerjaan> listResultAreaPekerjaan = new ArrayList<>();
+            for (Object[] resultFindNomorAsset : listResultFindNomorAsset) {
+                AreaPekerjaanPk primaryKeyAreaPekerjaan = new AreaPekerjaanPk();
+                primaryKeyAreaPekerjaan.setIkpId(ikpId);
+                primaryKeyAreaPekerjaan.setAssetNo(resultFindNomorAsset[1].toString());
+                listResultAreaPekerjaan.add(areaPekerjaanDao.findOne(primaryKeyAreaPekerjaan));
+                areaPekerjaanDao.deleteById(primaryKeyAreaPekerjaan);
+                areaPekerjaanDao.flush();
+            }
+            return DtoHelper.constructResponsePaging(StatusMsgEnum.SUKSES, null, listResultAreaPekerjaan, 1);
+        } catch (Exception e) {
+            return DtoHelper.constructResponsePaging(StatusMsgEnum.GAGAL, null, null, 0);
+        }
+    }
+
     private String ikpId(String plantId) {
 
         SimpleDateFormat bulan = new SimpleDateFormat("MM");
@@ -339,7 +379,5 @@ public class ServiceIkpImpl implements ServiceIkp {
         sb.append(value);
         return sb.toString();
     }
-
-    
 
 }

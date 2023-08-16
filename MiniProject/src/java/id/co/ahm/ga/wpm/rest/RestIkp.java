@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import id.co.ahm.ga.wpm.service.ServiceIkp;
+import id.co.ahm.ga.wpm.vo.VoCreateUpdateAreaPekerjaan;
 import id.co.ahm.ga.wpm.vo.VoSaveIkp;
 import java.util.Map;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -192,5 +193,25 @@ public class RestIkp {
             @RequestBody DtoParamPaging dtoParamPaging) {
         VoPstUserCred voPstUserCred = tokenPstUtil.getUserCred(token);
         return this.serviceIkp.getTabelArea(dtoParamPaging);
+    }
+    
+    @RequestMapping(value = "save-area", method = RequestMethod.POST,
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    DtoResponse saveArea(@RequestHeader(value = CommonConstant.JXID, defaultValue = "") String token,
+            @RequestBody VoCreateUpdateAreaPekerjaan vo) throws Exception {
+        VoPstUserCred voPstUserCred = tokenPstUtil.getUserCred(token);
+        return this.serviceIkp.saveArea(vo);
+    }
+    
+    @RequestMapping(value = "delete-area", method = RequestMethod.POST,
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    DtoResponse deleteArea(@RequestHeader(value = CommonConstant.JXID, defaultValue = "") String token,
+            @RequestParam String ikpId) {
+        VoPstUserCred voPstUserCred = tokenPstUtil.getUserCred(token);
+        return this.serviceIkp.deleteArea(ikpId, voPstUserCred);
     }
 }
