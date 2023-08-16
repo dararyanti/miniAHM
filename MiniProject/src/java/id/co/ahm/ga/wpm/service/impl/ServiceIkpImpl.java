@@ -248,7 +248,7 @@ public class ServiceIkpImpl implements ServiceIkp {
 
         if (voIkp.getIkpId().isEmpty()) {
             entityIkp.setIkpId(ikpId(entityIkp.getPlantId()));
-            entityIkp.setStatus(voIkp.getStatus());
+            entityIkp.setStatus("00-IKP");
         } else {
             entityIkp.setIkpId(voIkp.getIkpId());
             entityIkp.setStatus(voIkp.getStatus());
