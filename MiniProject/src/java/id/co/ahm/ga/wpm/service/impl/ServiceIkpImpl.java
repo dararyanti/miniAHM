@@ -306,19 +306,16 @@ public class ServiceIkpImpl implements ServiceIkp {
     }
 
     @Override
-    public DtoResponse deleteArea(String ikpId, VoPstUserCred voPstUserCred) {
+    public DtoResponse deleteArea(String ikpId, String assetNo) {
         try {
-            List<Object[]> listResultFindNomorAsset = areaPekerjaanDao.findNomorAssetAreaPekerjaanByIkpId(ikpId, voPstUserCred);
-            List<AreaPekerjaan> listResultAreaPekerjaan = new ArrayList<>();
-            for (Object[] resultFindNomorAsset : listResultFindNomorAsset) {
-                AreaPekerjaanPk primaryKeyAreaPekerjaan = new AreaPekerjaanPk();
-                primaryKeyAreaPekerjaan.setIkpId(ikpId);
-                primaryKeyAreaPekerjaan.setAssetNo(resultFindNomorAsset[1].toString());
-                listResultAreaPekerjaan.add(areaPekerjaanDao.findOne(primaryKeyAreaPekerjaan));
-                areaPekerjaanDao.deleteById(primaryKeyAreaPekerjaan);
-                areaPekerjaanDao.flush();
-            }
-            return DtoHelper.constructResponsePaging(StatusMsgEnum.SUKSES, null, listResultAreaPekerjaan, 1);
+            AreaPekerjaanPk primaryKeyAreaPekerjaan = new AreaPekerjaanPk();
+            primaryKeyAreaPekerjaan.setIkpId(ikpId);
+            primaryKeyAreaPekerjaan.setAssetNo(assetNo);
+            AreaPekerjaan entityArea = areaPekerjaanDao.findOne(primaryKeyAreaPekerjaan);
+            areaPekerjaanDao.deleteById(primaryKeyAreaPekerjaan);
+            areaPekerjaanDao.flush();
+
+            return DtoHelper.constructResponsePaging(StatusMsgEnum.SUKSES, null, Arrays.asList(entityArea), 1);
         } catch (Exception e) {
             return DtoHelper.constructResponsePaging(StatusMsgEnum.GAGAL, null, null, 0);
         }

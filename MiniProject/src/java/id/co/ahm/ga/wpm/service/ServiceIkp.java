@@ -46,6 +46,6 @@ public interface ServiceIkp {
     
     DtoResponse saveArea(VoCreateUpdateAreaPekerjaan vo);
     
-    DtoResponse deleteArea(String ikpId, VoPstUserCred voPstUserCred);
+    DtoResponse deleteArea(String ikpId, String assetNo);
 
 }

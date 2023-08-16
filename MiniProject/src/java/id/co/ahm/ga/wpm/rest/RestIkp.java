@@ -210,8 +210,8 @@ public class RestIkp {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     DtoResponse deleteArea(@RequestHeader(value = CommonConstant.JXID, defaultValue = "") String token,
-            @RequestParam String ikpId) {
+            @RequestParam String ikpId, @RequestParam String assetNo) {
         VoPstUserCred voPstUserCred = tokenPstUtil.getUserCred(token);
-        return this.serviceIkp.deleteArea(ikpId, voPstUserCred);
+        return this.serviceIkp.deleteArea(ikpId, assetNo);
     }
 }
