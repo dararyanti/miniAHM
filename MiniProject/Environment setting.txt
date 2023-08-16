@@ -8,3 +8,9 @@ username = ahmgawpm
 password = miniproject
 host = localhost
 port = 1521
+
+Script untuk buat tabel ada di git
+Script Database.sql
+
+Import Data untuk tabel
+https://docs.google.com/spreadsheets/d/14At3C5dfh4AzOK3EreTekPNHV-5VUMT9O7q3PGiQF6g/edit?usp=sharing 
