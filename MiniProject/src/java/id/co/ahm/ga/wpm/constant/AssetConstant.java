@@ -10,7 +10,7 @@ import id.co.ahm.ga.wpm.vo.VoLovPic;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import org.hibernate.query.Query;
+import org.hibernate.Query;
 
 /**
  *

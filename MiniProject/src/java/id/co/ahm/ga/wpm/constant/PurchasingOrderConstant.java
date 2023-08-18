@@ -5,12 +5,11 @@
 package id.co.ahm.ga.wpm.constant;
 
 import id.co.ahm.ga.wpm.util.DtoParamPaging;
-import id.co.ahm.ga.wpm.vo.VoLovPlant;
 import id.co.ahm.ga.wpm.vo.VoLovPo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import org.hibernate.query.Query;
+import org.hibernate.Query;
 
 /**
  *

@@ -3,10 +3,8 @@ package id.co.ahm.ga.wpm.service;
 import id.co.ahm.ga.wpm.util.DtoParamPaging;
 import id.co.ahm.ga.wpm.util.DtoResponse;
 import id.co.ahm.ga.wpm.vo.VoCreateUpdateAreaPekerjaan;
-import id.co.ahm.ga.wpm.vo.VoCreateUpdateIkp;
 import id.co.ahm.ga.wpm.vo.VoSaveIkp;
 import id.co.ahm.ga.wpm.vo.VoShowTableIkp;
-import id.co.jxf.security.vo.VoPstUserCred;
 import java.util.List;
 import java.util.Map;
 
@@ -16,15 +14,15 @@ import java.util.Map;
  */
 public interface ServiceIkp {
 
-    DtoResponse getTableIkp(DtoParamPaging input, VoPstUserCred voPstUserCred);
+    DtoResponse getTableIkp(DtoParamPaging input);
 
-    DtoResponse deleteIkp(String ikpId, VoPstUserCred voPstUserCred);
+    DtoResponse deleteIkp(String ikpId);
 
-    DtoResponse getAreaProjectTableIkp(DtoParamPaging input, VoPstUserCred voPstUserCred);
+    DtoResponse getAreaProjectTableIkp(DtoParamPaging input);
 
-    List<VoShowTableIkp> exportToExcelIkp(Map<String, Object> params, VoPstUserCred voPstUserCred);
+    List<VoShowTableIkp> exportToExcelIkp(Map<String, Object> params);
 
-    VoShowTableIkp downloadIkp(Map<String, Object> params, VoPstUserCred voPstUserCred) throws Exception;
+    VoShowTableIkp downloadIkp(Map<String, Object> params) throws Exception;
     
     DtoResponse getLovSupplier(DtoParamPaging input);
     

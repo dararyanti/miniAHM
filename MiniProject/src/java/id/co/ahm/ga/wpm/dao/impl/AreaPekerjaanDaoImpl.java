@@ -1,22 +1,19 @@
 package id.co.ahm.ga.wpm.dao.impl;
 
 import id.co.ahm.ga.wpm.constant.AreaPekerjaanConstant;
-import id.co.ahm.ga.wpm.constant.HeaderIkpConstant;
 import id.co.ahm.ga.wpm.model.AreaPekerjaan;
 import id.co.ahm.ga.wpm.model.AreaPekerjaanPk;
 import id.co.ahm.ga.wpm.util.dao.DefaultHibernateDao;
 import org.springframework.stereotype.Repository;
 import id.co.ahm.ga.wpm.dao.AreaPekerjaanDao;
 import id.co.ahm.ga.wpm.util.DtoParamPaging;
-import id.co.ahm.ga.wpm.util.vo.VoLovIkpId;
 import id.co.ahm.ga.wpm.vo.VoShowAreaPekerjaan;
-import id.co.jxf.security.vo.VoPstUserCred;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.hibernate.query.Query;
+import org.hibernate.Query;
 /**
  *
  * @author Irzan Maulana
@@ -25,7 +22,7 @@ import org.hibernate.query.Query;
 public class AreaPekerjaanDaoImpl extends DefaultHibernateDao<AreaPekerjaan, AreaPekerjaanPk> implements AreaPekerjaanDao {
     
     @Override
-    public List<Object[]> findNomorAssetAreaPekerjaanByIkpId(String ikpId, VoPstUserCred voPstUserCred) {
+    public List<Object[]> findNomorAssetAreaPekerjaanByIkpId(String ikpId) {
 
         String sql = AreaPekerjaanConstant.FIND_NOMOR_ASSET_AREA_PEKERJAAN_BY_IKP_ID_QUERY;
 

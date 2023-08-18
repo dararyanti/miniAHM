@@ -5,7 +5,6 @@ import id.co.ahm.ga.wpm.util.DtoParamPaging;
 import id.co.ahm.ga.wpm.util.DtoResponse;
 import id.co.ahm.ga.wpm.util.StatusMsgEnum;
 import id.co.ahm.ga.wpm.vo.VoShowTableIkp;
-import id.co.jxf.security.vo.VoPstUserCred;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ import id.co.ahm.ga.wpm.model.HeaderIkp;
 import org.springframework.stereotype.Service;
 import id.co.ahm.ga.wpm.service.ServiceIkp;
 import id.co.ahm.ga.wpm.vo.VoCreateUpdateIkp;
-import id.co.ahm.ga.wpm.util.vo.VoLovIkpId;
+import id.co.ahm.ga.wpm.vo.VoLovIkpId;
 import id.co.ahm.ga.wpm.vo.VoCreateUpdateAreaPekerjaan;
 import id.co.ahm.ga.wpm.vo.VoLovAsset;
 import id.co.ahm.ga.wpm.vo.VoLovPic;
@@ -87,9 +86,9 @@ public class ServiceIkpImpl implements ServiceIkp {
     private TaskListDao taskListDao;
 
     @Override
-    public DtoResponse getTableIkp(DtoParamPaging input, VoPstUserCred voPstUserCred) {
-        int total = headerIkpDao.getCountTableIkp(input, voPstUserCred);
-        List<VoShowTableIkp> result = headerIkpDao.getTableIkp(input, voPstUserCred);
+    public DtoResponse getTableIkp(DtoParamPaging input) {
+        int total = headerIkpDao.getCountTableIkp(input);
+        List<VoShowTableIkp> result = headerIkpDao.getTableIkp(input);
         return DtoHelper.constructResponsePaging(StatusMsgEnum.SUKSES, null, result, total);
     }
 
@@ -101,9 +100,9 @@ public class ServiceIkpImpl implements ServiceIkp {
     }
 
     @Override
-    public DtoResponse deleteIkp(String ikpId, VoPstUserCred voPstUserCred) {
+    public DtoResponse deleteIkp(String ikpId) {
         try {
-            List<Object[]> listResultFindNomorAsset = areaPekerjaanDao.findNomorAssetAreaPekerjaanByIkpId(ikpId, voPstUserCred);
+            List<Object[]> listResultFindNomorAsset = areaPekerjaanDao.findNomorAssetAreaPekerjaanByIkpId(ikpId);
             List<AreaPekerjaan> listResultAreaPekerjaan = new ArrayList<>();
             for (Object[] resultFindNomorAsset : listResultFindNomorAsset) {
                 AreaPekerjaanPk primaryKeyAreaPekerjaan = new AreaPekerjaanPk();
@@ -125,14 +124,14 @@ public class ServiceIkpImpl implements ServiceIkp {
     }
 
     @Override
-    public DtoResponse getAreaProjectTableIkp(DtoParamPaging input, VoPstUserCred voPstUserCred) {
-        int total = headerIkpDao.getCountTableIkp(input, voPstUserCred);
-        List<VoShowTableIkp> result = headerIkpDao.getTableIkp(input, voPstUserCred);
+    public DtoResponse getAreaProjectTableIkp(DtoParamPaging input) {
+        int total = headerIkpDao.getCountTableIkp(input);
+        List<VoShowTableIkp> result = headerIkpDao.getTableIkp(input);
         return DtoHelper.constructResponsePaging(StatusMsgEnum.SUKSES, null, result, total);
     }
 
     @Override
-    public List<VoShowTableIkp> exportToExcelIkp(Map<String, Object> mappedInput, VoPstUserCred voPstUserCred) {
+    public List<VoShowTableIkp> exportToExcelIkp(Map<String, Object> mappedInput) {
         DtoParamPaging input = new DtoParamPaging();
         if (!(mappedInput.containsKey("nrpId"))) {
             mappedInput.put("nrpId", "");
@@ -143,12 +142,12 @@ public class ServiceIkpImpl implements ServiceIkp {
         input.setSearch(search);
         input.setOrder((String) mappedInput.get("order"));
         input.setSort((String) mappedInput.get("sort"));
-        List<VoShowTableIkp> result = headerIkpDao.getTableIkp(input, voPstUserCred);
+        List<VoShowTableIkp> result = headerIkpDao.getTableIkp(input);
         return result;
     }
 
     @Override
-    public VoShowTableIkp downloadIkp(Map<String, Object> mappedInput, VoPstUserCred voPstUserCred) throws Exception {
+    public VoShowTableIkp downloadIkp(Map<String, Object> mappedInput) throws Exception {
         DtoParamPaging input = new DtoParamPaging();
         if (!(mappedInput.containsKey("nrpId"))) {
             mappedInput.put("nrpId", "");
@@ -159,10 +158,10 @@ public class ServiceIkpImpl implements ServiceIkp {
         input.setSearch(search);
         input.setOrder((String) mappedInput.get("order"));
         input.setSort((String) mappedInput.get("sort"));
-        List<VoShowTableIkp> listResult = headerIkpDao.getTableIkp(input, voPstUserCred);
+        List<VoShowTableIkp> listResult = headerIkpDao.getTableIkp(input);
         VoShowTableIkp result = listResult.get(0);
 
-        List<Object[]> listResultFindNomorAsset = areaPekerjaanDao.findNomorAssetAreaPekerjaanByIkpId(result.getIkpId(), voPstUserCred);
+        List<Object[]> listResultFindNomorAsset = areaPekerjaanDao.findNomorAssetAreaPekerjaanByIkpId(result.getIkpId());
         List<VoShowAreaPekerjaan> listResultAreaPekerjaan = new ArrayList<>();
         for (Object[] resultFindNomorAsset : listResultFindNomorAsset) {
             VoShowAreaPekerjaan resultAreaPekerjaan = new VoShowAreaPekerjaan();
@@ -243,8 +242,6 @@ public class ServiceIkpImpl implements ServiceIkp {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
 
         BeanUtils.copyProperties(voIkp, entityIkp);
-//        entityIkp.setStartJob(format.parse(voIkp.getStartJob()));
-//        entityIkp.setEndJob(format.parse(voIkp.getEndJob()));
 
         if (voIkp.getIkpId().isEmpty()) {
             entityIkp.setIkpId(ikpId(entityIkp.getPlantId()));

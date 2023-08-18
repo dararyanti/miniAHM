@@ -5,16 +5,15 @@ import id.co.ahm.ga.wpm.model.HeaderIkp;
 import id.co.ahm.ga.wpm.util.dao.DefaultHibernateDao;
 import id.co.ahm.ga.wpm.util.DtoParamPaging;
 import id.co.ahm.ga.wpm.vo.VoShowTableIkp;
-import id.co.jxf.security.vo.VoPstUserCred;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.hibernate.query.Query;
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 import id.co.ahm.ga.wpm.dao.HeaderIkpDao;
-import id.co.ahm.ga.wpm.util.vo.VoLovIkpId;
+import id.co.ahm.ga.wpm.vo.VoLovIkpId;
 import id.co.ahm.ga.wpm.vo.VoLovPic;
 import id.co.ahm.ga.wpm.vo.VoLovPo;
 import id.co.ahm.ga.wpm.vo.VoLovSupplier;
@@ -27,7 +26,7 @@ import id.co.ahm.ga.wpm.vo.VoLovSupplier;
 public class HeaderIkpDaoImpl extends DefaultHibernateDao<HeaderIkp, String> implements HeaderIkpDao {
 
     @Override
-    public int getCountTableIkp(DtoParamPaging input, VoPstUserCred voPstUserCred) {
+    public int getCountTableIkp(DtoParamPaging input) {
         String countIkp = HeaderIkpConstant.SELECT_COUNT(HeaderIkpConstant.IKP_TABLE_QUERY);
         Query q = getCurrentSession().createSQLQuery(countIkp);
         q = HeaderIkpConstant.FILTER_TABLE_IKP(q, input);
@@ -37,7 +36,7 @@ public class HeaderIkpDaoImpl extends DefaultHibernateDao<HeaderIkp, String> imp
     }
 
     @Override
-    public List<VoShowTableIkp> getTableIkp(DtoParamPaging input, VoPstUserCred voPstUserCred) {
+    public List<VoShowTableIkp> getTableIkp(DtoParamPaging input) {
         String sql = HeaderIkpConstant.IKP_TABLE_QUERY;
         sql = HeaderIkpConstant.ORDER_TABLE_IKP(sql, input);
         Query q = getCurrentSession().createSQLQuery(sql);

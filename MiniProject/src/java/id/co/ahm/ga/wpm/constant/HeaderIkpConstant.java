@@ -1,7 +1,7 @@
 package id.co.ahm.ga.wpm.constant;
 
 import id.co.ahm.ga.wpm.util.DtoParamPaging;
-import id.co.ahm.ga.wpm.util.vo.VoLovIkpId;
+import id.co.ahm.ga.wpm.vo.VoLovIkpId;
 import id.co.ahm.ga.wpm.vo.VoLovPic;
 import id.co.ahm.ga.wpm.vo.VoLovPo;
 import id.co.ahm.ga.wpm.vo.VoLovSupplier;
@@ -9,11 +9,10 @@ import id.co.ahm.ga.wpm.vo.VoShowTableIkp;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
-import static java.util.Collections.list;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import org.hibernate.query.Query;
+import org.hibernate.Query;
 
 /**
  *
