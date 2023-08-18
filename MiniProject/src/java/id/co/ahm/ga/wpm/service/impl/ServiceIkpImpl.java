@@ -6,7 +6,6 @@ import id.co.ahm.ga.wpm.util.DtoResponse;
 import id.co.ahm.ga.wpm.util.StatusMsgEnum;
 import id.co.ahm.ga.wpm.vo.VoShowTableIkp;
 import java.util.List;
-import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import id.co.ahm.ga.wpm.dao.AreaPekerjaanDao;
@@ -44,6 +43,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.springframework.beans.BeanUtils;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
