@@ -20,11 +20,11 @@
     for the index controller we are using ParameterizableViewController, so we must
     define an explicit mapping for it.
     -->
-    <bean class="org.springframework.orm.hibernate4.HibernateTransactionManager" id="transactionManager">  
+    <bean class="org.springframework.orm.hibernate5.HibernateTransactionManager" id="transactionManager">  
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     
-    <bean class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" id="sessionFactory">        
+    <bean class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" id="sessionFactory">        
         <property name="packagesToScan" >
             <list>
                 <value>id.co.ahm.ga.wpm.model</value>
